@@ -15,7 +15,7 @@
   "k": 12,
   "mag_at_build": 7.29,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -8.8
+  "days_from_perihelion": -8.9
  },
  {
   "designation": "141P",
@@ -31,9 +31,9 @@
   },
   "H": 12,
   "k": 12,
-  "mag_at_build": 9.73,
+  "mag_at_build": 9.75,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -34.4
+  "days_from_perihelion": -34.5
  },
  {
   "designation": "141P-A",
@@ -49,9 +49,9 @@
   },
   "H": 12,
   "k": 12,
-  "mag_at_build": 9.95,
+  "mag_at_build": 9.97,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -34
+  "days_from_perihelion": -34.1
  },
  {
   "designation": "C/2024 E1",
@@ -69,7 +69,7 @@
   "k": 4,
   "mag_at_build": 10.02,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -126.6
+  "days_from_perihelion": -126.7
  },
  {
   "designation": "C/2025 R3",
@@ -85,9 +85,9 @@
   },
   "H": 12.2,
   "k": 4,
-  "mag_at_build": 11.97,
+  "mag_at_build": 11.98,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -37.5
+  "days_from_perihelion": -37.6
  },
  {
   "designation": "10P",
@@ -105,7 +105,7 @@
   "k": 10,
   "mag_at_build": 11.98,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 66.8
+  "days_from_perihelion": 66.6
  },
  {
   "designation": "78P",
@@ -123,7 +123,7 @@
   "k": 8,
   "mag_at_build": 12.2,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 28.7
+  "days_from_perihelion": 28.6
  },
  {
   "designation": "162P",
@@ -141,7 +141,7 @@
   "k": 4,
   "mag_at_build": 12.24,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -9.5
+  "days_from_perihelion": -9.6
  },
  {
   "designation": "93P",
@@ -159,7 +159,7 @@
   "k": 6,
   "mag_at_build": 12.36,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -24.4
+  "days_from_perihelion": -24.5
  },
  {
   "designation": "123P",
@@ -175,9 +175,9 @@
   },
   "H": 4,
   "k": 10,
-  "mag_at_build": 14.44,
+  "mag_at_build": 14.43,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 117.6
+  "days_from_perihelion": 117.5
  },
  {
   "designation": "P/2010 H2",
@@ -195,7 +195,7 @@
   "k": 4,
   "mag_at_build": 14.78,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -443.1
+  "days_from_perihelion": -443.2
  },
  {
   "designation": "C/2026 B2",
@@ -211,9 +211,9 @@
   },
   "H": 9.7,
   "k": 4,
-  "mag_at_build": 14.8,
+  "mag_at_build": 14.81,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -137.2
+  "days_from_perihelion": -137.4
  },
  {
   "designation": "C/2023 R1",
@@ -231,7 +231,7 @@
   "k": 4,
   "mag_at_build": 14.84,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -44
+  "days_from_perihelion": -44.1
  },
  {
   "designation": "76P",
@@ -249,7 +249,7 @@
   "k": 12,
   "mag_at_build": 14.84,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -43.7
+  "days_from_perihelion": -43.8
  },
  {
   "designation": "128P",
@@ -267,7 +267,7 @@
   "k": 4,
   "mag_at_build": 14.92,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 50.7
+  "days_from_perihelion": 50.6
  },
  {
   "designation": "88P",
@@ -283,9 +283,9 @@
   },
   "H": 11,
   "k": 6,
-  "mag_at_build": 15.1,
+  "mag_at_build": 15.11,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -69.6
+  "days_from_perihelion": -69.7
  },
  {
   "designation": "C/2022 N2",
@@ -303,7 +303,7 @@
   "k": 4,
   "mag_at_build": 15.47,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -299.3
+  "days_from_perihelion": -299.4
  },
  {
   "designation": "65P",
@@ -321,7 +321,7 @@
   "k": 6,
   "mag_at_build": 15.51,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -345.2
+  "days_from_perihelion": -345.3
  },
  {
   "designation": "295P",
@@ -339,7 +339,7 @@
   "k": 4,
   "mag_at_build": 15.59,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 56.4
+  "days_from_perihelion": 56.3
  },
  {
   "designation": "131P",
@@ -357,7 +357,7 @@
   "k": 4,
   "mag_at_build": 15.83,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -100.6
+  "days_from_perihelion": -100.7
  },
  {
   "designation": "D/1918 W1",
@@ -375,7 +375,7 @@
   "k": 4,
   "mag_at_build": 15.91,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -219.5
+  "days_from_perihelion": -219.6
  },
  {
   "designation": "47P",
@@ -393,7 +393,7 @@
   "k": 11.2,
   "mag_at_build": 16.26,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -211.4
+  "days_from_perihelion": -211.5
  },
  {
   "designation": "C/2022 QE78",
@@ -411,7 +411,7 @@
   "k": 4,
   "mag_at_build": 16.39,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -257.2
+  "days_from_perihelion": -257.3
  },
  {
   "designation": "C/2024 A1",
@@ -429,7 +429,7 @@
   "k": 4,
   "mag_at_build": 16.4,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -348.4
+  "days_from_perihelion": -348.5
  },
  {
   "designation": "114P",
@@ -447,7 +447,7 @@
   "k": 6,
   "mag_at_build": 16.43,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 110.6
+  "days_from_perihelion": 110.5
  },
  {
   "designation": "240P",
@@ -465,7 +465,7 @@
   "k": 4,
   "mag_at_build": 16.44,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -158.4
+  "days_from_perihelion": -158.5
  },
  {
   "designation": "D/1884 O1",
@@ -483,7 +483,7 @@
   "k": 4,
   "mag_at_build": 16.49,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 145
+  "days_from_perihelion": 144.9
  },
  {
   "designation": "63P",
@@ -501,7 +501,7 @@
   "k": 6,
   "mag_at_build": 16.73,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 39.8
+  "days_from_perihelion": 39.7
  },
  {
   "designation": "188P",
@@ -519,7 +519,7 @@
   "k": 4,
   "mag_at_build": 16.8,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -44
+  "days_from_perihelion": -44.1
  },
  {
   "designation": "C/2025 J1",
@@ -537,7 +537,7 @@
   "k": 4,
   "mag_at_build": 16.87,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 15.4
+  "days_from_perihelion": 15.3
  },
  {
   "designation": "493P",
@@ -553,9 +553,9 @@
   },
   "H": 8.5,
   "k": 4,
-  "mag_at_build": 17,
+  "mag_at_build": 16.99,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -133.1
+  "days_from_perihelion": -133.2
  },
  {
   "designation": "A",
@@ -573,7 +573,7 @@
   "k": 2,
   "mag_at_build": 17.09,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -13.8
+  "days_from_perihelion": -13.9
  },
  {
   "designation": "C/2023 H5",
@@ -591,7 +591,7 @@
   "k": 4,
   "mag_at_build": 17.1,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -330.9
+  "days_from_perihelion": -331
  },
  {
   "designation": "P/1996 R2",
@@ -609,7 +609,7 @@
   "k": 4,
   "mag_at_build": 17.37,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 19.8
+  "days_from_perihelion": 19.6
  },
  {
   "designation": "C/2022 R6",
@@ -627,7 +627,7 @@
   "k": 4,
   "mag_at_build": 17.44,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -273.2
+  "days_from_perihelion": -273.3
  },
  {
   "designation": "C/2025 L1",
@@ -645,7 +645,7 @@
   "k": 4,
   "mag_at_build": 17.54,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -134.6
+  "days_from_perihelion": -134.7
  },
  {
   "designation": "243P",
@@ -663,7 +663,7 @@
   "k": 4,
   "mag_at_build": 17.66,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -90.8
+  "days_from_perihelion": -90.9
  },
  {
   "designation": "C/2023 X2",
@@ -681,7 +681,7 @@
   "k": 3.2,
   "mag_at_build": 17.71,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -149.8
+  "days_from_perihelion": -150
  },
  {
   "designation": "C/2025 Q3",
@@ -697,9 +697,9 @@
   },
   "H": 12.2,
   "k": 4,
-  "mag_at_build": 17.79,
+  "mag_at_build": 17.8,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -90.7
+  "days_from_perihelion": -90.8
  },
  {
   "designation": "242P",
@@ -717,7 +717,7 @@
   "k": 4,
   "mag_at_build": 17.81,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -520
+  "days_from_perihelion": -520.1
  },
  {
   "designation": "P/2009 B1",
@@ -735,7 +735,7 @@
   "k": 4,
   "mag_at_build": 17.9,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 33.8
+  "days_from_perihelion": 33.7
  },
  {
   "designation": "C/2024 G6",
@@ -753,7 +753,7 @@
   "k": 4,
   "mag_at_build": 17.94,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -95.8
+  "days_from_perihelion": -95.9
  },
  {
   "designation": "C/2023 F3",
@@ -771,7 +771,7 @@
   "k": 4,
   "mag_at_build": 17.97,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -478.6
+  "days_from_perihelion": -478.7
  },
  {
   "designation": "331P",
@@ -789,7 +789,7 @@
   "k": 4,
   "mag_at_build": 18.01,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -151.9
+  "days_from_perihelion": -152.1
  },
  {
   "designation": "509P",
@@ -807,7 +807,7 @@
   "k": 4,
   "mag_at_build": 18.1,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -69
+  "days_from_perihelion": -69.1
  },
  {
   "designation": "235P",
@@ -825,7 +825,7 @@
   "k": 4,
   "mag_at_build": 18.25,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -155.7
+  "days_from_perihelion": -155.8
  },
  {
   "designation": "198P",
@@ -843,7 +843,7 @@
   "k": 4,
   "mag_at_build": 18.26,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -187.2
+  "days_from_perihelion": -187.3
  },
  {
   "designation": "43P",
@@ -861,7 +861,7 @@
   "k": 6,
   "mag_at_build": 18.38,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -295.9
+  "days_from_perihelion": -296
  },
  {
   "designation": "502P",
@@ -877,9 +877,9 @@
   },
   "H": 8.5,
   "k": 4,
-  "mag_at_build": 18.38,
+  "mag_at_build": 18.39,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -295.6
+  "days_from_perihelion": -295.7
  },
  {
   "designation": "74P",
@@ -895,9 +895,9 @@
   },
   "H": 5,
   "k": 6,
-  "mag_at_build": 18.43,
+  "mag_at_build": 18.42,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -104
+  "days_from_perihelion": -104.1
  },
  {
   "designation": "82P",
@@ -915,25 +915,7 @@
   "k": 8,
   "mag_at_build": 18.43,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 171.8
- },
- {
-  "designation": "C/2025 K1",
-  "name": "ATLAS",
-  "epoch": "2026-05-27",
-  "orbital": {
-   "q": 0.334189,
-   "e": 1.000232,
-   "i": 147.8643,
-   "node": 97.5585,
-   "argp": 271.0191,
-   "tp": 2460956.9339
-  },
-  "H": 12.2,
-  "k": 4,
-  "mag_at_build": 18.63,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": -230.9
+  "days_from_perihelion": 171.6
  },
  {
   "designation": "195P",
@@ -951,7 +933,25 @@
   "k": 4,
   "mag_at_build": 18.63,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -294.1
+  "days_from_perihelion": -294.2
+ },
+ {
+  "designation": "C/2025 K1",
+  "name": "ATLAS",
+  "epoch": "2026-05-27",
+  "orbital": {
+   "q": 0.334189,
+   "e": 1.000232,
+   "i": 147.8643,
+   "node": 97.5585,
+   "argp": 271.0191,
+   "tp": 2460956.9339
+  },
+  "H": 12.2,
+  "k": 4,
+  "mag_at_build": 18.64,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": -231
  },
  {
   "designation": "C/2024 G4",
@@ -969,7 +969,7 @@
   "k": 4,
   "mag_at_build": 18.66,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -66.9
+  "days_from_perihelion": -67
  },
  {
   "designation": "C/2024 G2",
@@ -987,7 +987,7 @@
   "k": 4,
   "mag_at_build": 18.7,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -347.7
+  "days_from_perihelion": -347.8
  },
  {
   "designation": "P/2004 FY140",
@@ -1005,7 +1005,7 @@
   "k": 2,
   "mag_at_build": 19.02,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 0.6
+  "days_from_perihelion": 0.5
  },
  {
   "designation": "C/2025 E1",
@@ -1023,7 +1023,7 @@
   "k": 4,
   "mag_at_build": 19.17,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 119.3
+  "days_from_perihelion": 119.2
  },
  {
   "designation": "164P",
@@ -1041,7 +1041,7 @@
   "k": 4,
   "mag_at_build": 19.17,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -365.1
+  "days_from_perihelion": -365.2
  },
  {
   "designation": "C/2024 X2",
@@ -1059,7 +1059,7 @@
   "k": 4,
   "mag_at_build": 19.26,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -323.9
+  "days_from_perihelion": -324
  },
  {
   "designation": "136P",
@@ -1077,7 +1077,7 @@
   "k": 4,
   "mag_at_build": 19.27,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -507.7
+  "days_from_perihelion": -507.8
  },
  {
   "designation": "C/2025 L2",
@@ -1095,7 +1095,7 @@
   "k": 4,
   "mag_at_build": 19.42,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -157.7
+  "days_from_perihelion": -157.8
  },
  {
   "designation": "495P",
@@ -1113,7 +1113,7 @@
   "k": 4,
   "mag_at_build": 19.43,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -216.9
+  "days_from_perihelion": -217
  },
  {
   "designation": "513P",
@@ -1129,9 +1129,9 @@
   },
   "H": 11,
   "k": 4,
-  "mag_at_build": 19.44,
+  "mag_at_build": 19.45,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -347.5
+  "days_from_perihelion": -347.6
  },
  {
   "designation": "C/2023 V1",
@@ -1149,7 +1149,7 @@
   "k": 4,
   "mag_at_build": 19.68,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -318.3
+  "days_from_perihelion": -318.4
  },
  {
   "designation": "C/2024 N4",
@@ -1167,7 +1167,7 @@
   "k": 4,
   "mag_at_build": 19.71,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -501.9
+  "days_from_perihelion": -502
  },
  {
   "designation": "C/2024 L5",
@@ -1185,7 +1185,7 @@
   "k": 4,
   "mag_at_build": 19.73,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -442.5
+  "days_from_perihelion": -442.6
  },
  {
   "designation": "510P",
@@ -1203,7 +1203,7 @@
   "k": 4,
   "mag_at_build": 19.73,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 104.8
+  "days_from_perihelion": 104.7
  },
  {
   "designation": "C/2024 G7",
@@ -1221,7 +1221,7 @@
   "k": 4,
   "mag_at_build": 19.78,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -471.5
+  "days_from_perihelion": -471.6
  },
  {
   "designation": "C/2025 N2",
@@ -1239,7 +1239,7 @@
   "k": 4,
   "mag_at_build": 19.8,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -532.9
+  "days_from_perihelion": -533
  },
  {
   "designation": "C/2024 N3",
@@ -1257,7 +1257,7 @@
   "k": 4,
   "mag_at_build": 19.81,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -410.7
+  "days_from_perihelion": -410.9
  },
  {
   "designation": "C/2024 L2",
@@ -1275,7 +1275,7 @@
   "k": 3.2,
   "mag_at_build": 19.87,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -344.5
+  "days_from_perihelion": -344.6
  },
  {
   "designation": "P/2025 C1",
@@ -1291,27 +1291,9 @@
   },
   "H": 10.8,
   "k": 4,
-  "mag_at_build": 19.87,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": -474.7
- },
- {
-  "designation": "24P",
-  "name": "Schaumasse",
-  "epoch": "2026-05-27",
-  "orbital": {
-   "q": 1.183982,
-   "e": 0.708195,
-   "i": 11.502,
-   "node": 78.2694,
-   "argp": 58.4859,
-   "tp": 2461048.8412
-  },
-  "H": 6.5,
-  "k": 14,
   "mag_at_build": 19.88,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -139
+  "days_from_perihelion": -474.8
  },
  {
   "designation": "C/2025 B2",
@@ -1329,7 +1311,25 @@
   "k": 4,
   "mag_at_build": 19.89,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 107.6
+  "days_from_perihelion": 107.5
+ },
+ {
+  "designation": "24P",
+  "name": "Schaumasse",
+  "epoch": "2026-05-27",
+  "orbital": {
+   "q": 1.183982,
+   "e": 0.708195,
+   "i": 11.502,
+   "node": 78.2694,
+   "argp": 58.4859,
+   "tp": 2461048.8412
+  },
+  "H": 6.5,
+  "k": 14,
+  "mag_at_build": 19.89,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": -139.1
  },
  {
   "designation": "C/2025 W1",
@@ -1347,7 +1347,7 @@
   "k": 4,
   "mag_at_build": 19.97,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -463.6
+  "days_from_perihelion": -463.7
  },
  {
   "designation": "C/2023 T3",
@@ -1365,7 +1365,7 @@
   "k": 4,
   "mag_at_build": 19.99,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -486.9
+  "days_from_perihelion": -487
  },
  {
   "designation": "324P",
@@ -1383,7 +1383,7 @@
   "k": 4,
   "mag_at_build": 19.99,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 140.1
+  "days_from_perihelion": 139.9
  },
  {
   "designation": "341P",
@@ -1401,7 +1401,7 @@
   "k": 4,
   "mag_at_build": 20.07,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -399.6
+  "days_from_perihelion": -399.7
  },
  {
   "designation": "C/2024 G3",
@@ -1419,7 +1419,7 @@
   "k": 4,
   "mag_at_build": 20.12,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -498.9
+  "days_from_perihelion": -499.1
  },
  {
   "designation": "C/2023 X7",
@@ -1437,7 +1437,7 @@
   "k": 4,
   "mag_at_build": 20.18,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -377.4
+  "days_from_perihelion": -377.5
  },
  {
   "designation": "C/2024 J4",
@@ -1455,7 +1455,7 @@
   "k": 4,
   "mag_at_build": 20.3,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -396.4
+  "days_from_perihelion": -396.6
  },
  {
   "designation": "P/2023 S1",
@@ -1473,7 +1473,7 @@
   "k": 4,
   "mag_at_build": 20.34,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -457
+  "days_from_perihelion": -457.1
  },
  {
   "designation": "48P",
@@ -1491,7 +1491,7 @@
   "k": 6,
   "mag_at_build": 20.36,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -450.6
+  "days_from_perihelion": -450.7
  },
  {
   "designation": "C/2024 N1",
@@ -1509,7 +1509,7 @@
   "k": 4,
   "mag_at_build": 20.41,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -220.4
+  "days_from_perihelion": -220.5
  },
  {
   "designation": "C/2026 H2",
@@ -1527,7 +1527,7 @@
   "k": 4,
   "mag_at_build": 20.41,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -71.4
+  "days_from_perihelion": -71.5
  },
  {
   "designation": "42P",
@@ -1545,7 +1545,7 @@
   "k": 6,
   "mag_at_build": 20.44,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -132.4
+  "days_from_perihelion": -132.6
  },
  {
   "designation": "340P",
@@ -1563,7 +1563,7 @@
   "k": 4,
   "mag_at_build": 20.44,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -271.3
+  "days_from_perihelion": -271.4
  },
  {
   "designation": "C/2024 C2",
@@ -1581,7 +1581,7 @@
   "k": 4,
   "mag_at_build": 20.5,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -440.1
+  "days_from_perihelion": -440.2
  },
  {
   "designation": "217P",
@@ -1599,7 +1599,7 @@
   "k": 4,
   "mag_at_build": 20.52,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -367.3
+  "days_from_perihelion": -367.4
  },
  {
   "designation": "302P",
@@ -1617,7 +1617,7 @@
   "k": 4,
   "mag_at_build": 20.6,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -444.3
+  "days_from_perihelion": -444.4
  },
  {
   "designation": "P/2005 T3",
@@ -1635,7 +1635,7 @@
   "k": 4,
   "mag_at_build": 20.66,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 93.8
+  "days_from_perihelion": 93.7
  },
  {
   "designation": "C/2025 A3",
@@ -1651,9 +1651,9 @@
   },
   "H": 9,
   "k": 4,
-  "mag_at_build": 20.68,
+  "mag_at_build": 20.67,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -72.7
+  "days_from_perihelion": -72.8
  },
  {
   "designation": "C/2025 R2",
@@ -1671,7 +1671,7 @@
   "k": 4,
   "mag_at_build": 20.76,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -256.5
+  "days_from_perihelion": -256.6
  },
  {
   "designation": "40P",
@@ -1689,7 +1689,7 @@
   "k": 12,
   "mag_at_build": 20.79,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -196.3
+  "days_from_perihelion": -196.4
  },
  {
   "designation": "C/2025 F2",
@@ -1707,7 +1707,7 @@
   "k": 4,
   "mag_at_build": 20.88,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -391.2
+  "days_from_perihelion": -391.3
  },
  {
   "designation": "C/2024 X1",
@@ -1725,7 +1725,7 @@
   "k": 4,
   "mag_at_build": 20.91,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -297.5
+  "days_from_perihelion": -297.6
  },
  {
   "designation": "49P",
@@ -1743,7 +1743,7 @@
   "k": 4.4,
   "mag_at_build": 20.93,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -411.8
+  "days_from_perihelion": -411.9
  },
  {
   "designation": "C/2026 H1",
@@ -1761,7 +1761,7 @@
   "k": 4,
   "mag_at_build": 20.94,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 17.1
+  "days_from_perihelion": 17
  },
  {
   "designation": "P/2025 U1",
@@ -1779,7 +1779,7 @@
   "k": 4,
   "mag_at_build": 21,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -62.5
+  "days_from_perihelion": -62.6
  },
  {
   "designation": "A",
@@ -1797,7 +1797,7 @@
   "k": 2,
   "mag_at_build": 21.05,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -131.7
+  "days_from_perihelion": -131.8
  },
  {
   "designation": "276P",
@@ -1815,7 +1815,7 @@
   "k": 4,
   "mag_at_build": 21.09,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -530.5
+  "days_from_perihelion": -530.6
  },
  {
   "designation": "351P",
@@ -1833,7 +1833,7 @@
   "k": 4,
   "mag_at_build": 21.09,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -427.5
+  "days_from_perihelion": -427.6
  },
  {
   "designation": "229P",
@@ -1851,7 +1851,7 @@
   "k": 4,
   "mag_at_build": 21.13,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -447
+  "days_from_perihelion": -447.2
  },
  {
   "designation": "C/2024 X4",
@@ -1869,7 +1869,7 @@
   "k": 4,
   "mag_at_build": 21.26,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -267.1
+  "days_from_perihelion": -267.2
  },
  {
   "designation": "21P",
@@ -1887,7 +1887,7 @@
   "k": 6,
   "mag_at_build": 21.33,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -428
+  "days_from_perihelion": -428.1
  },
  {
   "designation": "C/2025 B1",
@@ -1905,7 +1905,7 @@
   "k": 4,
   "mag_at_build": 21.36,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -334.5
+  "days_from_perihelion": -334.7
  },
  {
   "designation": "14P",
@@ -1923,7 +1923,7 @@
   "k": 12,
   "mag_at_build": 21.43,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 114.7
+  "days_from_perihelion": 114.6
  },
  {
   "designation": "C/2025 M3",
@@ -1941,7 +1941,7 @@
   "k": 4,
   "mag_at_build": 21.54,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 38.7
+  "days_from_perihelion": 38.6
  },
  {
   "designation": "172P",
@@ -1959,7 +1959,7 @@
   "k": 4,
   "mag_at_build": 21.6,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -206
+  "days_from_perihelion": -206.2
  },
  {
   "designation": "C/2024 L1",
@@ -1977,7 +1977,7 @@
   "k": 4,
   "mag_at_build": 21.7,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -399.4
+  "days_from_perihelion": -399.5
  },
  {
   "designation": "60P",
@@ -1995,7 +1995,7 @@
   "k": 6,
   "mag_at_build": 21.85,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -310.7
+  "days_from_perihelion": -310.9
  },
  {
   "designation": "C/2024 J2",
@@ -2013,7 +2013,7 @@
   "k": 4,
   "mag_at_build": 21.97,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -433.6
+  "days_from_perihelion": -433.7
  },
  {
   "designation": "C/2024 T3",
@@ -2031,7 +2031,7 @@
   "k": 4,
   "mag_at_build": 22.02,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -438.2
+  "days_from_perihelion": -438.3
  },
  {
   "designation": "190P",
@@ -2049,7 +2049,7 @@
   "k": 4,
   "mag_at_build": 22.3,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -519.3
+  "days_from_perihelion": -519.4
  },
  {
   "designation": "C/2026 H3",
@@ -2067,7 +2067,7 @@
   "k": 4,
   "mag_at_build": 22.44,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -4.4
+  "days_from_perihelion": -4.5
  },
  {
   "designation": "105P",
@@ -2085,7 +2085,7 @@
   "k": 6,
   "mag_at_build": 22.61,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -489.7
+  "days_from_perihelion": -489.8
  },
  {
   "designation": "3D-B",
@@ -2101,9 +2101,9 @@
   },
   "H": 11,
   "k": 6,
-  "mag_at_build": 22.87,
+  "mag_at_build": 22.88,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -333.3
+  "days_from_perihelion": -333.4
  },
  {
   "designation": "69P",
@@ -2119,9 +2119,9 @@
   },
   "H": 9.5,
   "k": 12,
-  "mag_at_build": 23.14,
+  "mag_at_build": 23.13,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 169.1
+  "days_from_perihelion": 169
  },
  {
   "designation": "C/2025 A4",
@@ -2139,7 +2139,7 @@
   "k": 4,
   "mag_at_build": 23.42,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -499
+  "days_from_perihelion": -499.1
  },
  {
   "designation": "3I",
@@ -2157,6 +2157,6 @@
   "k": 4,
   "mag_at_build": 24.73,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -209.9
+  "days_from_perihelion": -210
  }
 ]
