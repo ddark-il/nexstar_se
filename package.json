@@ -1,0 +1,17 @@
+{
+  "name": "nexstar-se-companion",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Static planning companion for Celestron NexStar SE astrophotography sessions (4SE/5SE/6SE/8SE).",
+  "license": "CC-BY-SA-4.0",
+  "scripts": {
+    "build:dso": "node scripts/build-dso.js",
+    "build:comets": "node scripts/build-comets.js",
+    "build": "npm run build:dso && npm run build:comets",
+    "serve": "python3 -m http.server 8000"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

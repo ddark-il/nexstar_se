@@ -1,0 +1,2483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Permissions-Policy" content="geolocation=self">
+<title>NexStar SE Companion</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #f5f5f5; color: #333;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+a { color: #e94560; }
+
+/* ─── Header / progress tabs ─── */
+.app-header {
+  background: #1a1a2e; color: #fff;
+  padding: 14px 16px 0; text-align: center;
+  position: sticky; top: 0; z-index: 100;
+}
+.app-title {
+  font-size: 15px; font-weight: 600; letter-spacing: .2px;
+  margin-bottom: 10px; opacity: .95;
+}
+.tabs { display: flex; }
+.tab {
+  flex: 1; padding: 12px 4px; text-align: center;
+  color: #aaa; cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all .2s; font-size: 12px; font-weight: 500;
+  -webkit-user-select: none; user-select: none;
+}
+.tab.active { color: #fff; border-bottom-color: #e94560; }
+.tab.done { color: #e94560; }
+
+/* ─── Location summary strip (used on screens 2 + 3) ─── */
+.location-strip {
+  padding: 10px 16px; background: #16213e; color: #fff;
+  font-size: 13px;
+}
+.location-strip .row { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+.location-strip .label { opacity: .6; font-size: 11px; text-transform: uppercase; letter-spacing: .5px; }
+.location-strip .value { font-weight: 500; }
+
+/* ─── Content ─── */
+.content { padding: 12px; max-width: 700px; margin: 0 auto; }
+.card {
+  background: #fff; border-radius: 12px;
+  padding: 14px 16px; margin-bottom: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+.card-title {
+  font-size: 13px; font-weight: 700; color: #1a1a2e;
+  margin-bottom: 8px; text-transform: uppercase; letter-spacing: .5px;
+}
+
+/* ─── Empty state on screen 1 ─── */
+.empty-state { text-align: center; padding: 40px 20px; color: #555; }
+.empty-state .icon { font-size: 48px; margin-bottom: 12px; }
+.empty-state .prompt { margin-bottom: 8px; font-size: 15px; }
+
+.locate-btn {
+  display: inline-block; margin-top: 12px;
+  padding: 12px 28px; border: none; border-radius: 8px;
+  background: #e94560; color: #fff;
+  font-size: 15px; font-weight: 600; cursor: pointer;
+}
+.locate-btn:active { transform: scale(.96); }
+.locate-btn:disabled { background: #ccc; cursor: not-allowed; }
+
+.manual-locate { margin-top: 16px; }
+.manual-locate input {
+  padding: 10px 14px; border: 2px solid #ddd; border-radius: 8px;
+  font-size: 14px; width: 260px; text-align: center;
+}
+.manual-locate input:focus { outline: none; border-color: #e94560; }
+.manual-locate button {
+  padding: 10px 18px; border: none; border-radius: 8px;
+  background: #e94560; color: #fff; font-size: 14px; cursor: pointer;
+  margin-top: 8px;
+}
+.or-divider { color: #bbb; margin: 14px 0 6px; font-size: 13px; }
+.hint { color: #888; font-size: 12px; margin-top: 6px; }
+
+/* ─── NexStar HC entry block ─── */
+.hc-block { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.hc-row {
+  display: flex; gap: 8px; padding: 6px 0;
+  border-bottom: 1px solid #f0f0f0; align-items: center;
+}
+.hc-row:last-child { border-bottom: none; }
+.hc-label { width: 88px; color: #888; font-size: 12px; }
+.hc-value { flex: 1; font-size: 14px; font-weight: 600; color: #1a1a2e; }
+.hc-copy {
+  border: none; background: #f0f0f0; color: #666; cursor: pointer;
+  padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 600;
+}
+.hc-copy:active { transform: scale(.94); }
+.hc-copy.copied { background: #2e7d32; color: #fff; }
+.hc-note { font-size: 11px; color: #888; margin-top: 8px; line-height: 1.4; }
+.hc-note code { background: #f0f0f0; padding: 1px 5px; border-radius: 3px; font-size: 11px; }
+.hc-note b { color: #1a1a2e; }
+
+/* ─── Star/target list (Delek98 .station-card pattern) ─── */
+.target-card {
+  background: #fff; border-radius: 10px;
+  padding: 10px 12px; margin-bottom: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.05);
+  display: flex; align-items: center; gap: 10px;
+}
+.target-rank {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #f0f0f0; color: #666;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; flex-shrink: 0;
+}
+.target-info { flex: 1; min-width: 0; }
+.target-name { font-weight: 600; font-size: 14px; margin-bottom: 3px; color: #1a1a2e; }
+.target-meta { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 12px; color: #777; }
+
+.type-tag {
+  display: inline-block; padding: 2px 8px; border-radius: 10px;
+  font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .3px;
+}
+.type-planet  { background: #fff3e0; color: #ef6c00; }
+.type-moon    { background: #f5f5f5; color: #616161; }
+.type-comet   { background: #e0f2f1; color: #00796b; }
+.type-G       { background: #e8f5e9; color: #2e7d32; }
+.type-EN, .type-RN { background: #ffebee; color: #d32f2f; }
+.type-OC      { background: #fff8e1; color: #f9a825; }
+.type-GC      { background: #f3e5f5; color: #9c27b0; }
+.type-PN      { background: #e3f2fd; color: #1565c0; }
+.type-star    { background: #fffde7; color: #f57f17; }
+.type-milkyway { background: linear-gradient(90deg,#311b92,#880e4f); color: #fff; }
+.type-wide     { background: linear-gradient(90deg,#0d47a1,#311b92); color: #fff; }
+
+.tail-badge { background: #fce4ec; color: #c2185b; padding: 1px 7px; border-radius: 8px; font-size: 10px; font-weight: 600; }
+.twilight-badge { background: #fff3e0; color: #ef6c00; padding: 1px 7px; border-radius: 8px; font-size: 10px; font-weight: 600; }
+
+/* ─── Altitude graph ─── */
+.alt-graph {
+  width: 100%; display: block;
+  margin: 8px 0 4px; border-radius: 8px; overflow: hidden;
+  background: #f8f8ff;
+}
+
+.shot {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px; color: #1a1a2e; margin-top: 3px;
+  background: #f8f8ff; padding: 3px 8px; border-radius: 5px;
+  display: inline-block;
+}
+
+/* ─── Pill buttons (focal config) ─── */
+.pill-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 8px 0 4px; }
+.pill {
+  flex: 1; min-width: 0;
+  padding: 14px 16px; border: 2px solid #ddd; border-radius: 12px;
+  background: #fff; cursor: pointer; font-size: 14px;
+  transition: all .2s; text-align: center;
+}
+.pill:active { transform: scale(.97); }
+.pill.active { border-color: #e94560; background: #fef0f3; color: #e94560; font-weight: 600; }
+.pill-title { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+.pill-sub { font-size: 11px; color: #888; }
+.pill.active .pill-sub { color: #d63b56; }
+
+/* Lens input row — inputs styled as pills to match the sensor selector */
+.lens-row { display: flex; gap: 10px; align-items: stretch; margin-top: 6px; }
+.input-pill {
+  flex: 1; min-width: 0;
+  padding: 14px 16px; border: 2px solid #ddd; border-radius: 12px;
+  background: #fff; transition: all .2s;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.input-pill:focus-within { border-color: #e94560; background: #fef0f3; }
+.input-pill .lens-label {
+  font-size: 13px; font-weight: 500; color: #888;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.input-pill:focus-within .lens-label { color: #d63b56; }
+.pill-input {
+  border: none; outline: none; background: transparent;
+  font-size: 18px; font-weight: 600; color: #1a1a2e;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  width: 60px; text-align: center;
+  appearance: textfield; -moz-appearance: textfield;
+}
+.pill-input::-webkit-outer-spin-button,
+.pill-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.input-pill:focus-within .pill-input { color: #d63b56; }
+
+/* Dual-recipe display */
+.recipes { display: flex; flex-direction: column; gap: 3px; margin-top: 10px; }
+.recipe-row {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px; color: #1a1a2e;
+  background: #f8f8ff; padding: 3px 8px; border-radius: 5px;
+}
+.recipe-label {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .4px; padding: 1px 6px; border-radius: 4px;
+}
+.recipe-label.scope { background: #e3f2fd; color: #1565c0; }
+.recipe-label.lens  { background: #f3e5f5; color: #6a1b9a; }
+.recipe-na { color: #aaa; }
+
+/* ─── Sub-tabs on screen 3 ─── */
+.sub-tabs {
+  display: flex; gap: 4px; margin-bottom: 10px;
+  overflow-x: auto; scrollbar-width: none;
+}
+.sub-tabs::-webkit-scrollbar { display: none; }
+.sub-tab {
+  padding: 7px 14px; border: 1px solid #ddd; border-radius: 18px;
+  background: #fff; cursor: pointer; font-size: 12px; font-weight: 500;
+  white-space: nowrap; flex-shrink: 0; color: #666;
+  transition: all .2s;
+}
+.sub-tab.active { border-color: #e94560; background: #fef0f3; color: #e94560; font-weight: 600; }
+.sub-tab .count { opacity: .65; margin-left: 4px; font-size: 11px; }
+
+/* ─── Sky conditions card ─── */
+.cloud-bar { display: flex; height: 18px; border-radius: 4px; overflow: hidden; margin: 6px 0; background: #eee; }
+.cloud-cell { flex: 1; min-width: 4px; }
+.condition-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px; font-size: 12px; margin-top: 6px; }
+.condition-grid .label { color: #888; }
+.condition-grid .value { font-weight: 600; color: #1a1a2e; }
+.lp-zone {
+  display: inline-block; padding: 3px 10px; border-radius: 12px;
+  font-size: 12px; font-weight: 600;
+}
+.lp-1, .lp-2 { background: #1a1a2e; color: #fff; }
+.lp-3 { background: #1976d2; color: #fff; }
+.lp-4 { background: #43a047; color: #fff; }
+.lp-5 { background: #f9a825; color: #1a1a2e; }
+.lp-6 { background: #ef6c00; color: #fff; }
+.lp-7, .lp-8 { background: #d32f2f; color: #fff; }
+
+/* ─── Continue button bar ─── */
+.action-bar {
+  position: sticky; bottom: 0; padding: 12px 16px;
+  background: linear-gradient(to top, #f5f5f5 70%, rgba(245,245,245,0));
+}
+.action-btn {
+  width: 100%; padding: 14px; border: none; border-radius: 12px;
+  background: #e94560; color: #fff; font-size: 16px; font-weight: 600;
+  cursor: pointer; box-shadow: 0 2px 8px rgba(233,69,96,.25);
+}
+.action-btn:active { transform: scale(.98); }
+.action-btn:disabled { background: #ccc; cursor: not-allowed; box-shadow: none; }
+
+/* ─── Error popup ─── */
+.error-popup {
+  position: fixed; top: 0; left: 0; right: 0;
+  background: #d32f2f; color: #fff;
+  padding: 14px 20px; padding-top: max(14px, env(safe-area-inset-top));
+  box-shadow: 0 4px 12px rgba(0,0,0,.3); z-index: 9999;
+  font-size: 14px; text-align: center;
+  animation: slideDown .3s ease;
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+}
+@keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+.error-popup .close-btn {
+  cursor: pointer; font-weight: bold;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(255,255,255,.2);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.muted { color: #888; font-size: 12px; }
+.section { margin-bottom: 14px; }
+.section-title {
+  font-size: 11px; font-weight: 700; color: #888;
+  text-transform: uppercase; letter-spacing: .8px;
+  margin: 14px 0 6px 4px;
+}
+
+.footer {
+  padding: 20px 16px 30px; font-size: 11px;
+  color: #aaa; text-align: center; line-height: 1.6;
+}
+.footer a { color: #aaa; }
+
+/* ─── Desktop ─── */
+@media (min-width: 768px) {
+  .content { padding: 20px; max-width: 900px; }
+}
+</style>
+</head>
+<body>
+
+<div class="app-header">
+  <div class="app-title">NexStar SE Companion</div>
+  <div class="tabs">
+    <div class="tab active" data-step="setup">Setup</div>
+    <div class="tab" data-step="tonight">Tonight</div>
+  </div>
+</div>
+
+<div id="locationStrip" class="location-strip" style="display:none"></div>
+
+<div class="content">
+  <!-- Screen 1: Setup (location + focal config) -->
+  <div id="screenSetup">
+    <div class="card">
+      <div class="empty-state" id="locatePrompt">
+        <div class="icon">🔭</div>
+        <div class="prompt">Tap to find tonight's targets</div>
+        <button class="locate-btn" id="locateBtn">Find My Location</button>
+        <div class="or-divider">— or enter coordinates / city —</div>
+        <div class="manual-locate">
+          <input type="text" id="manualInput" placeholder="32.0853, 34.7818  or  Haifa">
+          <br>
+          <button id="manualBtn">Look up</button>
+          <div class="hint">Accepts decimal lat,lon or any city/address.</div>
+        </div>
+      </div>
+      <div id="locationResult" style="display:none"></div>
+    </div>
+
+    <div class="card" id="focalCard" style="display:none">
+      <div class="card-title">Telescope (primary)</div>
+      <div class="pill-row" style="margin-bottom:10px">
+        <div class="pill" data-scope="4SE">
+          <div class="pill-title">4SE</div>
+          <div class="pill-sub">102 mm</div>
+        </div>
+        <div class="pill" data-scope="5SE">
+          <div class="pill-title">5SE</div>
+          <div class="pill-sub">125 mm</div>
+        </div>
+        <div class="pill active" data-scope="6SE">
+          <div class="pill-title">6SE</div>
+          <div class="pill-sub">150 mm</div>
+        </div>
+        <div class="pill" data-scope="8SE">
+          <div class="pill-title">8SE</div>
+          <div class="pill-sub">203 mm</div>
+        </div>
+      </div>
+      <div class="pill-row" style="margin-bottom:10px">
+        <div class="pill active" data-prim-sensor="aps-c">
+          <div class="pill-title">APS-C</div>
+          <div class="pill-sub">23.6 × 15.7 mm</div>
+        </div>
+        <div class="pill" data-prim-sensor="full-frame">
+          <div class="pill-title">Full Frame</div>
+          <div class="pill-sub">36 × 24 mm</div>
+        </div>
+      </div>
+      <div class="pill-row" id="fRatioRow"></div>
+    </div>
+
+    <div class="card" id="secondaryCard" style="display:none">
+      <div class="card-title">Secondary camera (wide-field, off-scope)</div>
+      <div class="pill-row" style="margin-bottom:10px">
+        <div class="pill" data-sec-sensor="aps-c">
+          <div class="pill-title">APS-C</div>
+          <div class="pill-sub">23.6 × 15.7 mm</div>
+        </div>
+        <div class="pill active" data-sec-sensor="full-frame">
+          <div class="pill-title">Full Frame</div>
+          <div class="pill-sub">36 × 24 mm</div>
+        </div>
+      </div>
+      <div class="lens-row">
+        <label class="input-pill">
+          <span class="lens-label">f /</span>
+          <input type="number" class="pill-input" id="secondaryFStop" min="1" max="32" step="0.1" value="1.7">
+        </label>
+        <label class="input-pill">
+          <input type="number" class="pill-input" id="secondaryFocal" min="8" max="500" step="1" value="28">
+          <span class="lens-label">mm</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 2: Tonight -->
+  <div id="screenTonight" style="display:none"></div>
+</div>
+
+<div id="actionBar" class="action-bar" style="display:none">
+  <button id="actionBtn" class="action-btn">Continue →</button>
+</div>
+
+<div class="footer">
+  Astronomy: <a href="https://github.com/cosinekitty/astronomy" target="_blank" rel="noopener">cosinekitty/astronomy-engine</a> ·
+  DSO data from <a href="https://github.com/mattiaverga/OpenNGC" target="_blank" rel="noopener">OpenNGC</a> (CC-BY-SA 4.0) ·
+  Comets: <a href="https://minorplanetcenter.net" target="_blank" rel="noopener">Minor Planet Center</a> ·
+  Weather: <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a> (CC BY 4.0) ·
+  Light pollution: <a href="https://djlorenz.github.io/astronomy/lp2024/" target="_blank" rel="noopener">D. Lorenz / VIIRS 2024</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2/astronomy.browser.min.js"></script>
+<script>
+'use strict';
+
+// ─────────────────────────── State ───────────────────────────
+const state = {
+  screen: 'setup',             // 'setup' | 'tonight'
+  lat: null, lon: null,
+  ianaTz: null,
+  alignmentStars: [],
+  scope: '6SE',                // '4SE' | '5SE' | '6SE' | '8SE'
+  fRatio: 10,                  // native f-ratio of selected scope, or reduced value
+  primarySensor: 'aps-c',      // 'aps-c' | 'full-frame'
+  // Secondary camera (wide-field, off-scope). Defaults match a 28 mm f/1.7 full-frame
+  // fixed-lens body (matches the user's setup).
+  secondarySensor: 'full-frame',  // 'aps-c' | 'full-frame'
+  secondaryFStop: 1.7,
+  secondaryFocal: 28,             // mm
+  night: null,                 // {sunsetUtc, duskUtc, dawnUtc, sunriseUtc}
+  weather: null,
+  lightPollution: null,
+  comets: null,                // Loaded from data/bright_comets.json
+  dsoCatalog: null,            // Loaded from data/dso.json
+  visibleTargets: null,        // {planets, moon, comets, dsos}
+  subTab: 'all',               // 'all' | 'planets' | 'moon' | 'comets' | 'clusters' | 'nebulae'
+};
+
+// DSO type splits: clusters vs nebulae (the latter includes galaxies + Milky Way +
+// wide-field "too big for the scope" rows — all the diffuse / dust-cloud / off-scope
+// targets live here).
+const CLUSTER_TYPES = new Set(['OC', 'GC']);
+const NEBULA_TYPES  = new Set(['EN', 'RN', 'PN', 'G', 'milkyway', 'wide']);
+function splitDsos(dsos) {
+  return {
+    clusters: (dsos || []).filter(d => CLUSTER_TYPES.has(d.type)),
+    nebulae:  (dsos || []).filter(d => NEBULA_TYPES.has(d.type)),
+  };
+}
+
+// ───────────────────── Constants & catalogs ─────────────────────
+
+// SkyAlign-candidate bright stars (mag ≤ ~2.0). RA in hours, Dec in degrees.
+// Polaris excluded — it sits too far north or low to be useful and minimal motion confuses alignment.
+const ALIGNMENT_STARS = [
+  { name: 'Sirius',      ra: 6.7525,  dec: -16.7161, mag: -1.46 },
+  { name: 'Canopus',     ra: 6.3992,  dec: -52.6957, mag: -0.74 },
+  { name: 'Arcturus',    ra: 14.2610, dec: +19.1825, mag: -0.05 },
+  { name: 'Vega',        ra: 18.6156, dec: +38.7837, mag:  0.03 },
+  { name: 'Capella',     ra: 5.2782,  dec: +45.9980, mag:  0.08 },
+  { name: 'Rigel',       ra: 5.2423,  dec: -8.2017,  mag:  0.13 },
+  { name: 'Procyon',     ra: 7.6550,  dec: +5.2249,  mag:  0.34 },
+  { name: 'Betelgeuse',  ra: 5.9195,  dec: +7.4070,  mag:  0.42 },
+  { name: 'Achernar',    ra: 1.6286,  dec: -57.2367, mag:  0.46 },
+  { name: 'Hadar',       ra: 14.0637, dec: -60.3730, mag:  0.61 },
+  { name: 'Altair',      ra: 19.8463, dec: +8.8683,  mag:  0.77 },
+  { name: 'Acrux',       ra: 12.4433, dec: -63.0991, mag:  0.77 },
+  { name: 'Aldebaran',   ra: 4.5987,  dec: +16.5093, mag:  0.85 },
+  { name: 'Antares',     ra: 16.4901, dec: -26.4320, mag:  1.09 },
+  { name: 'Spica',       ra: 13.4199, dec: -11.1614, mag:  1.04 },
+  { name: 'Pollux',      ra: 7.7553,  dec: +28.0262, mag:  1.14 },
+  { name: 'Fomalhaut',   ra: 22.9608, dec: -29.6222, mag:  1.16 },
+  { name: 'Deneb',       ra: 20.6905, dec: +45.2803, mag:  1.25 },
+  { name: 'Mimosa',      ra: 12.7953, dec: -59.6886, mag:  1.25 },
+  { name: 'Regulus',     ra: 10.1395, dec: +11.9672, mag:  1.40 },
+  { name: 'Adhara',      ra: 6.9770,  dec: -28.9721, mag:  1.50 },
+  { name: 'Castor',      ra: 7.5766,  dec: +31.8884, mag:  1.58 },
+  { name: 'Shaula',      ra: 17.5601, dec: -37.1038, mag:  1.62 },
+  { name: 'Bellatrix',   ra: 5.4188,  dec: +6.3497,  mag:  1.64 },
+  { name: 'Elnath',      ra: 5.4382,  dec: +28.6075, mag:  1.65 },
+  { name: 'Miaplacidus', ra: 9.2200,  dec: -69.7172, mag:  1.69 },
+  { name: 'Alnilam',     ra: 5.6036,  dec: -1.2019,  mag:  1.69 },
+  { name: 'Alnair',      ra: 22.1372, dec: -46.9609, mag:  1.74 },
+  { name: 'Alnitak',     ra: 5.6793,  dec: -1.9426,  mag:  1.74 },
+  { name: 'Dubhe',       ra: 11.0621, dec: +61.7510, mag:  1.79 },
+  { name: 'Mirfak',      ra: 3.4054,  dec: +49.8612, mag:  1.79 },
+];
+
+// Celestron NexStar SE telescope models.
+// - 4SE: 102mm Maksutov-Cassegrain, f/13 native (no 0.63x reducer match).
+// - 5SE / 6SE / 8SE: Schmidt-Cassegrain, f/10 native, f/6.3 with the standard reducer.
+const SCOPES = {
+  '4SE': { aperture: 102, focalNative: 1325, fNative: 13, hasReducer: false },
+  '5SE': { aperture: 125, focalNative: 1250, fNative: 10, hasReducer: true  },
+  '6SE': { aperture: 150, focalNative: 1500, fNative: 10, hasReducer: true  },
+  '8SE': { aperture: 203, focalNative: 2032, fNative: 10, hasReducer: true  },
+};
+
+// Primary-scope sensor models. APS-C calibrated against the user's Leica CL (24 MP,
+// no AA filter); Full Frame uses a typical modern ~45 MP body (8000 × 5333).
+const PRIMARY_SENSOR_MODELS = {
+  'aps-c':      { w_mm: 23.6, h_mm: 15.7, w_px: 6024, h_px: 4024, label: 'APS-C', dim: '23.6 × 15.7 mm' },
+  'full-frame': { w_mm: 36.0, h_mm: 24.0, w_px: 8000, h_px: 5333, label: 'Full Frame', dim: '36 × 24 mm' },
+};
+const PIXEL_TOL = 1.2;     // tight tolerance — assume sensor has no AA filter
+
+function primarySensorModel() {
+  return PRIMARY_SENSOR_MODELS[state.primarySensor] || PRIMARY_SENSOR_MODELS['aps-c'];
+}
+function primaryCornerPx() {
+  const m = primarySensorModel();
+  return Math.sqrt((m.w_px/2)**2 + (m.h_px/2)**2);
+}
+
+// US-named TZ bands on the NexStar+ HC.
+// Other offsets show as the integer (`+1`, `+2`, etc.).
+const NEXSTAR_NAMED = {
+  '-10': 'Hawaii',
+  '-9':  'Alaska',
+  '-8':  'Pacific',
+  '-7':  'Mountain',
+  '-6':  'Central',
+  '-5':  'Eastern',
+};
+
+// Single-shot exposure suggestions per target type at ISO 100-3200 baseline.
+// Plain numeric shutter; for Moon/planets we serve fractions as 1/x.
+function suggestShot(type, fRatio, magOrNull) {
+  const f63 = fRatio === 6.3;
+  // Speed bump when reducer is on: 0.4 stops faster ≈ 1.3× shorter shutter or 1 ISO step down.
+  if (type === 'moon') {
+    // Magnitude swings from ~-13 (full) to ~-7 (thin crescent).
+    const m = magOrNull ?? -10;
+    if (m <= -12) return { iso: 100, shutter: f63 ? 1/640 : 1/400 };  // full
+    if (m <= -10) return { iso: 200, shutter: f63 ? 1/320 : 1/200 };  // gibbous / quarter
+    if (m <= -8)  return { iso: 400, shutter: f63 ? 1/100 : 1/60  };  // crescent
+    return            { iso: 800, shutter: f63 ? 1/30  : 1/15  };     // thin crescent / earthshine
+  }
+  if (type === 'planet') {
+    // Magnitude-driven planet exposure: bright planets need very short, faint planets long.
+    const m = magOrNull ?? 0;
+    if (m <= -3) return { iso: 100,  shutter: f63 ? 1/500 : 1/320 };  // Venus
+    if (m <= -1) return { iso: 200,  shutter: f63 ? 1/125 : 1/80  };  // Jupiter
+    if (m <=  1) return { iso: 400,  shutter: f63 ? 1/30  : 1/20  };  // Saturn, Mars (bright)
+    if (m <=  4) return { iso: 800,  shutter: f63 ? 1     : 1.5  };   // Mars (faint), Mercury
+    if (m <=  6) return { iso: 1600, shutter: f63 ? 4     : 6     };  // Uranus
+    return            { iso: 1600, shutter: f63 ? 15    : 20    };    // Neptune
+  }
+  if (type === 'comet') {
+    return { iso: 1600, shutter: f63 ? 15 : 20 };
+  }
+  // DSO shutters return null — the runtime picks a shutter dynamically from the field-
+  // rotation cap and the per-type envelope (see dsoEnvelope below). Returning null here
+  // tells visibleDsos() to apply its own logic.
+  if (['OC','GC','EN','RN','PN','G'].includes(type)) return null;
+  return null;
+}
+
+// Atmospheric extinction in magnitudes for a target at altitude `alt` (deg).
+// Uses Kasten-Young airmass approximation × an average sea-level V-band extinction
+// coefficient (k ≈ 0.20 mag/airmass for clear, low-altitude sites).
+function atmosphericExtinction(alt) {
+  if (alt >= 89.9) return 0;
+  const altR = alt * Math.PI / 180;
+  const airmass = 1 / (Math.sin(altR) + 0.50572 / Math.pow(alt + 6.07995, 1.6364));
+  return 0.20 * (airmass - 1);
+}
+
+// Moon contribution to sky brightness in magnitudes (subtract from SQM).
+// Approximates the average effect across the strict-dark window:
+// full moon at zenith ≈ 3 mag/arcsec² penalty; scales linearly with illumination
+// fraction and sin(altitude). Returns 0 if Moon is below horizon or no dark window.
+function moonSkyPenalty(moonRow, win) {
+  if (!moonRow || !win.duskUtc || !win.dawnUtc) return 0;
+  const illum = moonRow.phase;       // fraction 0..1
+  if (illum == null) return 0;
+  let total = 0, count = 0;
+  for (const s of moonRow.samples) {
+    if (!inDark(s.t, win)) continue;
+    count++;
+    if (s.alt > 0) total += Math.sin(s.alt * Math.PI / 180);
+  }
+  if (count === 0) return 0;
+  const avgAltFactor = total / count;     // 0 if Moon down all night, 1 if at zenith
+  return 3.0 * illum * avgAltFactor;
+}
+
+// Sky-brightness penalty: brighter skies (lower SQM) need correspondingly brighter
+// targets to be worth imaging, since sky-glow drowns out faint signal. The penalty
+// subtracts from the magnitude cap (tighter for urban sites).
+function lpMagPenalty(sqm) {
+  if (sqm == null || sqm >= 21.5) return 0;        // Pristine to rural
+  if (sqm >= 20.5) return 0.5;                     // Rural-suburban (Bortle 4)
+  if (sqm >= 20.0) return 1.0;                     // Suburban edge (Bortle 5)
+  if (sqm >= 19.0) return 1.8;                     // Bright suburban (Bortle 6)
+  if (sqm >= 18.5) return 2.5;                     // Suburban-urban (Bortle 7)
+  return 3.5;                                      // City (Bortle 8-9)
+}
+
+// Sky-brightness shutter ceiling: in bright skies the sky background saturates the
+// histogram before useful target signal accumulates. Returns the max shutter (seconds)
+// before sky-cap, at f/6.3 ISO 1600 baseline.
+function lpShutterCeiling(sqm) {
+  if (sqm == null || sqm >= 21.5) return 30;       // Dark site — limited by target signal
+  if (sqm >= 20.5) return 18;                      // Rural-suburban
+  if (sqm >= 19.5) return 10;                      // Bright suburban
+  if (sqm >= 18.5) return 5;                       // Suburban-urban
+  return 3;                                        // City
+}
+
+// Brightness-aware single-shot exposure for a DSO. Returns the IDEAL shutter at the
+// reference ISO; the runtime then clamps to the alt-az field-rotation cap and bumps ISO
+// if clamped. Per-type presets define (mRef, expRef, isoRef, magCap):
+//   At mag = mRef and f/6.3 under DARK SKY, expRef seconds at isoRef ISO is well-exposed.
+// Each magnitude fainter requires 2.512× more light (Pogson ratio).
+// LP-aware: tightens the mag cap and lowers the shutter ceiling for bright skies.
+// Drops targets with mag == null in diffuse types — OpenNGC's missing V-mag usually
+// means the object isn't well-characterised photometrically.
+function dsoTargetExposure(type, mag, fRatio, sqm, extinction = 0) {
+  const presets = {
+    'OC': { mRef: 5, expRef: 4,  isoRef: 800,  cap: 8.5,  requireMag: false },
+    'GC': { mRef: 6, expRef: 4,  isoRef: 1600, cap: 8.0,  requireMag: true  },
+    'PN': { mRef: 8, expRef: 8,  isoRef: 1600, cap: 10.0, requireMag: true  },
+    'EN': { mRef: 6, expRef: 6,  isoRef: 1600, cap: 8.0,  requireMag: true  },
+    'RN': { mRef: 6, expRef: 6,  isoRef: 1600, cap: 8.0,  requireMag: true  },
+    'G':  { mRef: 5, expRef: 12, isoRef: 3200, cap: 5.5,  requireMag: true  },
+  };
+  const p = presets[type];
+  if (!p) return null;
+  if (mag == null) {
+    if (p.requireMag) return null;
+    // Use the type's reference magnitude as fallback. Using p.cap here would always
+    // trip the LP-tightened cap check below for any site with sqm < 21.5.
+    mag = p.mRef;
+  }
+  // Cap check uses INTRINSIC magnitude — keeps target inclusion stable across samples.
+  const penalty = lpMagPenalty(sqm);
+  if (mag > p.cap - penalty) return null;
+
+  // Effective magnitude for exposure scaling adds atmospheric extinction at the best
+  // sample's altitude (caller supplies). 0 by default for the initial cap-check pass.
+  const effectiveMag = mag + extinction;
+  const magScale = Math.pow(2.512, effectiveMag - p.mRef);
+  // Exposure multiplier vs f/6.3 reference. f/6.3 = 1×, f/10 = 2.52×, f/13 = 4.26×.
+  const fSpeed = Math.pow(fRatio / 6.3, 2);
+  let idealExp = p.expRef * magScale * fSpeed;
+  idealExp = Math.min(idealExp, lpShutterCeiling(sqm));
+  idealExp = Math.max(1, Math.min(30, idealExp));
+  return { iso: p.isoRef, idealExp };
+}
+
+// Snap ISO to the nearest standard full-stop value (100/200/400/.../6400).
+function snapIso(iso) {
+  if (!isFinite(iso) || iso <= 0) return null;
+  const stops = [100, 200, 400, 800, 1600, 3200, 6400];
+  let best = stops[0], bestDist = Infinity;
+  for (const s of stops) {
+    const d = Math.abs(Math.log2(s / iso));
+    if (d < bestDist) { best = s; bestDist = d; }
+  }
+  return best;
+}
+
+// Snap shutter to a nice display value: whole/half seconds at ≥ 2s, fractions below.
+function snapShutter(s) {
+  if (!isFinite(s) || s <= 0) return null;
+  if (s >= 15) return Math.round(s / 5) * 5;             // 15, 20, 25, 30
+  if (s >= 5)  return Math.round(s);                     // 5..14
+  if (s >= 2)  return Math.round(s * 2) / 2;             // 2, 2.5, 3, 3.5, 4, 4.5
+  if (s >= 1)  return Math.round(s * 10) / 10;           // 1.0, 1.1, ...
+  // Sub-second: standard shutter denominators
+  const denoms = [2, 4, 8, 15, 30, 60, 125, 250, 500, 1000, 2000];
+  const target = 1 / s;
+  let best = denoms[0], bestDist = Infinity;
+  for (const d of denoms) {
+    const dist = Math.abs(d - target);
+    if (dist < bestDist) { best = d; bestDist = dist; }
+  }
+  return 1 / best;
+}
+
+// Effective focal length for the selected scope at the given f-ratio. Reducer changes
+// focal length proportionally (0.63x for SCT reducer; ~1.0 if at native).
+function focalLengthMm(fRatio) {
+  const scope = SCOPES[state.scope] || SCOPES['6SE'];
+  if (!scope.fNative) return scope.focalNative;        // defensive: corrupted SCOPES entry
+  return Math.abs(fRatio - scope.fNative) < 0.1
+    ? scope.focalNative
+    : scope.focalNative * (fRatio / scope.fNative);
+}
+
+// Field of view (degrees per axis) given f-ratio. Uses the selected scope's focal length
+// AND the selected primary sensor's physical dimensions.
+function fovDeg(fRatio) {
+  const fl = focalLengthMm(fRatio);
+  const m = primarySensorModel();
+  const w = 2 * Math.atan(m.w_mm / (2 * fl)) * 180 / Math.PI;
+  const h = 2 * Math.atan(m.h_mm / (2 * fl)) * 180 / Math.PI;
+  return { w, h };
+}
+
+// Field-rotation rate at (alt, az) for an alt-az mount at latitude lat.
+// Returns rate in arcsec/sec, and the max single exposure in seconds before the corner
+// pixel sweep exceeds PIXEL_TOL — corner pixel count taken from the primary sensor.
+function fieldRotation(lat, alt, az) {
+  if (alt < 1) return { rate: Infinity, tMax: 0 };
+  const r = 15.04 * Math.cos(rad(lat)) * Math.cos(rad(az)) / Math.cos(rad(alt));
+  const absR = Math.abs(r);
+  if (absR < 0.01) return { rate: r, tMax: 600 };
+  const tMax = (206265 * PIXEL_TOL) / (primaryCornerPx() * absR);
+  return { rate: r, tMax };
+}
+
+// ───────────────── Astronomy helpers ─────────────────
+
+const rad = d => d * Math.PI / 180;
+const deg = r => r * 180 / Math.PI;
+
+// Compass label from azimuth (deg, 0=N, 90=E).
+function azLabel(az) {
+  const dirs = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
+  return dirs[Math.round(((az % 360) + 360) % 360 / 22.5) % 16];
+}
+function altLabel(alt) {
+  if (alt < 25) return 'low';
+  if (alt < 55) return 'mid';
+  return 'high';
+}
+
+// Great-circle angular separation (deg).
+function angularSep(alt1, az1, alt2, az2) {
+  const a1 = rad(alt1), a2 = rad(alt2), dA = rad(az1 - az2);
+  const cosc = Math.sin(a1)*Math.sin(a2) + Math.cos(a1)*Math.cos(a2)*Math.cos(dA);
+  return deg(Math.acos(Math.max(-1, Math.min(1, cosc))));
+}
+
+// Returns alt/az for an alignment-star catalog entry at `time`.
+function starAltAz(star, observer, time) {
+  Astronomy.DefineStar(Astronomy.Body.Star1, star.ra, star.dec, 1000);
+  const eq = Astronomy.Equator(Astronomy.Body.Star1, time, observer, true, true);
+  const hz = Astronomy.Horizon(time, observer, eq.ra, eq.dec, 'normal');
+  return { alt: hz.altitude, az: hz.azimuth };
+}
+
+// SkyAlign 5-star pick: filter to 15°-75° alt, anchor on brightest, then farthest-point greedy.
+function suggestAlignmentStars(lat, lon, when, n = 5) {
+  const observer = new Astronomy.Observer(lat, lon, 0);
+  const time = new Astronomy.AstroTime(when);
+  const candidates = ALIGNMENT_STARS.map(s => {
+    const az = starAltAz(s, observer, time);
+    return { ...s, alt: az.alt, az: az.az };
+  }).filter(s => s.alt >= 15 && s.alt <= 75);
+
+  if (candidates.length === 0) return [];
+
+  // Anchor: brightest visible.
+  candidates.sort((a, b) => a.mag - b.mag);
+  const picked = [candidates.shift()];
+
+  // Farthest-point greedy on the remaining.
+  while (picked.length < n && candidates.length > 0) {
+    let bestIdx = -1, bestMinSep = -1;
+    for (let i = 0; i < candidates.length; i++) {
+      const c = candidates[i];
+      let minSep = Infinity;
+      for (const p of picked) {
+        const s = angularSep(c.alt, c.az, p.alt, p.az);
+        if (s < minSep) minSep = s;
+      }
+      // Degeneracy guard: 3rd pick shouldn't be on the great-circle arc of 1 & 2.
+      if (picked.length === 2) {
+        const midAlt = (picked[0].alt + picked[1].alt) / 2;
+        const midAz  = (picked[0].az  + picked[1].az ) / 2;
+        const arcSep = angularSep(c.alt, c.az, midAlt, midAz);
+        if (arcSep < 20) continue;
+      }
+      if (minSep > bestMinSep) { bestMinSep = minSep; bestIdx = i; }
+    }
+    if (bestIdx < 0) break;
+    picked.push(candidates.splice(bestIdx, 1)[0]);
+  }
+  return picked;
+}
+
+// Tonight's full night window. Includes sunset/sunrise (for sampling planets/moon/comets
+// across twilight) AND astronomical dusk/dawn (the strict "no twilight" interval used for DSOs).
+// At extreme latitudes either dusk or dawn (or both) may be null — caller must handle gracefully.
+function nightWindow(lat, lon, when) {
+  const observer = new Astronomy.Observer(lat, lon, 0);
+  const time = new Astronomy.AstroTime(when);
+  try {
+    const sunset = Astronomy.SearchAltitude(Astronomy.Body.Sun, observer, -1, time, 1, -0.833);
+    if (!sunset) return null;
+    const sunrise = Astronomy.SearchAltitude(Astronomy.Body.Sun, observer, +1, sunset, 1, -0.833);
+    if (!sunrise) return null;
+    let dusk = null, dawn = null;
+    try { const d = Astronomy.SearchAltitude(Astronomy.Body.Sun, observer, -1, sunset, 1, -18); dusk = d ? d.date : null; } catch {}
+    try { const d = Astronomy.SearchAltitude(Astronomy.Body.Sun, observer, +1, sunset, 1, -18); dawn = d ? d.date : null; } catch {}
+    return {
+      sunsetUtc: sunset.date,
+      duskUtc: dusk,
+      dawnUtc: dawn,
+      sunriseUtc: sunrise.date,
+    };
+  } catch (err) {
+    return null;
+  }
+}
+
+// Compute alt/az for a planet at `time`.
+function planetAltAz(body, observer, time) {
+  const eq = Astronomy.Equator(body, time, observer, true, true);
+  const hz = Astronomy.Horizon(time, observer, eq.ra, eq.dec, 'normal');
+  return { alt: hz.altitude, az: hz.azimuth, ra: eq.ra, dec: eq.dec };
+}
+
+// Sample alt/az track for a body across an arbitrary [t0, t1] interval.
+// Preserves any extra fields the callback returns (e.g. comet mag/elong) so callers
+// don't have to recompute at the peak time.
+function sampleTrack(getAltAz, t0, t1, stepMin = 15) {
+  const samples = [];
+  for (let t = t0; t <= t1; t += stepMin * 60000) {
+    const time = new Astronomy.AstroTime(new Date(t));
+    const aa = getAltAz(time);
+    samples.push({ t, ...aa });
+  }
+  return samples;
+}
+
+// Decide if a sample time falls within the strict full-dark zone.
+function inDark(t, win) {
+  return win.duskUtc && win.dawnUtc && t >= win.duskUtc.getTime() && t <= win.dawnUtc.getTime();
+}
+
+// Find the peak (max-alt) sample within a subset filter.
+function findPeak(samples, filterFn = () => true) {
+  let peak = null;
+  for (const s of samples) {
+    if (!filterFn(s)) continue;
+    if (s.alt < 0) continue;
+    if (!peak || s.alt > peak.alt) peak = s;
+  }
+  return peak;
+}
+
+// Compute visible planets across the full sunset→sunrise span (includes twilight).
+function visiblePlanets(lat, lon, win) {
+  const observer = new Astronomy.Observer(lat, lon, 0);
+  const t0 = win.sunsetUtc.getTime();
+  const t1 = win.sunriseUtc.getTime();
+  const planets = [
+    ['Mercury', Astronomy.Body.Mercury],
+    ['Venus',   Astronomy.Body.Venus],
+    ['Mars',    Astronomy.Body.Mars],
+    ['Jupiter', Astronomy.Body.Jupiter],
+    ['Saturn',  Astronomy.Body.Saturn],
+    ['Uranus',  Astronomy.Body.Uranus],
+    ['Neptune', Astronomy.Body.Neptune],
+  ];
+  const out = [];
+  for (const [name, body] of planets) {
+    const samples = sampleTrack(time => planetAltAz(body, observer, time), t0, t1);
+    const peak = findPeak(samples);
+    // Planets need to reach ≥ 20° altitude to be worth photographing — below that,
+    // they're either lost in the murky low-horizon airmass or just a bright dot
+    // with no detail. This drops Mercury & Mars when they hug the horizon.
+    if (!peak || peak.alt < 20) continue;
+    let mag = null;
+    try { mag = Astronomy.Illumination(body, new Astronomy.AstroTime(new Date(peak.t))).mag; } catch {}
+    out.push({
+      kind: 'planet', type: 'planet',
+      name, body: name,
+      mag,
+      peak,
+      samples,
+      shot: suggestShot('planet', state.fRatio, mag),
+      twilightOnly: !inDark(peak.t, win),
+    });
+  }
+  out.sort((a, b) => b.peak.alt - a.peak.alt);
+  return out;
+}
+
+// Moon across the same span — bright enough to count even at twilight.
+function visibleMoon(lat, lon, win) {
+  const observer = new Astronomy.Observer(lat, lon, 0);
+  const t0 = win.sunsetUtc.getTime();
+  const t1 = win.sunriseUtc.getTime();
+  const samples = sampleTrack(time => planetAltAz(Astronomy.Body.Moon, observer, time), t0, t1);
+  const peak = findPeak(samples);
+  if (!peak || peak.alt < 5) return [];
+  let illum = null;
+  try { illum = Astronomy.Illumination(Astronomy.Body.Moon, new Astronomy.AstroTime(new Date(peak.t))); } catch {}
+  const moonRow = {
+    kind: 'moon', type: 'moon',
+    name: 'Moon',
+    mag: illum?.mag ?? null,
+    phase: illum?.phase_fraction ?? null,
+    peak,
+    samples,
+    shot: suggestShot('moon', state.fRatio, illum?.mag),
+    twilightOnly: !inDark(peak.t, win),
+  };
+  moonRow.lensShot = moonLensExposure(moonRow);
+  return [moonRow];
+}
+
+// Famous extended targets that DON'T fit the 6SE single frame but DO fit beautifully on
+// a wide-field lens (23mm f/2 APS-C ≈ 52° × 35° FOV). Surfaced alongside the Milky Way
+// row when visible during the dark window. The intent matches the user's "wide lens"
+// off-scope workflow already documented for Milky Way imaging.
+const WIDE_FIELD_TARGETS = [
+  { id: 'M31',  name: 'M31 · Andromeda Galaxy',   ra: 0.7123,  dec:  41.2692, mag: 3.4, type: 'G',  size: 178, fov: 'spans ~3°' },
+  { id: 'M33',  name: 'M33 · Triangulum Galaxy',  ra: 1.5640,  dec:  30.6602, mag: 5.7, type: 'G',  size:  62, fov: 'spans ~1°' },
+  { id: 'M42',  name: 'M42 · Orion Nebula',        ra: 5.5881,  dec:  -5.3911, mag: 4.0, type: 'EN', size:  65, fov: 'spans ~1°',  colorful: true },
+  { id: 'M44',  name: 'M44 · Beehive Cluster',     ra: 8.6711,  dec:  19.9821, mag: 3.1, type: 'OC', size:  95, fov: 'spans ~1.5°' },
+  { id: 'M45',  name: 'M45 · Pleiades',             ra: 3.7913,  dec:  24.1167, mag: 1.6, type: 'OC', size: 110, fov: 'spans ~2°',  colorful: true },
+];
+
+// Secondary-camera sensor dimensions
+const SENSOR_DIMS = {
+  'aps-c':      { w: 23.6, h: 15.7 },
+  'full-frame': { w: 36.0, h: 24.0 },
+};
+
+// LP-aware shutter ceiling for a wide-field shot at the given f-stop. Faster lenses
+// saturate sky faster. Calibration: f/2 dark site = 20s; f/2 SQM 19.5 ≈ 8s.
+// Scale by f-ratio² since per-pixel sky brightness scales with light-gathering area.
+function lpShutterCeilingWide(sqm, fStop = 2) {
+  // f/2 baseline = 1.0 (no shutter scaling). Slower apertures (higher f-number) gather
+  // less light, so the saturation cap is longer: f/4 = 4× the f/2 time, f/2.8 = 2×.
+  const fScale = Math.pow(fStop / 2, 2);
+  let base;
+  if (sqm == null || sqm >= 21.5) base = 20;
+  else if (sqm >= 20.5) base = 15;
+  else if (sqm >= 20.0) base = 11;
+  else if (sqm >= 19.0) base = 7;
+  else if (sqm >= 18.5) base = 4;
+  else base = 2;
+  return base * fScale;
+}
+
+// 500-rule trackless max exposure (seconds) before star trailing for a given focal
+// length and sensor. Conservative for full-frame; tighter for APS-C (1.5× crop).
+function tracklessMaxS(focalMm, sensor) {
+  const cropFactor = sensor === 'aps-c' ? 1.5 : 1.0;
+  return Math.max(2, Math.min(30, 500 / (focalMm * cropFactor)));
+}
+
+// Wide-field FOV in degrees, given lens and sensor.
+function lensFov(focalMm, sensor) {
+  const dims = SENSOR_DIMS[sensor] || SENSOR_DIMS['aps-c'];
+  return {
+    w: 2 * Math.atan(dims.w / (2 * focalMm)) * 180 / Math.PI,
+    h: 2 * Math.atan(dims.h / (2 * focalMm)) * 180 / Math.PI,
+  };
+}
+
+// Moon wide-lens recipe. Scaled "Looney 11" rule: exposure for the lunar disc surface
+// detail = 1/ISO at f/11; converted to f/2 ≈ 5 stops more light. Phase-aware: crescent
+// moons need longer (less reflective area + grazing illumination).
+function moonLensExposure(moonRow, lens = null) {
+  if (!moonRow) return null;
+  const fStop = lens?.fStop ?? state.secondaryFStop ?? 1.7;
+  const focal = lens?.focal ?? state.secondaryFocal ?? 28;
+  const illum = moonRow.phase ?? 0.5;
+  // Phase factor in stops longer than full moon
+  const phaseStops = illum > 0.9  ? 0
+                   : illum > 0.6  ? 1
+                   : illum > 0.35 ? 2
+                   : illum > 0.1  ? 3
+                                  : 4;
+  // Looney 11 → 1/100s at f/11 ISO 100 for full moon. Convert to f-stop & phase.
+  // At f/2 (5 stops more light) full = 1/3200s. Snap to nearest typical shutter.
+  const fScale = Math.pow(fStop / 11, 2);     // f/11 reference
+  const shutter = (1 / 100) * fScale * Math.pow(2, phaseStops);
+  return {
+    iso: 100,
+    shutter: snapShutter(shutter),
+    aperture: fStop,
+    focal,
+    label: 'wide lens',
+  };
+}
+
+// Brightness-aware exposure for a wide-field target (off-scope lens). Same magnitude
+// scaling as DSOs, but tuned for tripod shooting at the user's lens f-stop/focal.
+// Type 'milkyway' returns the maximum exposure the tripod + sky allow (no per-target mag).
+function wideFieldExposure(target, sqm, extinction = 0, lens = null) {
+  const fStop = lens?.fStop ?? state.secondaryFStop ?? 2;
+  const focal = lens?.focal ?? state.secondaryFocal ?? 23;
+  const sensor = lens?.sensor ?? state.secondarySensor ?? 'aps-c';
+  const tripodMax = tracklessMaxS(focal, sensor);
+
+  if (target.type === 'milkyway') {
+    const sky = lpShutterCeilingWide(sqm, fStop);
+    let shutter = Math.min(sky, tripodMax);
+    let iso = 3200;
+    if (shutter < tripodMax * 0.85) {
+      const stops = Math.min(1, Math.log2(tripodMax / shutter));
+      iso *= Math.pow(2, stops);
+    }
+    return { iso: snapIso(iso), shutter: snapShutter(shutter), aperture: fStop, focal, label: 'wide lens' };
+  }
+
+  // Per-type presets at f/2 ISO baseline, dark sky.
+  const presets = {
+    'OC': { mRef: 3, expRef:  5, isoRef:  800, cap: 6.5 },
+    'EN': { mRef: 5, expRef: 18, isoRef: 1600, cap: 7.5 },
+    'RN': { mRef: 5, expRef: 18, isoRef: 1600, cap: 7.5 },
+    'PN': { mRef: 7, expRef: 15, isoRef: 1600, cap: 9.0 },
+    'GC': { mRef: 6, expRef: 12, isoRef: 1600, cap: 7.0 },
+    'G':  { mRef: 4, expRef: 18, isoRef: 1600, cap: 7.0 },
+  };
+  const p = presets[target.type];
+  if (!p) return null;
+  const mag = target.mag != null ? target.mag : p.mRef;
+  const penalty = lpMagPenalty(sqm);
+  if (mag > p.cap - penalty) return null;
+
+  // f-stop scaling — wider apertures gather more light per second.
+  // f/2 is the reference; f/2.8 ≈ ½×, f/1.4 ≈ 2×, etc.
+  const fScale = Math.pow(fStop / 2, 2);
+
+  const effectiveMag = mag + extinction;
+  const magScale = Math.pow(2.512, effectiveMag - p.mRef);
+  let idealExp = p.expRef * magScale * fScale;
+
+  const skyCap = lpShutterCeilingWide(sqm, fStop);
+  let exposure = Math.min(idealExp, skyCap, tripodMax);
+  exposure = Math.max(1, exposure);
+
+  let iso = p.isoRef;
+  if (exposure < idealExp * 0.85) {
+    const stops = Math.min(2, Math.log2(idealExp / exposure));
+    iso *= Math.pow(2, stops);
+  }
+  return {
+    iso: snapIso(iso),
+    shutter: snapShutter(exposure),
+    aperture: fStop,
+    focal,
+    label: 'wide lens',
+  };
+}
+
+// Curated whitelist of targets known for visually striking color (blue reflection
+// nebulosity, red emission, structured planetary nebulae, etc.). Matches on NGC/IC id
+// AND on Messier number — OpenNGC sometimes splits a Messier into separate cluster +
+// nebula entries with no `M` field on one of them.
+const COLORFUL_DSO_IDS = new Set([
+  // Nebulae & planetaries
+  'NGC1977',    // Running Man — blue reflection in Orion
+  'NGC2237',    // Rosette — red emission
+  'NGC6960',    // West Veil
+  'NGC6992',    // East Veil
+  'NGC7000',    // North America — red emission
+  'NGC7635',    // Bubble Nebula — red
+  'NGC7023',    // Iris — blue reflection
+  'NGC1499',    // California — red emission
+  'NGC2070',    // Tarantula (LMC)
+  'NGC2024',    // Flame — orange-red
+  'NGC1435',    // Merope Nebula — blue reflection in Pleiades
+  'NGC6543',    // Cat's Eye PN — cyan
+  'NGC7293',    // Helix — red/blue eye
+  'IC4703',     // M16 nebula component (Pillars)
+  'IC1318',     // Gamma Cygni complex
+  // Open clusters with notable colour (mixed star types or embedded nebulosity)
+  'NGC0869',    // Double Cluster (h Persei) — blue + orange supergiants
+  'NGC0884',    // Double Cluster (chi Persei) — same field
+  'NGC2362',    // τ CMa cluster — uniformly deep blue
+]);
+const COLORFUL_MESSIER = new Set([
+  // Nebulae & planetaries
+  8,   // Lagoon
+  16,  // Eagle
+  17,  // Omega / Swan
+  20,  // Trifid
+  27,  // Dumbbell
+  42,  // Orion (also wide-field)
+  45,  // Pleiades (wide-field)
+  57,  // Ring
+  76,  // Little Dumbbell
+  78,  // reflection in Orion
+  // Open clusters with notable colour
+  6,   // Butterfly — orange BM Sco vs blue cluster stars
+  11,  // Wild Duck — dense yellow-tinged
+]);
+
+function visibleWideField(lat, lon, win, effectiveSqm, fRatio) {
+  if (!win.duskUtc || !win.dawnUtc) return [];
+  const observer = new Astronomy.Observer(lat, lon, 0);
+  const t0 = win.sunsetUtc.getTime();
+  const t1 = win.sunriseUtc.getTime();
+  const out = [];
+  for (const w of WIDE_FIELD_TARGETS) {
+    Astronomy.DefineStar(Astronomy.Body.Star1, w.ra, w.dec, 1000);
+    const samples = sampleTrack(time => {
+      const eq = Astronomy.Equator(Astronomy.Body.Star1, time, observer, true, true);
+      const hz = Astronomy.Horizon(time, observer, eq.ra, eq.dec, 'normal');
+      return { alt: hz.altitude, az: hz.azimuth };
+    }, t0, t1);
+    const peak = findPeak(samples, s => inDark(s.t, win));
+    if (!peak || peak.alt < 20) continue;
+    const extinction = atmosphericExtinction(peak.alt);
+    const lensShot = wideFieldExposure(w, effectiveSqm, extinction);
+    if (!lensShot) continue;
+    // Scope REFERENCE recipe — the wide-field target obviously doesn't fit the scope
+    // frame, but the scope can still image a fragment (M31 core, M45 brightest stars,
+    // etc.). Compute the recipe as if it were a regular DSO of this type and magnitude.
+    let scopeShot = null;
+    if (fRatio) {
+      const ideal = dsoTargetExposure(w.type, w.mag, fRatio, effectiveSqm, extinction);
+      if (ideal) {
+        const fr = fieldRotation(lat, peak.alt, peak.az);
+        let rawShutter = Math.min(ideal.idealExp, fr.tMax * 0.9);
+        let iso = ideal.iso;
+        if (rawShutter < ideal.idealExp * 0.85) {
+          const stops = Math.min(2, Math.log2(ideal.idealExp / rawShutter));
+          iso = iso * Math.pow(2, stops);
+        }
+        if (isFinite(rawShutter) && rawShutter >= 0.5) {
+          scopeShot = { iso: snapIso(iso), shutter: snapShutter(rawShutter) };
+        }
+      }
+    }
+    out.push({
+      kind: 'wide', type: 'wide',
+      name: w.name,
+      mag: w.mag,
+      peak,
+      samples,
+      shot: scopeShot,         // reference — frames only part of the target
+      lensShot,                // primary recipe for these
+      note: `${w.fov} — too big for the ${state.scope} frame; scope recipe frames just a portion.`,
+      // Mark colourful by either an explicit flag on the WIDE_FIELD_TARGETS entry OR
+       // a hit in the Messier whitelist (so M42/M45 stay marked even if WIDE_FIELD_TARGETS
+       // ever omits the flag).
+      colorful: !!w.colorful || (w.id && /^M(\d+)$/.test(w.id) && COLORFUL_MESSIER.has(parseInt(w.id.slice(1), 10))),
+      twilightOnly: false,
+    });
+  }
+  return out;
+}
+
+// Milky Way galactic core (Sgr A*): RA 17h 45m 40s, Dec −29° 00' 28".
+// Surfaced as a row when it reaches a usable altitude during the dark window.
+// Note: at the NexStar 6SE's native focal length the Milky Way doesn't fit the frame —
+// the suggestion is a wide-field shot off-scope (camera on a tripod with a 14–35 mm lens).
+function visibleMilkyWay(lat, lon, win, effectiveSqm) {
+  if (!win.duskUtc || !win.dawnUtc) return [];
+  const observer = new Astronomy.Observer(lat, lon, 0);
+  const t0 = win.sunsetUtc.getTime();
+  const t1 = win.sunriseUtc.getTime();
+  Astronomy.DefineStar(Astronomy.Body.Star1, 17.7611, -29.0078, 25000);
+  const samples = sampleTrack(time => {
+    const eq = Astronomy.Equator(Astronomy.Body.Star1, time, observer, true, true);
+    const hz = Astronomy.Horizon(time, observer, eq.ra, eq.dec, 'normal');
+    return { alt: hz.altitude, az: hz.azimuth };
+  }, t0, t1);
+  const peak = findPeak(samples, s => inDark(s.t, win));
+  if (!peak || peak.alt < 15) return [];
+
+  return [{
+    kind: 'milkyway', type: 'milkyway',
+    name: 'Milky Way · galactic core',
+    mag: null,
+    peak,
+    samples,
+    shot: null,
+    lensShot: wideFieldExposure({ type: 'milkyway' }, effectiveSqm),
+    twilightOnly: false,
+  }];
+}
+
+// DSO visibility — strict dark zone only. For each target, find the highest-altitude
+// sample where the suggested shutter actually fits the alt-az field-rotation cap.
+// Without this, popular high-overhead targets (M13, M27, M57…) get dropped because the
+// rotation rate at meridian transit (where alt is max) is also where rotation is worst —
+// the shoot moment is typically before/after the meridian, not at the absolute peak.
+function visibleDsos(lat, lon, win, catalog, fRatio, effectiveSqm) {
+  if (!win.duskUtc || !win.dawnUtc) return [];
+  const observer = new Astronomy.Observer(lat, lon, 0);
+  const fov = fovDeg(fRatio);
+  const minFovArcmin = Math.min(fov.w, fov.h) * 60;
+  const t0 = win.sunsetUtc.getTime();
+  const t1 = win.sunriseUtc.getTime();
+  const out = [];
+  for (const d of catalog) {
+    if (d.size != null && d.size > minFovArcmin) continue;
+    // First-pass cap check (no extinction — we don't know the alt yet)
+    const rough = dsoTargetExposure(d.type, d.mag, fRatio, effectiveSqm);
+    if (!rough) continue;
+
+    Astronomy.DefineStar(Astronomy.Body.Star1, d.ra, d.dec, 1000);
+    const samples = sampleTrack(time => {
+      const eq = Astronomy.Equator(Astronomy.Body.Star1, time, observer, true, true);
+      const hz = Astronomy.Horizon(time, observer, eq.ra, eq.dec, 'normal');
+      return { alt: hz.altitude, az: hz.azimuth };
+    }, t0, t1);
+
+    // Minimum useful exposure = 20% of rough-ideal (anything less can't accumulate signal
+    // even at maxed ISO). Find the highest-altitude dark-window sample whose rotation
+    // cap admits at least that.
+    const minUseful = Math.max(1, rough.idealExp * 0.2);
+    let best = null;
+    let bestTMax = 0;
+    for (const s of samples) {
+      if (!inDark(s.t, win)) continue;
+      if (s.alt < 25) continue;
+      const fr = fieldRotation(lat, s.alt, s.az);
+      if (fr.tMax < minUseful) continue;
+      if (!best || s.alt > best.alt) { best = s; bestTMax = fr.tMax; }
+    }
+    if (!best) continue;
+
+    // Second pass with extinction at the actual best alt. The intrinsic-mag cap was
+    // already checked above so this can't return null on alt grounds — but a faint
+    // target at low alt may need significantly more exposure than the dark-zenith ideal.
+    const extinction = atmosphericExtinction(best.alt);
+    const ideal = dsoTargetExposure(d.type, d.mag, fRatio, effectiveSqm, extinction);
+    if (!ideal) continue;
+
+    // Take shutter = min(ideal, rotation_cap × 0.9). If the cap forced us low, bump
+    // ISO to recover signal — cap the bump at 2 stops (4×) so we don't push past 6400.
+    let rawShutter = Math.min(ideal.idealExp, bestTMax * 0.9);
+    let iso = ideal.iso;
+    if (rawShutter < ideal.idealExp * 0.85) {
+      const stops = Math.min(2, Math.log2(ideal.idealExp / rawShutter));
+      iso = iso * Math.pow(2, stops);
+    }
+    if (!isFinite(rawShutter) || rawShutter < 0.5) continue;
+    iso = snapIso(iso);
+    const shutter = snapShutter(rawShutter);
+    const shot = { iso, shutter };
+
+    // Secondary (wide-lens) shot — same atmospheric extinction, same effective sky.
+    const lensShot = wideFieldExposure({ type: d.type, mag: d.mag }, effectiveSqm, extinction);
+
+    out.push({
+      kind: 'dso', type: d.type,
+      name: d.m ? `M${d.m}${d.name && d.name !== d.id ? ' · ' + d.name : ''}` : d.name,
+      id: d.id, m: d.m, mag: d.mag, size: d.size,
+      peak: best,
+      samples,
+      shot,           // primary (telescope)
+      lensShot,       // secondary (wide lens) — may be null if target too faint for lens
+      tMax: bestTMax,
+      colorful: COLORFUL_DSO_IDS.has(d.id) || (d.m != null && COLORFUL_MESSIER.has(d.m)),
+      twilightOnly: false,
+    });
+  }
+  out.sort((a, b) => b.peak.alt - a.peak.alt || (a.mag ?? 99) - (b.mag ?? 99));
+  return out;
+}
+
+// ─── Comet position via Kepler solver (mirrors scripts/build-comets.js) ───
+
+function juldayUt(d) {
+  return d.getTime() / 86400000 + 2440587.5;
+}
+
+function heliocentricPos(orb, jd) {
+  const { q, e, i, node, argp, tp } = orb;
+  const dt = jd - tp;
+  const k = 0.01720209895;
+  let nu;
+  if (Math.abs(e - 1) < 0.001) {
+    const W = (3 / Math.SQRT2) * k * dt / Math.pow(2 * q, 1.5);
+    const y = Math.cbrt(W + Math.sqrt(W * W + 1));
+    nu = 2 * Math.atan(y - 1 / y);
+  } else if (e < 1) {
+    const a = q / (1 - e);
+    const n = k * Math.pow(a, -1.5);
+    const M = n * dt;
+    let E = M;
+    for (let it = 0; it < 30; it++) {
+      const dE = (E - e * Math.sin(E) - M) / (1 - e * Math.cos(E));
+      E -= dE;
+      if (Math.abs(dE) < 1e-10) break;
+    }
+    nu = 2 * Math.atan2(Math.sqrt(1+e)*Math.sin(E/2), Math.sqrt(1-e)*Math.cos(E/2));
+  } else {
+    const a = q / (e - 1);
+    const n = k * Math.pow(a, -1.5);
+    const M = n * dt;
+    let F = Math.asinh(M / (e || 0.001));
+    for (let it = 0; it < 30; it++) {
+      const dF = (e*Math.sinh(F) - F - M) / (e*Math.cosh(F) - 1);
+      F -= dF;
+      if (Math.abs(dF) < 1e-10) break;
+    }
+    nu = 2 * Math.atan2(Math.sqrt(e+1)*Math.sinh(F/2), Math.sqrt(e-1)*Math.cosh(F/2));
+  }
+  const r = q * (1 + e) / (1 + e * Math.cos(nu));
+  const xp = r * Math.cos(nu), yp = r * Math.sin(nu);
+  const cosW = Math.cos(rad(argp)), sinW = Math.sin(rad(argp));
+  const cosI = Math.cos(rad(i)),    sinI = Math.sin(rad(i));
+  const cosO = Math.cos(rad(node)), sinO = Math.sin(rad(node));
+  const x1 = cosW*xp - sinW*yp, y1 = sinW*xp + cosW*yp;
+  const y2 = cosI*y1, z2 = sinI*y1;
+  return { x: cosO*x1 - sinO*y2, y: sinO*x1 + cosO*y2, z: z2, r };
+}
+
+// Convert geocentric ecliptic (x,y,z, AU) to geocentric equatorial RA (hours), Dec (deg).
+function eclToEquatorial(xg, yg, zg) {
+  const eps = rad(23.4393);   // J2000 obliquity; good enough for this purpose
+  const x = xg;
+  const y = yg * Math.cos(eps) - zg * Math.sin(eps);
+  const z = yg * Math.sin(eps) + zg * Math.cos(eps);
+  const r = Math.sqrt(x*x + y*y + z*z);
+  let ra = Math.atan2(y, x);
+  if (ra < 0) ra += 2 * Math.PI;
+  const dec = Math.asin(z / r);
+  return { ra: deg(ra) / 15, dec: deg(dec) };
+}
+
+// Compute comet alt/az at a moment; returns {alt, az, mag, r_au, delta_au, elong_deg}.
+function cometAltAz(comet, observer, time, sunHelio) {
+  const jd = juldayUt(time.date);
+  const p = heliocentricPos(comet.orbital, jd);
+  // Earth heliocentric ≈ -sun (Sun's geocentric position)
+  const earth = { x: -sunHelio.x, y: -sunHelio.y, z: -sunHelio.z };
+  const dx = p.x - earth.x, dy = p.y - earth.y, dz = p.z - earth.z;
+  const delta = Math.sqrt(dx*dx + dy*dy + dz*dz);
+  const eq = eclToEquatorial(dx, dy, dz);
+  const hz = Astronomy.Horizon(time, observer, eq.ra, eq.dec, 'normal');
+  const mag = comet.H + 5*Math.log10(delta) + 2.5*comet.k*Math.log10(p.r);
+  const sx = sunHelio.x - earth.x, sy = sunHelio.y - earth.y, sz = sunHelio.z - earth.z;
+  const sMag = Math.sqrt(sx*sx + sy*sy + sz*sz);
+  const dot = dx*sx + dy*sy + dz*sz;
+  const elong = deg(Math.acos(dot / (delta * sMag)));
+  return { alt: hz.altitude, az: hz.azimuth, mag, r_au: p.r, delta_au: delta, elong };
+}
+
+// Compute the Sun's geocentric ecliptic position via astronomy-engine.
+function sunGeoEcl(time) {
+  // Astronomy.GeoVector returns geocentric J2000 equatorial. Rotate to ecliptic by -obliquity.
+  const dist = Astronomy.GeoVector(Astronomy.Body.Sun, time, true);
+  const eps = rad(23.4393);
+  return {
+    x: dist.x,
+    y: dist.y * Math.cos(eps) + dist.z * Math.sin(eps),
+    z: -dist.y * Math.sin(eps) + dist.z * Math.cos(eps),
+  };
+}
+
+function visibleComets(lat, lon, win, comets) {
+  if (!comets || comets.length === 0) return [];
+  const observer = new Astronomy.Observer(lat, lon, 0);
+  const t0 = win.sunsetUtc.getTime();
+  const t1 = win.sunriseUtc.getTime();
+  const midUtc = new Date((t0 + t1) / 2);
+  const sunHelio = sunGeoEcl(new Astronomy.AstroTime(midUtc));
+  const out = [];
+  for (const c of comets) {
+    const samples = sampleTrack(time => cometAltAz(c, observer, time, sunHelio), t0, t1);
+    // Comets need at least nautical-dark sky; if the strict dark window exists, restrict peak there.
+    const peak = win.duskUtc && win.dawnUtc
+      ? findPeak(samples, s => inDark(s.t, win))
+      : findPeak(samples);
+    if (!peak || peak.alt < 15) continue;
+    // NaN guard — Kepler solver can degenerate for near-Sun or near-parabolic edge cases
+    if (!isFinite(peak.mag) || !isFinite(peak.elong)) continue;
+    if (peak.mag > 7.0) continue;
+    if (peak.elong < 30) continue;
+    const fr = fieldRotation(lat, peak.alt, peak.az);
+    const shot = suggestShot('comet', state.fRatio, peak.mag);
+    if (!shot || shot.shutter > fr.tMax) continue;
+    out.push({
+      kind: 'comet', type: 'comet',
+      name: `${c.designation} · ${c.name}`,
+      mag: +peak.mag.toFixed(1),
+      tailLikely: peak.mag <= 5.0,
+      elong: +peak.elong.toFixed(0),
+      peak,
+      samples,
+      shot,
+      twilightOnly: !inDark(peak.t, win),
+    });
+  }
+  out.sort((a, b) => a.mag - b.mag);
+  return out;
+}
+
+// ───────────────── External-data helpers ─────────────────
+
+// IANA timezone via Intl on the device (default) or — if lat/lon override — via lookup later.
+// For the manual-entered location, fall back to the device's TZ.
+function deviceTimezone() {
+  try { return Intl.DateTimeFormat().resolvedOptions().timeZone; }
+  catch { return 'UTC'; }
+}
+
+// Compute offset in minutes for an IANA TZ at a given Date.
+// IMPORTANT: uses `hourCycle: 'h23'` (not `hour12: false`) to avoid a long-standing V8 bug
+// where Intl returns "24" instead of "00" for local midnight in Chrome/Edge/Node. That
+// then makes `Date.UTC(..., 24, ...)` roll forward a day and produces a wildly wrong offset
+// (e.g. +26h instead of +2h for Asia/Jerusalem at the Jan-15 reference instant).
+function tzOffsetMin(iana, when) {
+  const dtf = new Intl.DateTimeFormat('en-US', {
+    timeZone: iana, hourCycle: 'h23',
+    year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', second: '2-digit',
+  });
+  const parts = dtf.formatToParts(when);
+  const map = {};
+  for (const p of parts) map[p.type] = p.value;
+  let hour = +map.hour;
+  // Belt-and-braces: if anything still returns 24, treat as 0.
+  if (hour === 24) hour = 0;
+  const asUtc = Date.UTC(+map.year, +map.month - 1, +map.day, hour, +map.minute, +map.second);
+  return Math.round((asUtc - when.getTime()) / 60000);
+}
+
+// Convert a signed decimal coordinate to the NexStar+ Custom Site format.
+// Lon: 3-digit zero-padded degrees + 2-digit M + 2-digit S, then 'E'/'W'.
+// Lat: 2-digit zero-padded degrees + 2-digit M + 2-digit S, then 'N'/'S'.
+// The HC accepts only integer DMS — we round the seconds.
+function dmsParts(decimal) {
+  const sign = decimal >= 0 ? 1 : -1;
+  let abs = Math.abs(decimal);
+  let d = Math.floor(abs);
+  let mTot = (abs - d) * 60;
+  let m = Math.floor(mTot);
+  let s = Math.round((mTot - m) * 60);
+  // Carry over if rounding bumps seconds to 60
+  if (s === 60) { s = 0; m += 1; }
+  if (m === 60) { m = 0; d += 1; }
+  return { sign, d, m, s };
+}
+function formatLon(lon) {
+  const p = dmsParts(lon);
+  const hem = p.sign >= 0 ? 'E' : 'W';
+  // Clamp to <180° (NexStar field is DDD, accepts 000–179). Round-up to 180 happens at
+  // the antimeridian; pin to 179 59 59 in that case so the HC field stays 3-digit.
+  let d = p.d, m = p.m, s = p.s;
+  if (d >= 180) { d = 179; m = 59; s = 59; }
+  return `${String(d).padStart(3,'0')} ${String(m).padStart(2,'0')} ${String(s).padStart(2,'0')} ${hem}`;
+}
+function formatLat(lat) {
+  const p = dmsParts(lat);
+  const hem = p.sign >= 0 ? 'N' : 'S';
+  let d = p.d, m = p.m, s = p.s;
+  if (d >= 90) { d = 89; m = 59; s = 59; }
+  return `${String(d).padStart(2,'0')} ${String(m).padStart(2,'0')} ${String(s).padStart(2,'0')} ${hem}`;
+}
+
+// NexStar HC entry block from (iana TZ, current Date).
+function nexstarHc(iana, when) {
+  const offsetMin = tzOffsetMin(iana, when);
+  const offsetHr = offsetMin / 60;
+
+  // DST detection: compare to January 15 of the same year (always standard in N. hemisphere,
+  // always summer in S. — but a *differential* is what we want).
+  const janRef = new Date(when.getFullYear(), 0, 15);
+  const janOffsetHr = tzOffsetMin(iana, janRef) / 60;
+  // In northern-hemisphere zones, DST adds an hour vs January.
+  // In southern-hemisphere zones, DST is in January (so July is "standard").
+  // We treat "DST on" as: current offset > the smaller of (january, july) by ≥1 hour.
+  const julRef = new Date(when.getFullYear(), 6, 15);
+  const julOffsetHr = tzOffsetMin(iana, julRef) / 60;
+  const stdOffsetHr = Math.min(janOffsetHr, julOffsetHr);
+  const dstFlag = offsetHr > stdOffsetHr ? 'Daylight Saving time' : 'Standard time';
+
+  // Half-hour zones — can't be expressed on the NexStar HC.
+  const isHalfHour = Math.abs(offsetMin) % 60 !== 0;
+
+  // Time-zone display: prefer US named bands keyed on the STANDARD offset (not current,
+  // since named bands like "Eastern" refer to standard time even during DST). Otherwise
+  // show the integer standard offset.
+  const stdOffsetInt = Math.trunc(stdOffsetHr);
+  const intOffsetKey = String(stdOffsetInt);
+  let bandLabel;
+  if (isHalfHour) {
+    // Express half-hour zones as ±HH:MM (e.g. +5:30 for India). HC can't accept this —
+    // the hc-note below the field explains the workaround.
+    const sign = stdOffsetHr >= 0 ? '+' : '-';
+    const abs = Math.abs(stdOffsetHr);
+    const h = Math.floor(abs);
+    const m = Math.round((abs - h) * 60);
+    bandLabel = `${sign}${h}:${String(m).padStart(2,'0')}`;
+  } else if (NEXSTAR_NAMED[intOffsetKey]) {
+    bandLabel = NEXSTAR_NAMED[intOffsetKey];
+  } else {
+    bandLabel = (stdOffsetInt >= 0 ? '+' : '') + stdOffsetInt;
+  }
+
+  // Time string (24-hour local) — also using hourCycle h23 to avoid the V8 hour:24 quirk.
+  const timeStr = new Intl.DateTimeFormat('en-GB', {
+    timeZone: iana, hourCycle: 'h23',
+    hour: '2-digit', minute: '2-digit', second: '2-digit',
+  }).format(when).replace(/^24/, '00');
+
+  // Date string MM/DD/YYYY — built from formatToParts so the shape is guaranteed
+  // regardless of locale quirks (Intl is allowed to drop leading zeros otherwise).
+  const dateParts = new Intl.DateTimeFormat('en-US', {
+    timeZone: iana,
+    year: 'numeric', month: '2-digit', day: '2-digit',
+  }).formatToParts(when);
+  const dp = {};
+  for (const p of dateParts) dp[p.type] = p.value;
+  const dateStr = `${dp.month || '00'}/${dp.day || '00'}/${dp.year || '0000'}`;
+
+  return { dateStr, timeStr, bandLabel, dstFlag, isHalfHour };
+}
+
+// Async loaders — fetched lazily on Tonight enter. Both cache the in-flight Promise so
+// concurrent callers share the same request, and both have graceful fallbacks so a 404
+// or network error doesn't hang the UI.
+let _dsoPromise = null;
+let _cometPromise = null;
+async function loadDsoCatalog() {
+  if (state.dsoCatalog) return state.dsoCatalog;
+  if (!_dsoPromise) {
+    _dsoPromise = fetch('data/dso.json')
+      .then(r => { if (!r.ok) throw new Error('DSO catalog HTTP ' + r.status); return r.json(); })
+      .then(data => { state.dsoCatalog = data; return data; })
+      .catch(err => {
+        _dsoPromise = null;     // allow retry
+        state.dsoCatalog = [];
+        showError('Could not load DSO catalog — list will be empty.');
+        return [];
+      });
+  }
+  return _dsoPromise;
+}
+async function loadCometCache() {
+  if (state.comets) return state.comets;
+  if (!_cometPromise) {
+    _cometPromise = fetch('data/bright_comets.json')
+      .then(r => r.ok ? r.json() : [])
+      .then(data => { state.comets = data; return data; })
+      .catch(() => { state.comets = []; return []; });
+  }
+  return _cometPromise;
+}
+
+async function fetchWeather(lat, lon) {
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=cloud_cover,cloud_cover_low,cloud_cover_mid,cloud_cover_high,visibility,relative_humidity_2m,dew_point_2m,temperature_2m,wind_speed_10m&forecast_days=2&timezone=auto`;
+  const r = await fetch(url);
+  if (!r.ok) throw new Error('Open-Meteo HTTP ' + r.status);
+  return r.json();
+}
+
+// djlorenz light-pollution: fetch the 99 KB world map once, sample lat/lon client-side.
+// Image is 1728×672 equirectangular, lon −180°→+180°, lat ≈ +70°→−70° (VIIRS sky-glow data
+// is undefined above the polar circles). 4-bit indexed colormap, lifted to RGBA on canvas.
+
+const LP_WORLD_URL = 'https://djlorenz.github.io/astronomy/lp2024/world2024_low25.png';
+const LP_LAT_MAX = 70;   // approximate top edge of djlorenz's world map
+const LP_LAT_MIN = -70;
+
+// Lorenz 8-bin palette (approximate SQM equivalents from VIIRS 2024 data).
+const LP_PALETTE = [
+  { rgb: [0, 0, 0],       zone: 1, sqm: 21.99, label: 'Pristine — full Milky Way detail' },
+  { rgb: [0, 0, 128],     zone: 2, sqm: 21.89, label: 'Rural — excellent Milky Way' },
+  { rgb: [0, 0, 255],     zone: 3, sqm: 21.69, label: 'Rural / Bortle 3' },
+  { rgb: [0, 255, 0],     zone: 4, sqm: 21.25, label: 'Rural-suburban transition' },
+  { rgb: [255, 255, 0],   zone: 5, sqm: 20.49, label: 'Suburban — Milky Way faint' },
+  { rgb: [255, 128, 0],   zone: 6, sqm: 19.50, label: 'Bright suburban — Milky Way invisible' },
+  { rgb: [255, 0, 0],     zone: 7, sqm: 18.95, label: 'Suburban-urban transition' },
+  { rgb: [255, 255, 255], zone: 8, sqm: 18.38, label: 'City — most stars washed out' },
+];
+
+function nearestLpBin(r, g, b) {
+  let best = LP_PALETTE[0], bestD = Infinity;
+  for (const p of LP_PALETTE) {
+    const dr = r - p.rgb[0], dg = g - p.rgb[1], db = b - p.rgb[2];
+    const d = dr*dr + dg*dg + db*db;
+    if (d < bestD) { bestD = d; best = p; }
+  }
+  return best;
+}
+
+// Cache the canvas-resident image data across calls for the session.
+let _lpCanvasCache = null;
+function getLpImageData() {
+  if (_lpCanvasCache) return Promise.resolve(_lpCanvasCache);
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      try {
+        const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        _lpCanvasCache = { data, w: canvas.width, h: canvas.height };
+        resolve(_lpCanvasCache);
+      } catch (err) { reject(err); }
+    };
+    img.onerror = () => reject(new Error('LP world map fetch failed'));
+    img.src = LP_WORLD_URL;
+  });
+}
+
+async function fetchLightPollution(lat, lon) {
+  if (lat > LP_LAT_MAX || lat < LP_LAT_MIN) return null;
+  const { data, w, h } = await getLpImageData();
+  const x = Math.round(((lon + 180) / 360) * w);
+  const y = Math.round(((LP_LAT_MAX - lat) / (LP_LAT_MAX - LP_LAT_MIN)) * h);
+  const xc = Math.max(0, Math.min(w - 1, x));
+  const yc = Math.max(0, Math.min(h - 1, y));
+  const idx = (yc * w + xc) * 4;
+  return nearestLpBin(data.data[idx], data.data[idx + 1], data.data[idx + 2]);
+}
+
+async function geocode(query) {
+  const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1`;
+  const r = await fetch(url);
+  if (!r.ok) throw new Error('Nominatim HTTP ' + r.status);
+  const data = await r.json();
+  if (!data.length) throw new Error('No match for "' + query + '"');
+  const lat = parseFloat(data[0].lat), lon = parseFloat(data[0].lon);
+  if (!isFinite(lat) || !isFinite(lon)) throw new Error('Geocoder returned invalid coordinates');
+  return { lat, lon, display: data[0].display_name };
+}
+
+// ───────────────── UI helpers ─────────────────
+
+// Minimal HTML escape for any string we don't fully control (catalog names from
+// OpenNGC / MPC, geocoded display strings, etc.) — prevents stray < > & from
+// breaking template-literal innerHTML.
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c =>
+    ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+}
+
+function showError(msg) {
+  const div = document.createElement('div');
+  div.className = 'error-popup';
+  div.innerHTML = `<span class="close-btn">&#10005;</span><span></span>`;
+  div.querySelector('span:last-child').textContent = msg;
+  div.querySelector('.close-btn').addEventListener('click', () => div.remove());
+  document.body.appendChild(div);
+  setTimeout(() => div.remove(), 6000);
+}
+
+function fmtShutter(s) {
+  if (!isFinite(s) || s <= 0) return '—';
+  if (s >= 1) return s.toFixed(s < 10 ? 1 : 0) + 's';
+  return '1/' + Math.round(1 / s) + 's';
+}
+
+function fmtLocalTime(date, iana) {
+  return new Intl.DateTimeFormat('en-GB', {
+    timeZone: iana, hour: '2-digit', minute: '2-digit', hour12: false,
+  }).format(date);
+}
+
+function fmtPeakTime(t) {
+  return fmtLocalTime(new Date(t), state.ianaTz);
+}
+
+// ───────────────── Rendering ─────────────────
+
+function setActiveTab(step) {
+  document.querySelectorAll('.tab').forEach(t => {
+    t.classList.remove('active', 'done');
+    const order = ['setup', 'tonight'];
+    const idx = order.indexOf(t.dataset.step);
+    const cur = order.indexOf(step);
+    if (idx === cur) t.classList.add('active');
+    else if (idx < cur) t.classList.add('done');
+  });
+}
+
+function showScreen(name) {
+  state.screen = name;
+  setActiveTab(name);
+  document.getElementById('screenSetup').style.display   = name === 'setup'   ? '' : 'none';
+  document.getElementById('screenTonight').style.display = name === 'tonight' ? '' : 'none';
+
+  // Show location-summary strip on the tonight screen.
+  const strip = document.getElementById('locationStrip');
+  if (name === 'setup') strip.style.display = 'none';
+  else { strip.style.display = ''; renderLocationStrip(); }
+
+  // Action bar — only shown on Setup with a single CTA that's enabled once both lat AND fRatio are picked.
+  const bar = document.getElementById('actionBar');
+  const btn = document.getElementById('actionBtn');
+  if (name === 'setup') {
+    const ready = state.lat != null;
+    bar.style.display = ready ? '' : 'none';
+    btn.textContent = "Show Tonight's Targets →";
+    btn.disabled = !(state.lat != null && state.fRatio != null);
+  } else {
+    bar.style.display = 'none';
+  }
+}
+
+function renderLocationStrip() {
+  const strip = document.getElementById('locationStrip');
+  if (state.lat == null) { strip.innerHTML = ''; return; }
+  const now = new Date();
+  const local = fmtLocalTime(now, state.ianaTz);
+  strip.innerHTML = `
+    <div class="row">
+      <span><span class="label">Loc</span> <span class="value">${state.lat.toFixed(3)}, ${state.lon.toFixed(3)}</span></span>
+      <span><span class="label">Local</span> <span class="value">${local}</span></span>
+      <span><span class="label">Tz</span> <span class="value">${state.ianaTz}</span></span>
+    </div>`;
+}
+
+function renderLocationResult() {
+  const root = document.getElementById('locationResult');
+  document.getElementById('locatePrompt').style.display = 'none';
+  root.style.display = '';
+
+  const now = new Date();
+  const hc = nexstarHc(state.ianaTz, now);
+
+  const starsHtml = state.alignmentStars.map((s, i) => `
+    <div class="target-card">
+      <div class="target-rank">${i + 1}</div>
+      <div class="target-info">
+        <div class="target-name">${s.name} <span class="muted" style="font-size:11px;font-weight:400">mag ${s.mag.toFixed(1)}</span></div>
+        <div class="target-meta">
+          <span class="type-tag type-star">Star</span>
+          <span>alt ${s.alt.toFixed(0)}°</span>
+          <span>${azLabel(s.az)}, ${altLabel(s.alt)}</span>
+          ${i >= 3 ? '<span class="muted">spare</span>' : ''}
+        </div>
+      </div>
+    </div>`).join('');
+
+  root.innerHTML = `
+    <div class="section">
+      <div class="card-title">Coordinates</div>
+      <div class="muted">${state.lat.toFixed(4)}, ${state.lon.toFixed(4)} · ${state.ianaTz} · ${fmtLocalTime(now, state.ianaTz)}</div>
+    </div>
+
+    <div class="section">
+      <div class="card-title">NexStar Hand Controller entry</div>
+      <div class="hc-block">
+        <div class="hc-row"><span class="hc-label">Longitude</span><span class="hc-value" id="hcLon">${formatLon(state.lon)}</span><button class="hc-copy" data-copy="hcLon">Copy</button></div>
+        <div class="hc-row"><span class="hc-label">Latitude</span><span class="hc-value" id="hcLat">${formatLat(state.lat)}</span><button class="hc-copy" data-copy="hcLat">Copy</button></div>
+        <div class="hc-row"><span class="hc-label">Date</span><span class="hc-value" id="hcDate">${hc.dateStr}</span><button class="hc-copy" data-copy="hcDate">Copy</button></div>
+        <div class="hc-row"><span class="hc-label">Time</span><span class="hc-value" id="hcTime">${hc.timeStr}</span><button class="hc-copy" data-copy="hcTime">Copy</button></div>
+        <div class="hc-row"><span class="hc-label">Time Zone</span><span class="hc-value" id="hcTz">${hc.bandLabel}</span><button class="hc-copy" data-copy="hcTz">Copy</button></div>
+        <div class="hc-row"><span class="hc-label">DST</span><span class="hc-value" id="hcDst">${hc.dstFlag}</span><button class="hc-copy" data-copy="hcDst">Copy</button></div>
+      </div>
+      ${hc.isHalfHour ? `<div class="hc-note">⚠ Your zone has a half-hour offset. The NexStar accepts only whole hours — use the nearest integer (small tracking error) or enter Custom Site mode with local sidereal time.</div>` : ''}
+      <div class="hc-note">On the HC: <b>Menu → Scope Setup → Setup Time-Site → Custom Site</b>. Longitude is entered first as <code>DDD MM SS</code>, then W/E; then latitude as <code>DD MM SS</code>, then N/S. The HC has no degree/minute glyphs — just digits with spaces.</div>
+    </div>
+
+    <div class="section">
+      <div class="card-title">SkyAlign stars · pick any 3</div>
+      ${starsHtml || '<div class="muted">No bright stars currently in the 15°–75° altitude band. Try again in a few hours.</div>'}
+      <div class="hc-note">Top 3 give the best alignment geometry; #4 and #5 are spares for when a tree or building blocks one of the primaries.</div>
+    </div>
+  `;
+
+  // Copy buttons
+  root.querySelectorAll('.hc-copy').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const el = document.getElementById(btn.dataset.copy);
+      navigator.clipboard?.writeText(el.textContent.trim());
+      btn.classList.add('copied');
+      btn.textContent = '✓';
+      setTimeout(() => { btn.classList.remove('copied'); btn.textContent = 'Copy'; }, 1200);
+    });
+  });
+}
+
+function renderFocalPills() {
+  // Scope pills
+  document.querySelectorAll('#focalCard .pill[data-scope]').forEach(p => {
+    p.classList.toggle('active', p.dataset.scope === state.scope);
+  });
+  // Sensor pills
+  document.querySelectorAll('#focalCard .pill[data-prim-sensor]').forEach(p => {
+    p.classList.toggle('active', p.dataset.primSensor === state.primarySensor);
+  });
+
+  // F-ratio row: 1 pill for 4SE (native only), 2 pills for the SCTs.
+  const scope = SCOPES[state.scope] || SCOPES['6SE'];
+  const opts = [{ fRatio: scope.fNative, label: `f/${scope.fNative} · native` }];
+  if (scope.hasReducer) {
+    const fr = +(scope.fNative * 0.63).toFixed(2);
+    opts.push({ fRatio: fr, label: `f/${fr} · reducer` });
+  }
+  // If current fRatio isn't valid for this scope, reset to native.
+  if (!opts.some(o => Math.abs(o.fRatio - state.fRatio) < 0.05)) state.fRatio = scope.fNative;
+
+  const row = document.getElementById('fRatioRow');
+  row.innerHTML = opts.map(opt => {
+    const fl = Math.round(focalLengthMm(opt.fRatio));
+    const fov = fovDeg(opt.fRatio);
+    const active = Math.abs(opt.fRatio - state.fRatio) < 0.05 ? ' active' : '';
+    return `<div class="pill${active}" data-fratio="${opt.fRatio}">
+      <div class="pill-title">${opt.label}</div>
+      <div class="pill-sub">${fl} mm · ${fov.w.toFixed(2)}° × ${fov.h.toFixed(2)}°</div>
+    </div>`;
+  }).join('');
+}
+
+function renderSecondaryPills() {
+  document.querySelectorAll('#secondaryCard .pill').forEach(p => {
+    p.classList.toggle('active', p.dataset.secSensor === state.secondarySensor);
+  });
+  document.getElementById('secondaryFStop').value = state.secondaryFStop;
+  document.getElementById('secondaryFocal').value = state.secondaryFocal;
+}
+
+function renderTonight() {
+  const root = document.getElementById('screenTonight');
+
+  // Session window header
+  let header = '<div class="muted" style="padding:6px 4px 8px">Loading session info…</div>';
+  if (state.night) {
+    const sunset = fmtLocalTime(state.night.sunsetUtc, state.ianaTz);
+    const sunrise = fmtLocalTime(state.night.sunriseUtc, state.ianaTz);
+    const dusk = state.night.duskUtc ? fmtLocalTime(state.night.duskUtc, state.ianaTz) : null;
+    const dawn = state.night.dawnUtc ? fmtLocalTime(state.night.dawnUtc, state.ianaTz) : null;
+    const darkLine = dusk && dawn
+      ? `Astronomical dark <b style="color:#1a1a2e">${dusk} → ${dawn}</b>`
+      : `No astronomical darkness tonight at this latitude`;
+    header = `<div class="section-title">Tonight's night window</div>
+      <div class="card" style="text-align:center;padding:16px">
+        <div style="font-size:16px;font-weight:600;color:#1a1a2e">Sunset ${sunset} → Sunrise ${sunrise}</div>
+        <div class="muted" style="margin-top:6px;font-size:13px">${darkLine}</div>
+      </div>`;
+  }
+
+  // Sky conditions card
+  let sky = `<div class="section-title">Sky conditions</div><div class="card" id="skyCard"><div class="muted">Loading weather & light pollution…</div></div>`;
+
+  // Target tabs + lists
+  const split = state.visibleTargets ? splitDsos(state.visibleTargets.dsos) : null;
+  const counts = state.visibleTargets ? {
+    all: state.visibleTargets.planets.length + state.visibleTargets.moon.length + state.visibleTargets.comets.length + state.visibleTargets.dsos.length,
+    planets: state.visibleTargets.planets.length,
+    moon: state.visibleTargets.moon.length,
+    comets: state.visibleTargets.comets.length,
+    clusters: split.clusters.length,
+    nebulae:  split.nebulae.length,
+  } : null;
+
+  const tabsHtml = `
+    <div class="section-title">Tonight's single-frame targets</div>
+    <div class="sub-tabs" id="subTabs">
+      <div class="sub-tab ${state.subTab === 'all' ? 'active' : ''}" data-sub="all">All${counts ? ` <span class="count">${counts.all}</span>` : ''}</div>
+      <div class="sub-tab ${state.subTab === 'planets' ? 'active' : ''}" data-sub="planets">Planets${counts ? ` <span class="count">${counts.planets}</span>` : ''}</div>
+      <div class="sub-tab ${state.subTab === 'moon' ? 'active' : ''}" data-sub="moon">Moon${counts ? ` <span class="count">${counts.moon}</span>` : ''}</div>
+      <div class="sub-tab ${state.subTab === 'comets' ? 'active' : ''}" data-sub="comets">Comets${counts ? ` <span class="count">${counts.comets}</span>` : ''}</div>
+      <div class="sub-tab ${state.subTab === 'clusters' ? 'active' : ''}" data-sub="clusters">Clusters${counts ? ` <span class="count">${counts.clusters}</span>` : ''}</div>
+      <div class="sub-tab ${state.subTab === 'nebulae' ? 'active' : ''}" data-sub="nebulae">Nebulae${counts ? ` <span class="count">${counts.nebulae}</span>` : ''}</div>
+    </div>
+    <div id="targetList">${state.visibleTargets ? targetListHtml() : `<div class="muted" style="padding:14px">Computing tonight's targets…</div>`}</div>
+  `;
+
+  root.innerHTML = header + sky + tabsHtml;
+
+  // Sub-tab handlers
+  document.querySelectorAll('#subTabs .sub-tab').forEach(t => {
+    t.addEventListener('click', () => {
+      state.subTab = t.dataset.sub;
+      document.querySelectorAll('#subTabs .sub-tab').forEach(s => s.classList.toggle('active', s.dataset.sub === state.subTab));
+      document.getElementById('targetList').innerHTML = targetListHtml();
+    });
+  });
+}
+
+function targetListHtml() {
+  if (!state.visibleTargets) return '';
+  const { planets, moon, comets, dsos } = state.visibleTargets;
+  const { clusters, nebulae } = splitDsos(dsos);
+  const sub = state.subTab;
+
+  const sections = [];
+  if (sub === 'all' || sub === 'planets')  sections.push({title: 'Planets', items: planets});
+  if (sub === 'all' || sub === 'moon')     sections.push({title: 'Moon',    items: moon});
+  if (sub === 'all' || sub === 'comets')   sections.push({title: 'Comets',  items: comets, empty: "Comets bright enough for a single-shot photo (mag ≤ 7) appear roughly once every year or two. The list will usually be empty — that's normal."});
+  if (sub === 'all' || sub === 'nebulae')  sections.push({title: 'Nebulae & dust clouds', items: nebulae});
+  if (sub === 'all' || sub === 'clusters') sections.push({title: 'Clusters', items: clusters});
+
+  let html = '';
+  for (const sec of sections) {
+    if (sub === 'all') html += `<div class="section-title">${sec.title}</div>`;
+    if (sec.items.length === 0) {
+      html += `<div class="card"><div class="muted">${sec.empty || "Nothing meeting tonight's single-frame criteria."}</div></div>`;
+      continue;
+    }
+    let rank = 1;
+    for (const t of sec.items) {
+      html += renderTargetCard(t, rank++);
+    }
+  }
+  return html;
+}
+
+function renderTargetCard(t, rank) {
+  const typeClass = `type-${t.type}`;
+  const typeLabel = {
+    planet: 'Planet', moon: 'Moon', comet: 'Comet', milkyway: 'Milky Way', wide: 'Wide-field',
+    G: 'Galaxy', EN: 'Nebula', RN: 'Refl. nebula', OC: 'Open cluster', GC: 'Globular', PN: 'Planetary',
+  }[t.type] || t.type;
+
+  const peakAlt = t.peak.alt.toFixed(0);
+  const peakAzLabel = azLabel(t.peak.az);
+  const peakTime = fmtPeakTime(t.peak.t);
+  const magStr = t.mag != null ? `mag ${t.mag.toFixed(1)} · ` : '';
+
+  const colorIcon = t.colorful ? '<span title="Photographs in vivid colour" style="font-size:14px;vertical-align:-1px">🎨</span> ' : '';
+  const badges = [
+    t.tailLikely ? '<span class="tail-badge">Tail likely</span>' : '',
+    t.twilightOnly ? '<span class="twilight-badge">Twilight only</span>' : '',
+  ].filter(Boolean).join(' ');
+
+  function shotChip(shot, kind /* 'scope' | 'lens' */) {
+    if (!shot) return '';
+    const parts = [`ISO ${shot.iso}`];
+    if (shot.aperture != null) parts.push(`f/${shot.aperture}`);
+    parts.push(fmtShutter(shot.shutter));
+    const label = kind === 'scope' ? 'Scope' : 'Lens';
+    const extra = shot.focal ? ` <span style="color:#888">· ${shot.focal} mm</span>` : '';
+    return `<div class="recipe-row"><span class="recipe-label ${kind}">${label}</span> ${parts.join(' · ')}${extra}</div>`;
+  }
+  const shotStr = (t.shot || t.lensShot)
+    ? `<div class="recipes">${shotChip(t.shot, 'scope')}${shotChip(t.lensShot, 'lens')}</div>`
+    : '';
+
+  const graph = altitudeGraphSvg(t.samples, state.night, t.peak);
+  const noteStr = t.note ? `<div class="muted" style="font-size:11px;margin-top:4px">${t.note}</div>` : '';
+
+  return `
+    <div class="target-card">
+      <div class="target-info">
+        <div class="target-name">${colorIcon}${escapeHtml(t.name)} ${badges}</div>
+        <div class="target-meta">
+          <span class="type-tag ${typeClass}">${typeLabel}</span>
+          <span>${magStr}peak alt ${peakAlt}° ${peakAzLabel} @ ${peakTime}</span>
+        </div>
+        ${graph}
+        ${shotStr}
+        ${noteStr}
+      </div>
+    </div>`;
+}
+
+// Altitude vs time graph — filled-area chart with Y-axis ticks and a clear peak label.
+// Layout: ~340 wide × 110 tall, with a 24-px left gutter for altitude labels (30°, 60°)
+// and a 18-px bottom gutter for time labels.
+// Background: pale cream for twilight zones (sunset→dusk, dawn→sunrise), dark navy for
+// astronomical-dark zone in the middle. Filled bright-pink mountain for the target's alt
+// track (translucent fill + solid stroke so it reads on both backgrounds).
+function altitudeGraphSvg(samples, win, peak) {
+  if (!samples || samples.length === 0 || !win) return '';
+  const W = 340;
+  const padL = 0, padR = 0, padT = 6, padB = 0;
+  const plotH = 76;
+  const H = padT + plotH;
+  const plotW = W - padL - padR;
+  const baseY = padT + plotH;
+  // Per-chart unique id suffix so gradient defs don't collide across multiple SVGs.
+  const gid = 'g' + Math.random().toString(36).slice(2, 8);
+
+  // X range: dark window + a small twilight margin on each side. 45 min gives the
+  // gradient enough width to show the sky-brightness transition without overwhelming
+  // the dark zone.
+  const twilightMargin = 45 * 60000;
+  const t0 = win.duskUtc
+    ? Math.max(win.sunsetUtc.getTime(), win.duskUtc.getTime() - twilightMargin)
+    : win.sunsetUtc.getTime();
+  const t1 = win.dawnUtc
+    ? Math.min(win.sunriseUtc.getTime(), win.dawnUtc.getTime() + twilightMargin)
+    : win.sunriseUtc.getTime();
+
+  const xScale = t => padL + ((t - t0) / (t1 - t0)) * plotW;
+  const yScale = alt => baseY - (Math.max(0, Math.min(90, alt)) / 90) * plotH;
+
+  const duskX = win.duskUtc ? xScale(win.duskUtc.getTime()) : padL;
+  const dawnX = win.dawnUtc ? xScale(win.dawnUtc.getTime()) : padL + plotW;
+  const hasDark = win.duskUtc && win.dawnUtc;
+
+  // Build above-horizon segments with horizon-crossing interpolation, then clip to
+  // the visible X range and extend with edge points so the line touches the left/right
+  // borders cleanly when the target is up there.
+  const rawSegs = [];
+  {
+    let cur = [];
+    let prev = null;
+    for (const s of samples) {
+      if (s.alt > 0) {
+        if (prev && prev.alt <= 0) {
+          // Crossing up through the horizon
+          const frac = -prev.alt / (s.alt - prev.alt);
+          cur.push({ t: prev.t + frac * (s.t - prev.t), alt: 0 });
+        }
+        cur.push({ t: s.t, alt: s.alt });
+      } else if (prev && prev.alt > 0) {
+        // Crossing down through the horizon
+        const frac = prev.alt / (prev.alt - s.alt);
+        cur.push({ t: prev.t + frac * (s.t - prev.t), alt: 0 });
+        if (cur.length > 1) rawSegs.push(cur);
+        cur = [];
+      }
+      prev = s;
+    }
+    if (cur.length > 1) rawSegs.push(cur);
+  }
+  // Clip each segment to [t0, t1]; on each side, interpolate to the edge if the segment
+  // crosses the boundary while above horizon (so the line meets the SVG border with no gap).
+  const segments = [];
+  for (const seg of rawSegs) {
+    const c = [];
+    for (let i = 0; i < seg.length; i++) {
+      const s = seg[i];
+      const next = seg[i + 1];
+      if (s.t < t0) {
+        if (next && next.t >= t0) {
+          const frac = (t0 - s.t) / (next.t - s.t);
+          c.push({ x: padL, y: yScale(s.alt + frac * (next.alt - s.alt)) });
+        }
+        continue;
+      }
+      if (s.t > t1) continue;
+      c.push({ x: xScale(s.t), y: yScale(s.alt) });
+      if (next && next.t > t1) {
+        const frac = (t1 - s.t) / (next.t - s.t);
+        c.push({ x: padL + plotW, y: yScale(s.alt + frac * (next.alt - s.alt)) });
+      }
+    }
+    if (c.length > 1) segments.push(c);
+  }
+
+  // Per-segment filled polygon + line stroke
+  const filledSegs = segments.map(seg => {
+    const linePts = seg.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+    const polyPts = [
+      `${seg[0].x.toFixed(1)},${baseY.toFixed(1)}`,
+      ...seg.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`),
+      `${seg[seg.length - 1].x.toFixed(1)},${baseY.toFixed(1)}`,
+    ].join(' ');
+    return `
+      <polygon points="${polyPts}" fill="rgba(233,69,96,0.24)"/>
+      <polyline points="${linePts}" fill="none" stroke="#ff3a5e" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round"/>`;
+  }).join('');
+
+  // Subtle gridlines at 30° and 60° (no labels — peak alt is in the meta-line above).
+  const yTicks = [30, 60].map(alt => {
+    const y = yScale(alt);
+    return `<line x1="${padL}" y1="${y.toFixed(1)}" x2="${(padL + plotW).toFixed(1)}" y2="${y.toFixed(1)}" stroke="rgba(160,160,180,0.25)" stroke-dasharray="2,3"/>`;
+  }).join('');
+
+  // Hour strip — small monospace numbers at each whole local hour across the visible range.
+  // Guard against null TZ (shouldn't happen at render time but defensive); use hourCycle h23
+  // to dodge the V8 "24" quirk that hit the NexStar TZ block before.
+  const tz = state.ianaTz || 'UTC';
+  const hourFmt = new Intl.DateTimeFormat('en-GB', { timeZone: tz, hour: '2-digit', hourCycle: 'h23' });
+  const hourMs = 3600000;
+  const firstLocalHour = (() => {
+    const localStr = new Intl.DateTimeFormat('en-GB', { timeZone: tz, hourCycle: 'h23', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(new Date(t0));
+    const parts = localStr.split(':').map(n => parseInt(n, 10));
+    const m = parts[1] || 0, s = parts[2] || 0;
+    const skipMs = ((60 - m) % 60) * 60000 - s * 1000;
+    // Keep the very-first tick if t0 lands exactly on a whole minute (skipMs == 0)
+    return t0 + (skipMs >= 0 ? skipMs : skipMs + hourMs);
+  })();
+  // Hour labels go INSIDE the plot at the bottom edge — sit on the dark zone, white text.
+  // Inside the twilight gradient zones we tint them darker so they stay readable.
+  const hourTicks = [];
+  for (let t = firstLocalHour; t < t1; t += hourMs) {
+    const x = xScale(t);
+    if (x < padL + 8 || x > padL + plotW - 8) continue;
+    const label = hourFmt.format(new Date(t)).replace(':', '');
+    const inDark = hasDark && t >= win.duskUtc.getTime() && t <= win.dawnUtc.getTime();
+    const color = inDark ? 'rgba(255,255,255,0.55)' : 'rgba(255,255,255,0.85)';
+    hourTicks.push(`<text x="${x.toFixed(1)}" y="${(baseY - 2).toFixed(1)}" font-size="6" fill="${color}" text-anchor="middle" font-family="ui-monospace,monospace">${label}</text>`);
+  }
+
+  // Gradient defs for the twilight zones — pale warm sunset color fading to dark navy at
+  // the astronomical-dusk/dawn boundary. Visually approximates the actual sky brightness
+  // during photo session twilight.
+  // Twilight gradient stops calibrated to sky brightness during the photo-session window:
+  // sunset warmth on the outer edge, deep blue mid-twilight, then dark navy by the time
+  // astronomical dusk lands.
+  const gradDefs = hasDark ? `
+    <defs>
+      <linearGradient id="lpL${gid}" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%"   stop-color="#6e618e"/>
+        <stop offset="35%"  stop-color="#574a72"/>
+        <stop offset="70%"  stop-color="#2c2d4a"/>
+        <stop offset="100%" stop-color="#1a1a2e"/>
+      </linearGradient>
+      <linearGradient id="lpR${gid}" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%"   stop-color="#1a1a2e"/>
+        <stop offset="30%"  stop-color="#2c2d4a"/>
+        <stop offset="65%"  stop-color="#574a72"/>
+        <stop offset="100%" stop-color="#6e618e"/>
+      </linearGradient>
+    </defs>` : '';
+
+  const leftFill  = hasDark ? `url(#lpL${gid})` : '#fff3d6';
+  const rightFill = hasDark ? `url(#lpR${gid})` : '#fff3d6';
+
+  return `
+    <svg class="alt-graph" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="height:auto">
+      ${gradDefs}
+      <!-- Background zones: gradient twilight on each side, solid dark in the middle -->
+      <rect x="${padL}" y="${padT}" width="${(duskX - padL).toFixed(1)}" height="${plotH.toFixed(1)}" fill="${leftFill}"/>
+      ${hasDark ? `<rect x="${duskX.toFixed(1)}" y="${padT}" width="${(dawnX - duskX).toFixed(1)}" height="${plotH.toFixed(1)}" fill="#1a1a2e"/>` : ''}
+      <rect x="${dawnX.toFixed(1)}" y="${padT}" width="${(padL + plotW - dawnX).toFixed(1)}" height="${plotH.toFixed(1)}" fill="${rightFill}"/>
+      <!-- Gridlines -->
+      ${yTicks}
+      <!-- Horizon line -->
+      <line x1="${padL}" y1="${baseY.toFixed(1)}" x2="${(padL + plotW).toFixed(1)}" y2="${baseY.toFixed(1)}" stroke="#999" stroke-width="1"/>
+      <!-- Altitude fill + line -->
+      ${filledSegs}
+      <!-- Hour strip -->
+      ${hourTicks.join('')}
+    </svg>`;
+}
+
+// ───────────────── Computation orchestration ─────────────────
+
+function computeAlignmentStars() {
+  state.alignmentStars = suggestAlignmentStars(state.lat, state.lon, new Date(), 5);
+}
+
+function computeNightForTonight() {
+  // "Tonight" = next sunset → next sunrise from now.
+  state.night = nightWindow(state.lat, state.lon, new Date());
+}
+
+async function computeVisibleTargets() {
+  if (!state.night || !state.fRatio) {
+    state.visibleTargets = { planets: [], moon: [], comets: [], dsos: [] };
+    return;
+  }
+  // Snapshot every input at function entry so a mid-await pill click doesn't poison the
+  // result. _computeEpoch is bumped by the caller (runComputeAndRender) and re-checked
+  // here before writing state, so a stale compute can't overwrite a fresher one.
+  const epoch = _computeEpoch;
+  const snap = {
+    lat: state.lat,
+    lon: state.lon,
+    night: state.night,
+    fRatio: state.fRatio,
+    primarySensor: state.primarySensor,
+    scope: state.scope,
+    secondarySensor: state.secondarySensor,
+    secondaryFStop: state.secondaryFStop,
+    secondaryFocal: state.secondaryFocal,
+    lightPollution: state.lightPollution,
+  };
+  const [_, comets] = await Promise.all([loadDsoCatalog(), loadCometCache()]);
+  if (epoch !== _computeEpoch) return;     // a newer compute supersedes us
+
+  const moonRows = visibleMoon(snap.lat, snap.lon, snap.night);
+  const moonPenalty = moonRows[0] ? moonSkyPenalty(moonRows[0], snap.night) : 0;
+  const rawSqm = snap.lightPollution?.sqm;
+  // Effective SQM combines light pollution and moon glow. When LP isn't loaded yet
+  // assume the dark-site baseline (21.5) so recipes don't drift wildly during preload.
+  const effectiveSqm = (rawSqm != null ? rawSqm : 21.5) - moonPenalty;
+  state.moonSkyPenalty = moonPenalty;
+  state.effectiveSqm = effectiveSqm;
+  // Remember the SQM used for this compute so loadSkyConditions can detect a mismatch
+  // and trigger a re-run when the real LP arrives.
+  state._lastComputeSqm = rawSqm != null ? rawSqm : null;
+
+  const dsos = visibleDsos(snap.lat, snap.lon, snap.night, state.dsoCatalog, snap.fRatio, effectiveSqm);
+  const mw   = visibleMilkyWay(snap.lat, snap.lon, snap.night, effectiveSqm);
+  const wide = visibleWideField(snap.lat, snap.lon, snap.night, effectiveSqm, snap.fRatio);
+  // Final epoch check before commit — guards against pill clicks during the synchronous
+  // compute too (cheap insurance).
+  if (epoch !== _computeEpoch) return;
+  state.visibleTargets = {
+    planets: visiblePlanets(snap.lat, snap.lon, snap.night),
+    moon:    moonRows,
+    comets:  visibleComets(snap.lat, snap.lon, snap.night, comets),
+    // Wide-field rows + Milky Way at the top of the DSO list since they're the visually
+    // distinct "needs the off-scope lens" group.
+    dsos:    [...mw, ...wide, ...dsos],
+  };
+}
+
+async function loadSkyConditions() {
+  try {
+    state.weather = await fetchWeather(state.lat, state.lon);
+  } catch (err) {
+    console.warn('weather fetch failed', err);
+    state.weather = null;
+  }
+  // LP may have already been preloaded by onLocationResolved — only fetch if missing
+  if (state.lightPollution == null) {
+    try { state.lightPollution = await fetchLightPollution(state.lat, state.lon); }
+    catch (err) { state.lightPollution = null; }
+  }
+  renderSkyCard();
+  // Recompute if the LP value used in the last compute (state._lastComputeSqm) differs
+  // from the current LP. Catches BOTH the "LP arrived late" case AND the "LP preloaded
+  // before compute fired" case where the compute used the default 21.5 placeholder.
+  const sqmNow = state.lightPollution?.sqm ?? null;
+  if (state.visibleTargets && sqmNow !== state._lastComputeSqm) {
+    state.visibleTargets = null;
+    await runComputeAndRender();
+  }
+}
+
+function renderSkyCard() {
+  const card = document.getElementById('skyCard');
+  if (!card) return;
+
+  let weatherHtml = '<div class="muted">Weather unavailable.</div>';
+  if (state.weather && state.night) {
+    const hours = state.weather.hourly.time.map((t, i) => ({
+      t: new Date(t).getTime(),
+      cloud: state.weather.hourly.cloud_cover[i],
+      cloudLow: state.weather.hourly.cloud_cover_low?.[i],
+      cloudMid: state.weather.hourly.cloud_cover_mid?.[i],
+      cloudHigh: state.weather.hourly.cloud_cover_high?.[i],
+      humid: state.weather.hourly.relative_humidity_2m?.[i],
+      dew: state.weather.hourly.dew_point_2m?.[i],
+      temp: state.weather.hourly.temperature_2m?.[i],
+      wind: state.weather.hourly.wind_speed_10m?.[i],
+      vis: state.weather.hourly.visibility?.[i],
+    }));
+    // Span the full sunset→sunrise for the cloud bar — twilight observing matters too.
+    const start = state.night.sunsetUtc.getTime();
+    const end   = state.night.sunriseUtc.getTime();
+    // Open-Meteo returned local-naive times in the requested TZ. Compare loosely by hour.
+    const inWindow = hours.filter(h => {
+      // Reinterpret h.t (local naive) as the local timestamp in the IANA TZ.
+      // Open-Meteo's `time` strings are in the requested timezone but as ISO without offset, so
+      // new Date() parses them as the *device* local time. Close enough for hourly bars where TZ matches.
+      return h.t >= start - 3600000 && h.t <= end + 3600000;
+    });
+    if (inWindow.length > 0) {
+      const minC = Math.min(...inWindow.map(h => h.cloud));
+      const maxC = Math.max(...inWindow.map(h => h.cloud));
+      const medC = inWindow.map(h => h.cloud).sort((a,b)=>a-b)[Math.floor(inWindow.length/2)];
+      const cells = inWindow.map(h => {
+        const v = h.cloud;
+        // Color: green @ 0, yellow @ 40, red @ 80+
+        const r = Math.min(255, Math.round(v * 2.5));
+        const g = Math.max(80, 220 - Math.round(v * 2));
+        return `<div class="cloud-cell" style="background:rgb(${r},${g},80)" title="${new Date(h.t).getHours()}h · ${v}%"></div>`;
+      }).join('');
+      const mid = inWindow[Math.floor(inWindow.length / 2)];
+      const dewSpread = mid && mid.temp != null && mid.dew != null ? (mid.temp - mid.dew) : null;
+      const temps = inWindow.map(h => h.temp).filter(t => t != null);
+      const tStart = inWindow[0]?.temp ?? null;
+      const tEnd   = inWindow[inWindow.length - 1]?.temp ?? null;
+      const tMin = temps.length ? Math.min(...temps) : null;
+      const tMax = temps.length ? Math.max(...temps) : null;
+      weatherHtml = `
+        <div><span class="muted" style="font-size:11px">Cloud cover across the night</span></div>
+        <div class="cloud-bar">${cells}</div>
+        <div class="condition-grid">
+          <span class="label">Cloud min/med/max</span>
+          <span class="value">${minC}% · ${medC}% · ${maxC}%</span>
+          ${tStart != null && tEnd != null ? `<span class="label">Temperature</span><span class="value">${tStart.toFixed(1)}° → ${tEnd.toFixed(1)}° C <span class="muted" style="font-size:11px">(low ${tMin.toFixed(1)}°)</span></span>` : ''}
+          ${dewSpread != null ? `<span class="label">Dew spread (T − Td)</span><span class="value">${dewSpread.toFixed(1)} °C ${dewSpread < 3 ? '⚠' : ''}</span>` : ''}
+          ${mid?.humid != null ? `<span class="label">Humidity (mid)</span><span class="value">${mid.humid}%</span>` : ''}
+          ${mid?.wind  != null ? `<span class="label">Wind</span><span class="value">${mid.wind.toFixed(0)} km/h</span>` : ''}
+        </div>`;
+    }
+  }
+
+  let lpHtml = '<div class="muted">Light pollution unavailable.</div>';
+  if (state.lightPollution) {
+    const p = state.lightPollution;
+    lpHtml = `<div class="condition-grid">
+      <span class="label">Light pollution</span>
+      <span class="value"><span class="lp-zone lp-${p.zone}">Zone ${p.zone}</span></span>
+      <span class="label" style="grid-column:1/-1">${p.label}</span>
+    </div>`;
+  }
+
+  card.innerHTML = weatherHtml + '<div style="margin-top:10px"></div>' + lpHtml;
+}
+
+// ───────────────── Event flow ─────────────────
+
+let _locEpoch = 0;
+async function onLocationResolved() {
+  const myEpoch = ++_locEpoch;
+  state.ianaTz = deviceTimezone();
+  computeAlignmentStars();
+  computeNightForTonight();
+  renderLocationResult();
+  document.getElementById('focalCard').style.display = '';
+  document.getElementById('secondaryCard').style.display = '';
+  if (state.fRatio == null) state.fRatio = 10;
+  // Clear ALL location-derived state — including the derived effectiveSqm / moonSkyPenalty
+  // which would otherwise leak Ramon's penalty into Tel Aviv's targets on rapid switching.
+  state.visibleTargets = null;
+  state.lightPollution = null;
+  state.weather = null;
+  state.effectiveSqm = null;
+  state.moonSkyPenalty = null;
+  state._lastComputeSqm = undefined;
+  renderFocalPills();
+  renderSecondaryPills();
+  showScreen('setup');
+  // Pre-load LP so it's ready by the time the user advances to Tonight. Location epoch
+  // guards against rapid location changes — only the latest fetch's result is committed.
+  const capturedLat = state.lat, capturedLon = state.lon;
+  fetchLightPollution(capturedLat, capturedLon)
+    .then(lp => { if (myEpoch === _locEpoch) state.lightPollution = lp; })
+    .catch(() => { /* leave as null — recipes will assume dark site */ });
+}
+
+document.getElementById('locateBtn').addEventListener('click', () => {
+  if (!navigator.geolocation) {
+    showError('Browser does not support geolocation. Enter coordinates or a city below.');
+    return;
+  }
+  const btn = document.getElementById('locateBtn');
+  btn.disabled = true;
+  btn.textContent = 'Locating…';
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      state.lat = pos.coords.latitude;
+      state.lon = pos.coords.longitude;
+      onLocationResolved();
+    },
+    err => {
+      btn.disabled = false;
+      btn.textContent = 'Find My Location';
+      const msg = err.code === 1
+        ? 'Location permission denied — enter coordinates or a city below.'
+        : 'Could not get location — enter coordinates or a city below.';
+      showError(msg);
+    },
+    { enableHighAccuracy: false, timeout: 30000, maximumAge: 60000 }
+  );
+});
+
+document.getElementById('manualBtn').addEventListener('click', async () => {
+  const raw = document.getElementById('manualInput').value.trim();
+  if (!raw) return;
+  const numMatch = raw.match(/^\s*(-?\d+(\.\d+)?)\s*[,\s]\s*(-?\d+(\.\d+)?)\s*$/);
+  if (numMatch) {
+    const lat = parseFloat(numMatch[1]);
+    const lon = parseFloat(numMatch[3]);
+    if (!isFinite(lat) || !isFinite(lon)) {
+      showError('Could not parse coordinates — use the format "lat, lon" with decimal degrees.');
+      return;
+    }
+    if (Math.abs(lat) > 90 || Math.abs(lon) > 180) {
+      showError('Latitude must be in [-90, 90] and longitude in [-180, 180].');
+      return;
+    }
+    state.lat = lat;
+    state.lon = lon;
+    onLocationResolved();
+    return;
+  }
+  // Geocode
+  const btn = document.getElementById('manualBtn');
+  btn.disabled = true;
+  btn.textContent = 'Searching…';
+  try {
+    const g = await geocode(raw);
+    state.lat = g.lat;
+    state.lon = g.lon;
+    onLocationResolved();
+  } catch (err) {
+    showError(err.message || 'Geocoding failed.');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Look up';
+  }
+});
+
+document.getElementById('manualInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('manualBtn').click();
+});
+
+// Telescope-card pill clicks — delegated so dynamically-generated f-ratio pills work.
+// Handles scope-model, sensor, and f-ratio pills in one place.
+document.getElementById('focalCard').addEventListener('click', e => {
+  const p = e.target.closest('.pill');
+  if (!p) return;
+  if (p.dataset.scope) {
+    if (p.dataset.scope !== state.scope) {
+      state.scope = p.dataset.scope;
+      const sc = SCOPES[state.scope];
+      // Snap fRatio back to native if the old pick is no longer in this scope's options
+      const valid = [sc.fNative];
+      if (sc.hasReducer) valid.push(+(sc.fNative * 0.63).toFixed(2));
+      if (!valid.some(v => Math.abs(v - state.fRatio) < 0.05)) state.fRatio = sc.fNative;
+      state.visibleTargets = null;
+    }
+  } else if (p.dataset.primSensor) {
+    if (p.dataset.primSensor !== state.primarySensor) {
+      state.primarySensor = p.dataset.primSensor;
+      state.visibleTargets = null;
+    }
+  } else if (p.dataset.fratio) {
+    const newFRatio = +p.dataset.fratio;
+    if (Math.abs(newFRatio - state.fRatio) > 0.05) {
+      state.fRatio = newFRatio;
+      state.visibleTargets = null;
+    }
+  }
+  renderFocalPills();
+  document.getElementById('actionBtn').disabled = !(state.lat != null && state.fRatio != null);
+});
+
+// Secondary-camera handlers — sensor pills + f-stop / focal numeric inputs.
+document.querySelectorAll('#secondaryCard .pill').forEach(p => {
+  p.addEventListener('click', () => {
+    state.secondarySensor = p.dataset.secSensor;
+    state.visibleTargets = null;       // recipes depend on sensor
+    renderSecondaryPills();
+  });
+});
+// Numeric input handlers: comma-decimal locale safe (`1,7` → 1.7) and clamped to the
+// HTML min/max so out-of-range values can't silently corrupt downstream math.
+const LENS_LIMITS = {
+  secondaryFStop: { min: 1, max: 32 },
+  secondaryFocal: { min: 8, max: 500 },
+};
+['secondaryFStop', 'secondaryFocal'].forEach(id => {
+  const limits = LENS_LIMITS[id];
+  document.getElementById(id).addEventListener('input', e => {
+    const raw = String(e.target.value).replace(',', '.');
+    const v = parseFloat(raw);
+    if (!isFinite(v) || v <= 0) return;
+    const clamped = Math.max(limits.min, Math.min(limits.max, v));
+    if (id === 'secondaryFStop') state.secondaryFStop = clamped;
+    else                          state.secondaryFocal = clamped;
+    state.visibleTargets = null;
+  });
+  // On blur, write the clamped value back to the input so the user sees what's used.
+  document.getElementById(id).addEventListener('blur', e => {
+    const raw = String(e.target.value).replace(',', '.');
+    const v = parseFloat(raw);
+    if (!isFinite(v) || v <= 0) {
+      // Revert to last good state value
+      e.target.value = (id === 'secondaryFStop') ? state.secondaryFStop : state.secondaryFocal;
+      return;
+    }
+    e.target.value = Math.max(limits.min, Math.min(limits.max, v));
+  });
+});
+
+// Action button (single CTA: Setup → Tonight). Wrapped in try/catch + double-click guard
+// + an epoch token so a stale computation can't overwrite a fresher one.
+let _computeEpoch = 0;
+async function runComputeAndRender() {
+  const epoch = ++_computeEpoch;
+  try {
+    await computeVisibleTargets();
+    if (epoch !== _computeEpoch) return;     // a newer compute is in flight — bail
+    renderTonight();
+    loadSkyConditions();
+  } catch (err) {
+    console.error(err);
+    showError('Could not compute tonight’s targets — ' + (err.message || 'unknown error'));
+  }
+}
+document.getElementById('actionBtn').addEventListener('click', async () => {
+  if (state.screen !== 'setup') return;
+  if (state.lat == null || state.fRatio == null) return;
+  const btn = document.getElementById('actionBtn');
+  if (btn.disabled) return;     // already in flight (double-click guard)
+  btn.disabled = true;
+  try {
+    showScreen('tonight');
+    renderTonight();
+    await runComputeAndRender();
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+// Tab navigation (allow going back)
+document.querySelectorAll('.app-header .tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const target = tab.dataset.step;
+    if (target === 'setup') {
+      showScreen('setup');
+    } else if (target === 'tonight' && state.lat != null && state.fRatio != null) {
+      showScreen('tonight');
+      renderTonight();
+      if (!state.visibleTargets) runComputeAndRender();
+      if (!state.weather) loadSkyConditions();
+    }
+  });
+});
+
+// Initial screen
+showScreen('setup');
+</script>
+</body>
+</html>

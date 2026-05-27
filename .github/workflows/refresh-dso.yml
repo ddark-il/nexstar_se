@@ -1,0 +1,32 @@
+name: Refresh DSO catalog
+
+on:
+  schedule:
+    # First of every month at 06:00 UTC. OpenNGC rarely changes — monthly is plenty.
+    - cron: '0 6 1 * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Rebuild data/dso.json
+        run: node scripts/build-dso.js
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/dso.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore: refresh DSO catalog ($(date -u +%Y-%m-%d))"
+            git push
+          fi
