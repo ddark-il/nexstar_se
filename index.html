@@ -167,31 +167,6 @@ a { color: #e94560; }
 .under-flag { color: #c2410c; font-weight: 600; font-size: 11px; }
 .row-note { color: #6a1b9a; font-size: 11px; }
 
-/* ─── Collapsible "how to stack" help ─── */
-.stack-help {
-  background: #fff; border: 1px solid #eee; border-radius: 10px;
-  margin: 0 4px 10px; font-size: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.04);
-}
-.stack-help > summary {
-  cursor: pointer; padding: 10px 12px; font-weight: 600; color: #1a1a2e;
-  list-style: none; display: flex; align-items: center; gap: 7px;
-  -webkit-user-select: none; user-select: none;
-}
-.stack-help > summary::-webkit-details-marker { display: none; }
-.stack-help > summary::before {
-  content: '▸'; color: #c2410c; transition: transform .15s; font-size: 11px;
-}
-.stack-help[open] > summary::before { transform: rotate(90deg); }
-.stack-help-body { padding: 0 14px 12px; color: #444; line-height: 1.5; }
-.stack-help-body p { margin: 4px 0 8px; }
-.stack-help-body ol { margin: 6px 0 8px; padding-left: 20px; }
-.stack-help-body li { margin-bottom: 5px; }
-.stack-help-body b { color: #1a1a2e; }
-.stack-help-body code {
-  background: #f0f0f0; padding: 1px 5px; border-radius: 3px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px;
-}
-
 /* ─── Sub-tabs on screen 3 ─── */
 .sub-tabs {
   display: flex; gap: 4px; margin-bottom: 10px;
@@ -1877,18 +1852,6 @@ function renderTonight() {
       <span style="color:#1565c0">Scope f/10</span> (native, 1500 mm) ·
       <span style="color:#6a1b9a">Summicron</span> (TL 23 mm f/2, off-scope).
     </div>
-    <details class="stack-help">
-      <summary>How to stack (when a recipe says “▲ stack ≥N frames”)</summary>
-      <div class="stack-help-body">
-        <p>One frame on this unguided alt-az 6SE can't always reach a full exposure, so the app caps the shutter and tells you to stack. At 10–20 frames the recipe stays minimal — no full calibration suite needed:</p>
-        <ol>
-          <li><b>Lights</b> — the <b>≥N frames</b> at the listed ISO &amp; shutter. Lock focus, don't re-frame between them.</li>
-          <li><b>Darks (“blacks”)</b> — just a <b>few (~5)</b> capped frames at the <i>same</i> ISO &amp; shutter to knock out hot pixels &amp; thermal noise. Or simply switch on the camera's in-camera long-exposure NR and skip them.</li>
-          <li><b>Stack</b> — drop the lights (+ darks) into free software — <b>Siril</b>, <b>DeepSkyStacker</b> (Win), or <b>Sequator</b> (wide-field/Summicron) — which aligns, de-rotates the field, and averages them. Then stretch the result.</li>
-        </ol>
-        <p class="muted" style="margin-bottom:0">Flats (vignetting/dust) and bias frames only pay off for much deeper sessions — skip them at this frame count. Alt-az tip: keep every sub at or below the recipe's shutter; the stacker corrects rotation <i>across</i> frames, not within one.</p>
-      </div>
-    </details>
     <div class="sub-tabs" id="subTabs">
       <div class="sub-tab ${state.subTab === 'all' ? 'active' : ''}" data-sub="all">All${counts ? ` <span class="count">${counts.all}</span>` : ''}</div>
       <div class="sub-tab ${state.subTab === 'planets' ? 'active' : ''}" data-sub="planets">Planets${counts ? ` <span class="count">${counts.planets}</span>` : ''}</div>
