@@ -147,56 +147,10 @@ a { color: #e94560; }
   background: #f8f8ff;
 }
 
-.shot {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 12px; color: #1a1a2e; margin-top: 3px;
-  background: #f8f8ff; padding: 3px 8px; border-radius: 5px;
-  display: inline-block;
-}
-
-/* ─── Pill buttons (focal config) ─── */
-.pill-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 8px 0 4px; }
-.pill {
-  flex: 1; min-width: 0;
-  padding: 14px 16px; border: 2px solid #ddd; border-radius: 12px;
-  background: #fff; cursor: pointer; font-size: 14px;
-  transition: all .2s; text-align: center;
-}
-.pill:active { transform: scale(.97); }
-.pill.active { border-color: #e94560; background: #fef0f3; color: #e94560; font-weight: 600; }
-.pill-title { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
-.pill-sub { font-size: 11px; color: #888; }
-.pill.active .pill-sub { color: #d63b56; }
-
-/* Lens input row — inputs styled as pills to match the sensor selector */
-.lens-row { display: flex; gap: 10px; align-items: stretch; margin-top: 6px; }
-.input-pill {
-  flex: 1; min-width: 0;
-  padding: 14px 16px; border: 2px solid #ddd; border-radius: 12px;
-  background: #fff; transition: all .2s;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-}
-.input-pill:focus-within { border-color: #e94560; background: #fef0f3; }
-.input-pill .lens-label {
-  font-size: 13px; font-weight: 500; color: #888;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-}
-.input-pill:focus-within .lens-label { color: #d63b56; }
-.pill-input {
-  border: none; outline: none; background: transparent;
-  font-size: 18px; font-weight: 600; color: #1a1a2e;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  width: 60px; text-align: center;
-  appearance: textfield; -moz-appearance: textfield;
-}
-.pill-input::-webkit-outer-spin-button,
-.pill-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-.input-pill:focus-within .pill-input { color: #d63b56; }
-
-/* Dual-recipe display */
+/* ─── Per-target recipe display (Scope f/6.3 · Scope f/10 · Summicron) ─── */
 .recipes { display: flex; flex-direction: column; gap: 3px; margin-top: 10px; }
 .recipe-row {
-  display: inline-flex; align-items: center; gap: 6px;
+  display: flex; align-items: center; gap: 6px;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 12px; color: #1a1a2e;
   background: #f8f8ff; padding: 3px 8px; border-radius: 5px;
@@ -205,10 +159,38 @@ a { color: #e94560; }
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 10px; font-weight: 700; text-transform: uppercase;
   letter-spacing: .4px; padding: 1px 6px; border-radius: 4px;
+  flex-shrink: 0; min-width: 78px; text-align: center;
 }
 .recipe-label.scope { background: #e3f2fd; color: #1565c0; }
 .recipe-label.lens  { background: #f3e5f5; color: #6a1b9a; }
 .recipe-na { color: #aaa; }
+.under-flag { color: #c2410c; font-weight: 600; font-size: 11px; }
+.row-note { color: #6a1b9a; font-size: 11px; }
+
+/* ─── Collapsible "how to stack" help ─── */
+.stack-help {
+  background: #fff; border: 1px solid #eee; border-radius: 10px;
+  margin: 0 4px 10px; font-size: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.04);
+}
+.stack-help > summary {
+  cursor: pointer; padding: 10px 12px; font-weight: 600; color: #1a1a2e;
+  list-style: none; display: flex; align-items: center; gap: 7px;
+  -webkit-user-select: none; user-select: none;
+}
+.stack-help > summary::-webkit-details-marker { display: none; }
+.stack-help > summary::before {
+  content: '▸'; color: #c2410c; transition: transform .15s; font-size: 11px;
+}
+.stack-help[open] > summary::before { transform: rotate(90deg); }
+.stack-help-body { padding: 0 14px 12px; color: #444; line-height: 1.5; }
+.stack-help-body p { margin: 4px 0 8px; }
+.stack-help-body ol { margin: 6px 0 8px; padding-left: 20px; }
+.stack-help-body li { margin-bottom: 5px; }
+.stack-help-body b { color: #1a1a2e; }
+.stack-help-body code {
+  background: #f0f0f0; padding: 1px 5px; border-radius: 3px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px;
+}
 
 /* ─── Sub-tabs on screen 3 ─── */
 .sub-tabs {
@@ -241,6 +223,7 @@ a { color: #e94560; }
 .lp-5 { background: #f9a825; color: #1a1a2e; }
 .lp-6 { background: #ef6c00; color: #fff; }
 .lp-7, .lp-8 { background: #d32f2f; color: #fff; }
+.lp-9 { background: #7b1fa2; color: #fff; }
 
 /* ─── Continue button bar ─── */
 .action-bar {
@@ -307,7 +290,7 @@ a { color: #e94560; }
 <div id="locationStrip" class="location-strip" style="display:none"></div>
 
 <div class="content">
-  <!-- Screen 1: Setup (location + focal config) -->
+  <!-- Screen 1: Setup (location only — hardware is fixed) -->
   <div id="screenSetup">
     <div class="card">
       <div class="empty-state" id="locatePrompt">
@@ -323,63 +306,6 @@ a { color: #e94560; }
         </div>
       </div>
       <div id="locationResult" style="display:none"></div>
-    </div>
-
-    <div class="card" id="focalCard" style="display:none">
-      <div class="card-title">Telescope (primary)</div>
-      <div class="pill-row" style="margin-bottom:10px">
-        <div class="pill" data-scope="4SE">
-          <div class="pill-title">4SE</div>
-          <div class="pill-sub">102 mm</div>
-        </div>
-        <div class="pill" data-scope="5SE">
-          <div class="pill-title">5SE</div>
-          <div class="pill-sub">125 mm</div>
-        </div>
-        <div class="pill active" data-scope="6SE">
-          <div class="pill-title">6SE</div>
-          <div class="pill-sub">150 mm</div>
-        </div>
-        <div class="pill" data-scope="8SE">
-          <div class="pill-title">8SE</div>
-          <div class="pill-sub">203 mm</div>
-        </div>
-      </div>
-      <div class="pill-row" style="margin-bottom:10px">
-        <div class="pill active" data-prim-sensor="aps-c">
-          <div class="pill-title">APS-C</div>
-          <div class="pill-sub">23.6 × 15.7 mm</div>
-        </div>
-        <div class="pill" data-prim-sensor="full-frame">
-          <div class="pill-title">Full Frame</div>
-          <div class="pill-sub">36 × 24 mm</div>
-        </div>
-      </div>
-      <div class="pill-row" id="fRatioRow"></div>
-    </div>
-
-    <div class="card" id="secondaryCard" style="display:none">
-      <div class="card-title">Secondary camera (wide-field, off-scope)</div>
-      <div class="pill-row" style="margin-bottom:10px">
-        <div class="pill" data-sec-sensor="aps-c">
-          <div class="pill-title">APS-C</div>
-          <div class="pill-sub">23.6 × 15.7 mm</div>
-        </div>
-        <div class="pill active" data-sec-sensor="full-frame">
-          <div class="pill-title">Full Frame</div>
-          <div class="pill-sub">36 × 24 mm</div>
-        </div>
-      </div>
-      <div class="lens-row">
-        <label class="input-pill">
-          <span class="lens-label">f /</span>
-          <input type="number" class="pill-input" id="secondaryFStop" min="1" max="32" step="0.1" value="1.7">
-        </label>
-        <label class="input-pill">
-          <input type="number" class="pill-input" id="secondaryFocal" min="8" max="500" step="1" value="28">
-          <span class="lens-label">mm</span>
-        </label>
-      </div>
     </div>
   </div>
 
@@ -404,19 +330,18 @@ a { color: #e94560; }
 'use strict';
 
 // ─────────────────────────── State ───────────────────────────
+// Hardware is FIXED (no configuration UI): a Celestron NexStar 6SE imaged with a
+// Leica CL Digital (APS-C, 24 MP, no AA filter) at prime focus, plus a Summicron-TL
+// 23 mm f/2 ASPH as the off-scope wide-field lens. Every recipe is computed for all
+// three: scope at f/6.3 (reducer), scope at f/10 (native), and the Summicron.
 const state = {
   screen: 'setup',             // 'setup' | 'tonight'
   lat: null, lon: null,
   ianaTz: null,
   alignmentStars: [],
-  scope: '6SE',                // '4SE' | '5SE' | '6SE' | '8SE'
-  fRatio: 10,                  // native f-ratio of selected scope, or reduced value
-  primarySensor: 'aps-c',      // 'aps-c' | 'full-frame'
-  // Secondary camera (wide-field, off-scope). Defaults match a 28 mm f/1.7 full-frame
-  // fixed-lens body (matches the user's setup).
-  secondarySensor: 'full-frame',  // 'aps-c' | 'full-frame'
-  secondaryFStop: 1.7,
-  secondaryFocal: 28,             // mm
+  scope: '6SE',                // fixed — only the NexStar 6SE is supported
+  primarySensor: 'aps-c',      // fixed — Leica CL Digital (APS-C). The off-scope lens is
+                               // the fixed Summicron-TL 23 mm f/2 (see the LENS constant).
   night: null,                 // {sunsetUtc, duskUtc, dawnUtc, sunriseUtc}
   weather: null,
   lightPollution: null,
@@ -476,23 +401,48 @@ const ALIGNMENT_STARS = [
   { name: 'Mirfak',      ra: 3.4054,  dec: +49.8612, mag:  1.79 },
 ];
 
-// Celestron NexStar SE telescope models.
-// - 4SE: 102mm Maksutov-Cassegrain, f/13 native (no 0.63x reducer match).
-// - 5SE / 6SE / 8SE: Schmidt-Cassegrain, f/10 native, f/6.3 with the standard reducer.
+// Celestron NexStar SE telescope model.
+// - 6SE: 150mm Schmidt-Cassegrain, f/10 native, f/6.3 with the standard reducer.
 const SCOPES = {
-  '4SE': { aperture: 102, focalNative: 1325, fNative: 13, hasReducer: false },
-  '5SE': { aperture: 125, focalNative: 1250, fNative: 10, hasReducer: true  },
   '6SE': { aperture: 150, focalNative: 1500, fNative: 10, hasReducer: true  },
-  '8SE': { aperture: 203, focalNative: 2032, fNative: 10, hasReducer: true  },
 };
 
-// Primary-scope sensor models. APS-C calibrated against the user's Leica CL (24 MP,
-// no AA filter); Full Frame uses a typical modern ~45 MP body (8000 × 5333).
+// The two scope configurations every target is computed for: reducer (f/6.3, 945 mm)
+// and native (f/10, 1500 mm). Order here drives the recipe-row order in the UI.
+const SCOPE_CONFIGS = [
+  { fRatio: 6.3, key: 'scopeF63', label: 'Scope f/6.3' },
+  { fRatio: 10,  key: 'scopeF10', label: 'Scope f/10'  },
+];
+
+// Off-scope wide-field lens — fixed Summicron-TL 23 mm f/2 ASPH on the Leica CL (APS-C).
+const LENS = { focal: 23, fStop: 2.0, sensor: 'aps-c', label: 'Summicron' };
+
+// Unguided single-frame ceiling for the 6SE alt-az fork mount. Field rotation is only HALF
+// the story — the mount's own periodic error + alignment/cone drift smears stars before
+// field rotation does, and there is no autoguider. Focal-length-aware: the same angular
+// drift is more pixels at the longer native focal length, so f/10 caps tighter than f/6.3.
+function unguidedMaxS(fRatio) {
+  return fRatio >= 9 ? 15 : 20;   // ~15 s at f/10 (1500 mm), ~20 s at f/6.3 (945 mm)
+}
+// Clean-ISO ceiling for the Leica CL. ISO 6400 is visibly noisy on this sensor, so single-
+// frame recipes clamp here; any residual shortfall is surfaced as an "underexposed" flag
+// rather than silently presenting a noisy high ISO as a finished recipe.
+const CLEAN_ISO_CEILING = 3200;
+// Below this many stops of shortfall a recipe is "clean enough"; at or above it we warn.
+const UNDEREXPOSED_WARN_STOPS = 1.5;
+
+// Primary-scope sensor model. Only APS-C is used — calibrated against the Leica CL
+// Digital (24 MP, no AA filter); the full-frame entry is retained for the FOV/field-
+// rotation helpers but is never selected.
 const PRIMARY_SENSOR_MODELS = {
-  'aps-c':      { w_mm: 23.6, h_mm: 15.7, w_px: 6024, h_px: 4024, label: 'APS-C', dim: '23.6 × 15.7 mm' },
+  'aps-c':      { w_mm: 23.6, h_mm: 15.7, w_px: 6016, h_px: 4014, label: 'Leica CL', dim: '23.6 × 15.7 mm' },
   'full-frame': { w_mm: 36.0, h_mm: 24.0, w_px: 8000, h_px: 5333, label: 'Full Frame', dim: '36 × 24 mm' },
 };
-const PIXEL_TOL = 1.2;     // tight tolerance — assume sensor has no AA filter
+// Tight tolerance — the Leica CL has no AA filter, so corner-star drift shows at ~1 px.
+// This deliberately tight budget is the main reason the field-rotation cap forces short
+// shutters (and the ISO bump): it is intentional, not a bug — the unguided-mount cap above
+// is the real binding limit, and the clean-ISO ceiling absorbs the rest.
+const PIXEL_TOL = 1.2;
 
 function primarySensorModel() {
   return PRIMARY_SENSOR_MODELS[state.primarySensor] || PRIMARY_SENSOR_MODELS['aps-c'];
@@ -557,9 +507,11 @@ function atmosphericExtinction(alt) {
 }
 
 // Moon contribution to sky brightness in magnitudes (subtract from SQM).
-// Approximates the average effect across the strict-dark window:
-// full moon at zenith ≈ 3 mag/arcsec² penalty; scales linearly with illumination
-// fraction and sin(altitude). Returns 0 if Moon is below horizon or no dark window.
+// Averaged across the strict-dark window. Moon sky-glow is sharply NON-linear in phase
+// (Krisciunas-Schaefer): a linear-in-illumination model over-penalises crescent/quarter
+// nights. We derive the phase angle α from illuminated fraction and apply the K-S phase
+// function, normalised so full moon (α=0) at zenith ≈ 3 mag/arcsec². sin(altitude) is the
+// altitude proxy. Returns 0 if Moon is below horizon or no dark window.
 function moonSkyPenalty(moonRow, win) {
   if (!moonRow || !win.duskUtc || !win.dawnUtc) return 0;
   const illum = moonRow.phase;       // fraction 0..1
@@ -572,7 +524,10 @@ function moonSkyPenalty(moonRow, win) {
   }
   if (count === 0) return 0;
   const avgAltFactor = total / count;     // 0 if Moon down all night, 1 if at zenith
-  return 3.0 * illum * avgAltFactor;
+  // Phase angle α (deg): 0 at full, 180 at new. K-S phase function I*(α), I*(0)=1.
+  const alpha = Math.acos(Math.max(-1, Math.min(1, 2 * illum - 1))) * 180 / Math.PI;
+  const phaseFactor = Math.pow(10, -0.4 * (0.026 * alpha + 4e-9 * Math.pow(alpha, 4)));
+  return 3.0 * phaseFactor * avgAltFactor;
 }
 
 // Sky-brightness penalty: brighter skies (lower SQM) need correspondingly brighter
@@ -590,10 +545,13 @@ function lpMagPenalty(sqm) {
 // Sky-brightness shutter ceiling: in bright skies the sky background saturates the
 // histogram before useful target signal accumulates. Returns the max shutter (seconds)
 // before sky-cap, at f/6.3 ISO 1600 baseline.
+// SQM breakpoints aligned with lpMagPenalty / lpShutterCeilingWide (21.5/20.5/20.0/19.0/18.5)
+// so a site never falls into mismatched bins across the three sky models.
 function lpShutterCeiling(sqm) {
   if (sqm == null || sqm >= 21.5) return 30;       // Dark site — limited by target signal
   if (sqm >= 20.5) return 18;                      // Rural-suburban
-  if (sqm >= 19.5) return 10;                      // Bright suburban
+  if (sqm >= 20.0) return 12;                      // Suburban edge
+  if (sqm >= 19.0) return 8;                       // Bright suburban
   if (sqm >= 18.5) return 5;                       // Suburban-urban
   return 3;                                        // City
 }
@@ -658,6 +616,7 @@ function snapShutter(s) {
   if (s >= 5)  return Math.round(s);                     // 5..14
   if (s >= 2)  return Math.round(s * 2) / 2;             // 2, 2.5, 3, 3.5, 4, 4.5
   if (s >= 1)  return Math.round(s * 10) / 10;           // 1.0, 1.1, ...
+  if (s >= 0.5) return Math.round(s * 10) / 10;          // 0.5..0.9 — no dead zone to 1/2s
   // Sub-second: standard shutter denominators
   const denoms = [2, 4, 8, 15, 30, 60, 125, 250, 500, 1000, 2000];
   const target = 1 / s;
@@ -857,13 +816,22 @@ function visiblePlanets(lat, lon, win) {
     if (!peak || peak.alt < 20) continue;
     let mag = null;
     try { mag = Astronomy.Illumination(body, new Astronomy.AstroTime(new Date(peak.t))).mag; } catch {}
+    // Bright planets use sub-second shutters (unaffected by the mount cap), but the faint
+    // bins (Uranus/Neptune, multi-second) must respect the unguided-mount limit like DSOs.
+    const fr = fieldRotation(lat, peak.alt, peak.az);
+    const scopeF63 = capScopeShot(suggestShot('planet', 6.3, mag), 6.3, fr.tMax);
+    const scopeF10 = capScopeShot(suggestShot('planet', 10,  mag), 10, fr.tMax);
+    if (!scopeF63 && !scopeF10) continue;     // can't hold it on this mount even at the cap
     out.push({
       kind: 'planet', type: 'planet',
       name, body: name,
       mag,
       peak,
       samples,
-      shot: suggestShot('planet', state.fRatio, mag),
+      scopeF63,
+      scopeF10,
+      // A planet is a sub-pixel dot on a 23 mm lens — no Summicron recipe.
+      lensShot: null,
       twilightOnly: !inDark(peak.t, win),
     });
   }
@@ -888,7 +856,8 @@ function visibleMoon(lat, lon, win) {
     phase: illum?.phase_fraction ?? null,
     peak,
     samples,
-    shot: suggestShot('moon', state.fRatio, illum?.mag),
+    scopeF63: suggestShot('moon', 6.3, illum?.mag),
+    scopeF10: suggestShot('moon', 10,  illum?.mag),
     twilightOnly: !inDark(peak.t, win),
   };
   moonRow.lensShot = moonLensExposure(moonRow);
@@ -930,11 +899,15 @@ function lpShutterCeilingWide(sqm, fStop = 2) {
   return base * fScale;
 }
 
-// 500-rule trackless max exposure (seconds) before star trailing for a given focal
-// length and sensor. Conservative for full-frame; tighter for APS-C (1.5× crop).
-function tracklessMaxS(focalMm, sensor) {
-  const cropFactor = sensor === 'aps-c' ? 1.5 : 1.0;
-  return Math.max(2, Math.min(30, 500 / (focalMm * cropFactor)));
+// Trackless (tripod) max exposure (seconds) before star trailing. Uses the NPF rule,
+// which — unlike the legacy 500-rule — accounts for the actual pixel pitch and aperture,
+// matching the tight tolerance of the no-AA Leica CL. NPF = (35·N + 30·pitch_µm) / focal.
+// For the Summicron 23 mm f/2 on the CL (~3.92 µm) this is ~8 s, vs the 500-rule's ~14.5 s.
+function tracklessMaxS(focalMm, sensor, fStop = 2) {
+  const m = PRIMARY_SENSOR_MODELS[sensor] || PRIMARY_SENSOR_MODELS['aps-c'];
+  const pitchUm = (m.w_mm / m.w_px) * 1000;
+  const npf = (35 * fStop + 30 * pitchUm) / focalMm;
+  return Math.max(2, Math.min(30, npf));
 }
 
 // Wide-field FOV in degrees, given lens and sensor.
@@ -951,8 +924,8 @@ function lensFov(focalMm, sensor) {
 // moons need longer (less reflective area + grazing illumination).
 function moonLensExposure(moonRow, lens = null) {
   if (!moonRow) return null;
-  const fStop = lens?.fStop ?? state.secondaryFStop ?? 1.7;
-  const focal = lens?.focal ?? state.secondaryFocal ?? 28;
+  const fStop = lens?.fStop ?? LENS.fStop;
+  const focal = lens?.focal ?? LENS.focal;
   const illum = moonRow.phase ?? 0.5;
   // Phase factor in stops longer than full moon
   const phaseStops = illum > 0.9  ? 0
@@ -961,7 +934,7 @@ function moonLensExposure(moonRow, lens = null) {
                    : illum > 0.1  ? 3
                                   : 4;
   // Looney 11 → 1/100s at f/11 ISO 100 for full moon. Convert to f-stop & phase.
-  // At f/2 (5 stops more light) full = 1/3200s. Snap to nearest typical shutter.
+  // At f/2 (~5 stops more light) full ≈ 1/3200s, which snaps to ~1/2000s. Snap below.
   const fScale = Math.pow(fStop / 11, 2);     // f/11 reference
   const shutter = (1 / 100) * fScale * Math.pow(2, phaseStops);
   return {
@@ -969,7 +942,7 @@ function moonLensExposure(moonRow, lens = null) {
     shutter: snapShutter(shutter),
     aperture: fStop,
     focal,
-    label: 'wide lens',
+    label: LENS.label,
   };
 }
 
@@ -977,10 +950,10 @@ function moonLensExposure(moonRow, lens = null) {
 // scaling as DSOs, but tuned for tripod shooting at the user's lens f-stop/focal.
 // Type 'milkyway' returns the maximum exposure the tripod + sky allow (no per-target mag).
 function wideFieldExposure(target, sqm, extinction = 0, lens = null) {
-  const fStop = lens?.fStop ?? state.secondaryFStop ?? 2;
-  const focal = lens?.focal ?? state.secondaryFocal ?? 23;
-  const sensor = lens?.sensor ?? state.secondarySensor ?? 'aps-c';
-  const tripodMax = tracklessMaxS(focal, sensor);
+  const fStop = lens?.fStop ?? LENS.fStop;
+  const focal = lens?.focal ?? LENS.focal;
+  const sensor = lens?.sensor ?? LENS.sensor;
+  const tripodMax = tracklessMaxS(focal, sensor, fStop);
 
   if (target.type === 'milkyway') {
     const sky = lpShutterCeilingWide(sqm, fStop);
@@ -990,7 +963,10 @@ function wideFieldExposure(target, sqm, extinction = 0, lens = null) {
       const stops = Math.min(1, Math.log2(tripodMax / shutter));
       iso *= Math.pow(2, stops);
     }
-    return { iso: snapIso(iso), shutter: snapShutter(shutter), aperture: fStop, focal, label: 'wide lens' };
+    // Clamp to the clean-ISO ceiling; the shutter is sky/tripod-limited so any remaining
+    // shortfall is pure ISO loss.
+    const underStops = Math.max(0, +Math.log2(iso / CLEAN_ISO_CEILING).toFixed(1));
+    return { iso: snapIso(Math.min(iso, CLEAN_ISO_CEILING)), shutter: snapShutter(shutter), aperture: fStop, focal, underStops, label: LENS.label };
   }
 
   // Per-type presets at f/2 ISO baseline, dark sky.
@@ -1025,12 +1001,17 @@ function wideFieldExposure(target, sqm, extinction = 0, lens = null) {
     const stops = Math.min(2, Math.log2(idealExp / exposure));
     iso *= Math.pow(2, stops);
   }
+  const isoClamped = Math.min(iso, CLEAN_ISO_CEILING);
+  // Shortfall = ideal light (idealExp at isoRef) vs what we actually get (exposure at the
+  // clamped ISO). Captures both the shutter cap and the ISO-ceiling clamp.
+  const underStops = Math.max(0, +Math.log2((idealExp * p.isoRef) / (exposure * isoClamped)).toFixed(1));
   return {
-    iso: snapIso(iso),
+    iso: snapIso(isoClamped),
     shutter: snapShutter(exposure),
     aperture: fStop,
     focal,
-    label: 'wide lens',
+    underStops,
+    label: LENS.label,
   };
 }
 
@@ -1077,7 +1058,62 @@ const COLORFUL_MESSIER = new Set([
   11,  // Wild Duck — dense yellow-tinged
 ]);
 
-function visibleWideField(lat, lon, win, effectiveSqm, fRatio) {
+// One scope recipe for a DSO-like target at a given f-ratio, evaluated at a sample whose
+// field-rotation cap is `tMax`. The exposure is capped by BOTH field rotation (tMax) AND
+// the unguided-mount limit (periodic/alignment error, focal-length-aware) — the latter is
+// usually the binding one away from the zenith. When the cap forces a short shutter the
+// ISO is bumped up to 2 stops but never past the clean-ISO ceiling; any remaining shortfall
+// is reported as `underStops` so the UI can flag "underexposed / stack" instead of pretending
+// a clean recipe. Returns null when the magnitude cap or the caps leave no usable exposure.
+function scopeDsoShot(type, mag, fRatio, sqm, extinction, tMax) {
+  const ideal = dsoTargetExposure(type, mag, fRatio, sqm, extinction);
+  if (!ideal) return null;
+  const cap = Math.min(tMax * 0.9, unguidedMaxS(fRatio));
+  const rawShutter = Math.min(ideal.idealExp, cap);
+  if (!isFinite(rawShutter) || rawShutter < 0.5) return null;
+  let iso = ideal.iso;
+  if (rawShutter < ideal.idealExp * 0.85) {
+    const stops = Math.min(2, Math.log2(ideal.idealExp / rawShutter));
+    iso = iso * Math.pow(2, stops);
+  }
+  const isoClamped = Math.min(iso, CLEAN_ISO_CEILING);
+  const shutter = snapShutter(rawShutter);
+  const isoSnapped = snapIso(isoClamped);
+  // Shortfall vs the ideal exposure (idealExp at ideal.iso), after the shutter cap and the
+  // ISO ceiling. Positive only when neither the shutter nor the (capped) ISO could reach it.
+  const underStops = Math.max(0, +Math.log2((ideal.idealExp * ideal.iso) / (shutter * isoSnapped)).toFixed(1));
+  return { iso: isoSnapped, shutter, underStops };
+}
+
+// Apply the unguided-mount cap + clean-ISO ceiling to a FIXED base recipe (planets, comets,
+// where the exposure isn't magnitude-derived). Short (sub-second) recipes pass through
+// untouched. Returns null if the mount can't hold even a couple of seconds.
+function capScopeShot(base, fRatio, tMax) {
+  if (!base) return null;
+  const cap = Math.min(tMax * 0.9, unguidedMaxS(fRatio));
+  if (base.shutter <= cap) return { ...base, underStops: 0 };
+  if (cap < 2) return null;     // can't hold a usable exposure on this unguided mount
+  let iso = base.iso;
+  const stops = Math.min(2, Math.log2(base.shutter / cap));
+  iso = iso * Math.pow(2, stops);
+  const isoSnapped = snapIso(Math.min(iso, CLEAN_ISO_CEILING));
+  const shutter = snapShutter(cap);
+  const underStops = Math.max(0, +Math.log2((base.shutter * base.iso) / (shutter * isoSnapped)).toFixed(1));
+  return { iso: isoSnapped, shutter, underStops };
+}
+
+// Both scope recipes (f/6.3 reducer + f/10 native) keyed by SCOPE_CONFIGS — scopeF63 /
+// scopeF10. Either may be null. f/10 needs ~2.5× the exposure of f/6.3, so the tighter
+// config is the one that drops out first when the rotation cap bites.
+function scopeRecipes(type, mag, sqm, extinction, tMax) {
+  const out = {};
+  for (const cfg of SCOPE_CONFIGS) {
+    out[cfg.key] = scopeDsoShot(type, mag, cfg.fRatio, sqm, extinction, tMax);
+  }
+  return out;
+}
+
+function visibleWideField(lat, lon, win, effectiveSqm) {
   if (!win.duskUtc || !win.dawnUtc) return [];
   const observer = new Astronomy.Observer(lat, lon, 0);
   const t0 = win.sunsetUtc.getTime();
@@ -1095,34 +1131,21 @@ function visibleWideField(lat, lon, win, effectiveSqm, fRatio) {
     const extinction = atmosphericExtinction(peak.alt);
     const lensShot = wideFieldExposure(w, effectiveSqm, extinction);
     if (!lensShot) continue;
-    // Scope REFERENCE recipe — the wide-field target obviously doesn't fit the scope
-    // frame, but the scope can still image a fragment (M31 core, M45 brightest stars,
-    // etc.). Compute the recipe as if it were a regular DSO of this type and magnitude.
-    let scopeShot = null;
-    if (fRatio) {
-      const ideal = dsoTargetExposure(w.type, w.mag, fRatio, effectiveSqm, extinction);
-      if (ideal) {
-        const fr = fieldRotation(lat, peak.alt, peak.az);
-        let rawShutter = Math.min(ideal.idealExp, fr.tMax * 0.9);
-        let iso = ideal.iso;
-        if (rawShutter < ideal.idealExp * 0.85) {
-          const stops = Math.min(2, Math.log2(ideal.idealExp / rawShutter));
-          iso = iso * Math.pow(2, stops);
-        }
-        if (isFinite(rawShutter) && rawShutter >= 0.5) {
-          scopeShot = { iso: snapIso(iso), shutter: snapShutter(rawShutter) };
-        }
-      }
-    }
+    // Scope REFERENCE recipes — these targets are too big for the scope frame, but the
+    // scope can still image a fragment (M31 core, M45 brightest stars, etc.). Compute both
+    // f-ratios as if it were a regular DSO of this type and magnitude.
+    const fr = fieldRotation(lat, peak.alt, peak.az);
+    const { scopeF63, scopeF10 } = scopeRecipes(w.type, w.mag, effectiveSqm, extinction, fr.tMax);
     out.push({
       kind: 'wide', type: 'wide',
       name: w.name,
       mag: w.mag,
       peak,
       samples,
-      shot: scopeShot,         // reference — frames only part of the target
-      lensShot,                // primary recipe for these
-      note: `${w.fov} — too big for the ${state.scope} frame; scope recipe frames just a portion.`,
+      scopeF63,                // reference — frames only part of the target
+      scopeF10,                // reference — frames only part of the target
+      lensShot,                // the intended recipe for these
+      note: `${w.fov} — too big for the ${state.scope} frame; scope recipes frame just a portion.`,
       // Mark colourful by either an explicit flag on the WIDE_FIELD_TARGETS entry OR
        // a hit in the Messier whitelist (so M42/M45 stay marked even if WIDE_FIELD_TARGETS
        // ever omits the flag).
@@ -1150,6 +1173,9 @@ function visibleMilkyWay(lat, lon, win, effectiveSqm) {
   }, t0, t1);
   const peak = findPeak(samples, s => inDark(s.t, win));
   if (!peak || peak.alt < 15) return [];
+  // Below ~SQM 20 (Bortle 6+) the Milky Way is effectively invisible, so don't surface a
+  // (noisy) recipe for an absent target — consistent with the sky-conditions legend.
+  if (effectiveSqm != null && effectiveSqm < 20.0) return [];
 
   return [{
     kind: 'milkyway', type: 'milkyway',
@@ -1157,7 +1183,8 @@ function visibleMilkyWay(lat, lon, win, effectiveSqm) {
     mag: null,
     peak,
     samples,
-    shot: null,
+    scopeF63: null,          // doesn't fit the scope at any f-ratio
+    scopeF10: null,
     lensShot: wideFieldExposure({ type: 'milkyway' }, effectiveSqm),
     twilightOnly: false,
   }];
@@ -1168,18 +1195,21 @@ function visibleMilkyWay(lat, lon, win, effectiveSqm) {
 // Without this, popular high-overhead targets (M13, M27, M57…) get dropped because the
 // rotation rate at meridian transit (where alt is max) is also where rotation is worst —
 // the shoot moment is typically before/after the meridian, not at the absolute peak.
-function visibleDsos(lat, lon, win, catalog, fRatio, effectiveSqm) {
+function visibleDsos(lat, lon, win, catalog, effectiveSqm) {
   if (!win.duskUtc || !win.dawnUtc) return [];
   const observer = new Astronomy.Observer(lat, lon, 0);
-  const fov = fovDeg(fRatio);
+  // FOV gate uses the wider reducer frame (f/6.3, 945 mm) so a target that fits in at
+  // least one scope configuration is surfaced; the per-config recipes below still compute
+  // both. The tighter f/10 frame just shows a recipe for the same (cropped) framing.
+  const fov = fovDeg(6.3);
   const minFovArcmin = Math.min(fov.w, fov.h) * 60;
   const t0 = win.sunsetUtc.getTime();
   const t1 = win.sunriseUtc.getTime();
   const out = [];
   for (const d of catalog) {
     if (d.size != null && d.size > minFovArcmin) continue;
-    // First-pass cap check (no extinction — we don't know the alt yet)
-    const rough = dsoTargetExposure(d.type, d.mag, fRatio, effectiveSqm);
+    // First-pass cap check at f/6.3 (least exposure needed → most permissive inclusion).
+    const rough = dsoTargetExposure(d.type, d.mag, 6.3, effectiveSqm);
     if (!rough) continue;
 
     Astronomy.DefineStar(Astronomy.Body.Star1, d.ra, d.dec, 1000);
@@ -1204,28 +1234,29 @@ function visibleDsos(lat, lon, win, catalog, fRatio, effectiveSqm) {
     }
     if (!best) continue;
 
-    // Second pass with extinction at the actual best alt. The intrinsic-mag cap was
-    // already checked above so this can't return null on alt grounds — but a faint
+    // Second pass with extinction at the actual best alt, for both scope configs. A faint
     // target at low alt may need significantly more exposure than the dark-zenith ideal.
     const extinction = atmosphericExtinction(best.alt);
-    const ideal = dsoTargetExposure(d.type, d.mag, fRatio, effectiveSqm, extinction);
-    if (!ideal) continue;
+    const { scopeF63, scopeF10 } = scopeRecipes(d.type, d.mag, effectiveSqm, extinction, bestTMax);
+    if (!scopeF63 && !scopeF10) continue;     // not shootable with the scope at either f-ratio
 
-    // Take shutter = min(ideal, rotation_cap × 0.9). If the cap forced us low, bump
-    // ISO to recover signal — cap the bump at 2 stops (4×) so we don't push past 6400.
-    let rawShutter = Math.min(ideal.idealExp, bestTMax * 0.9);
-    let iso = ideal.iso;
-    if (rawShutter < ideal.idealExp * 0.85) {
-      const stops = Math.min(2, Math.log2(ideal.idealExp / rawShutter));
-      iso = iso * Math.pow(2, stops);
-    }
-    if (!isFinite(rawShutter) || rawShutter < 0.5) continue;
-    iso = snapIso(iso);
-    const shutter = snapShutter(rawShutter);
-    const shot = { iso, shutter };
-
-    // Secondary (wide-lens) shot — same atmospheric extinction, same effective sky.
+    // Off-scope Summicron shot — same atmospheric extinction, same effective sky.
     const lensShot = wideFieldExposure({ type: d.type, mag: d.mag }, effectiveSqm, extinction);
+
+    // Framing-honesty flag: the inclusion gate uses the wide f/6.3 frame, so a 36'–57'
+    // object fits the reducer but overflows the native f/10 frame — note it on the f/10 row.
+    const fovF10 = fovDeg(10);
+    const cropsAtF10 = d.size != null && d.size > Math.min(fovF10.w, fovF10.h) * 60;
+
+    // Low-surface-brightness flag for diffuse types: a large, faint nebula/galaxy spreads
+    // its light too thin for a single sub even when the integrated magnitude passes. Surface
+    // brightness μ = m + 2.5·log10(area in arcsec²); fainter than ~23 mag/arcsec² → warn.
+    let lowSurfaceBrightness = false;
+    if (['EN', 'RN', 'G'].includes(d.type) && d.mag != null && d.size != null && d.size > 0) {
+      const areaArcsec2 = Math.PI * Math.pow(d.size * 30, 2);   // size = diameter in arcmin → radius arcsec = size*30
+      const mu = d.mag + 2.5 * Math.log10(areaArcsec2);
+      lowSurfaceBrightness = mu > 23;
+    }
 
     out.push({
       kind: 'dso', type: d.type,
@@ -1233,9 +1264,12 @@ function visibleDsos(lat, lon, win, catalog, fRatio, effectiveSqm) {
       id: d.id, m: d.m, mag: d.mag, size: d.size,
       peak: best,
       samples,
-      shot,           // primary (telescope)
-      lensShot,       // secondary (wide lens) — may be null if target too faint for lens
+      scopeF63,       // scope @ f/6.3 (reducer)
+      scopeF10,       // scope @ f/10 (native)
+      lensShot,       // Summicron — may be null if target too faint for the lens
       tMax: bestTMax,
+      cropsAtF10,
+      note: lowSurfaceBrightness ? 'Low surface brightness — likely needs stacking for a usable single frame.' : null,
       colorful: COLORFUL_DSO_IDS.has(d.id) || (d.m != null && COLORFUL_MESSIER.has(d.m)),
       twilightOnly: false,
     });
@@ -1354,9 +1388,13 @@ function visibleComets(lat, lon, win, comets) {
     if (!isFinite(peak.mag) || !isFinite(peak.elong)) continue;
     if (peak.mag > 7.0) continue;
     if (peak.elong < 30) continue;
+    // The fixed 15 s / 20 s comet exposure must respect BOTH field rotation AND the
+    // unguided-mount cap; capScopeShot shortens to the cap and bumps ISO (≤ clean ceiling),
+    // flagging the residual shortfall. Keep the comet if at least one config survives.
     const fr = fieldRotation(lat, peak.alt, peak.az);
-    const shot = suggestShot('comet', state.fRatio, peak.mag);
-    if (!shot || shot.shutter > fr.tMax) continue;
+    const scopeF63 = capScopeShot(suggestShot('comet', 6.3, peak.mag), 6.3, fr.tMax);
+    const scopeF10 = capScopeShot(suggestShot('comet', 10,  peak.mag), 10, fr.tMax);
+    if (!scopeF63 && !scopeF10) continue;
     out.push({
       kind: 'comet', type: 'comet',
       name: `${c.designation} · ${c.name}`,
@@ -1365,7 +1403,10 @@ function visibleComets(lat, lon, win, comets) {
       elong: +peak.elong.toFixed(0),
       peak,
       samples,
-      shot,
+      scopeF63,
+      scopeF10,
+      // A 23 mm lens won't resolve a typical comet — no Summicron recipe.
+      lensShot: null,
       twilightOnly: !inDark(peak.t, win),
     });
   }
@@ -1541,16 +1582,30 @@ const LP_WORLD_URL = 'https://djlorenz.github.io/astronomy/lp2024/world2024_low2
 const LP_LAT_MAX = 70;   // approximate top edge of djlorenz's world map
 const LP_LAT_MIN = -70;
 
-// Lorenz 8-bin palette (approximate SQM equivalents from VIIRS 2024 data).
+// djlorenz VIIRS-2024 atlas 15-colour ramp, in increasing-brightness order. The RGB
+// values are the EXACT colours sampled from world2024_low25.png (the prior 8-colour palette
+// was from an older djlorenz scheme and mis-matched the 2024 map — e.g. it read Beer Sheva
+// and Eilat as "pristine"). SQM is GROUND-CALIBRATED, not the optimistic VIIRS zenith model:
+// the dark end is anchored to the official IDA International Dark Sky Park survey of Ramon
+// Crater (Avg SQM 21.30 = Bortle 3, darkest 21.70 = Bortle 2; Taube & Shmuel, INPA), and the
+// bright end is sanity-checked against Israeli cities (Beer Sheva ≈ B5, Jerusalem ≈ B7,
+// Tel Aviv ≈ B8). Net effect: no Israeli location reads Bortle 1, matching reality.
 const LP_PALETTE = [
-  { rgb: [0, 0, 0],       zone: 1, sqm: 21.99, label: 'Pristine — full Milky Way detail' },
-  { rgb: [0, 0, 128],     zone: 2, sqm: 21.89, label: 'Rural — excellent Milky Way' },
-  { rgb: [0, 0, 255],     zone: 3, sqm: 21.69, label: 'Rural / Bortle 3' },
-  { rgb: [0, 255, 0],     zone: 4, sqm: 21.25, label: 'Rural-suburban transition' },
-  { rgb: [255, 255, 0],   zone: 5, sqm: 20.49, label: 'Suburban — Milky Way faint' },
-  { rgb: [255, 128, 0],   zone: 6, sqm: 19.50, label: 'Bright suburban — Milky Way invisible' },
-  { rgb: [255, 0, 0],     zone: 7, sqm: 18.95, label: 'Suburban-urban transition' },
-  { rgb: [255, 255, 255], zone: 8, sqm: 18.38, label: 'City — most stars washed out' },
+  { rgb: [0, 0, 0],       sqm: 21.70, label: 'Full Milky Way structure visible' },        // darkest (≈ Ramon best)
+  { rgb: [34, 34, 34],    sqm: 21.30, label: 'Milky Way prominent and detailed' },        // ≈ Mitzpe Ramon / Negev (IDA avg)
+  { rgb: [66, 66, 66],    sqm: 20.80, label: 'Milky Way clearly visible' },
+  { rgb: [20, 47, 114],   sqm: 20.30, label: 'Milky Way visible, washed near horizon' },
+  { rgb: [33, 84, 216],   sqm: 19.80, label: 'Milky Way faint' },
+  { rgb: [15, 87, 20],    sqm: 19.40, label: 'Milky Way barely visible' },
+  { rgb: [31, 161, 42],   sqm: 19.00, label: 'Milky Way invisible' },
+  { rgb: [110, 100, 30],  sqm: 18.70, label: 'Suburban-urban transition' },
+  { rgb: [184, 166, 37],  sqm: 18.40, label: 'Only brighter DSOs visible' },
+  { rgb: [191, 100, 30],  sqm: 18.20, label: 'Urban — bright DSOs only' },
+  { rgb: [253, 150, 80],  sqm: 18.00, label: 'Urban — bright DSOs only' },
+  { rgb: [251, 90, 73],   sqm: 17.80, label: 'Most stars washed out' },
+  { rgb: [251, 153, 138], sqm: 17.50, label: 'Only the brightest objects' },
+  { rgb: [160, 160, 160], sqm: 17.20, label: 'Moon & planets only' },
+  { rgb: [242, 242, 242], sqm: 17.00, label: 'Sky glow dominates' },
 ];
 
 function nearestLpBin(r, g, b) {
@@ -1561,6 +1616,21 @@ function nearestLpBin(r, g, b) {
     if (d < bestD) { bestD = d; best = p; }
   }
   return best;
+}
+
+// Map an SQM (mag/arcsec²) reading to the Bortle dark-sky class (1 = pristine … 9 = inner
+// city) with a short description. Breakpoints follow the standard Bortle/SQM correspondence.
+function sqmToBortle(sqm) {
+  if (sqm == null)      return { cls: '—', desc: 'unknown' };
+  if (sqm >= 21.75)     return { cls: 1, desc: 'Excellent dark-sky site' };
+  if (sqm >= 21.6)      return { cls: 2, desc: 'Typical truly dark site' };
+  if (sqm >= 21.3)      return { cls: 3, desc: 'Rural sky' };
+  if (sqm >= 20.8)      return { cls: 4, desc: 'Rural / suburban transition' };
+  if (sqm >= 19.25)     return { cls: 5, desc: 'Suburban sky' };
+  if (sqm >= 18.5)      return { cls: 6, desc: 'Bright suburban sky' };
+  if (sqm >= 18.0)      return { cls: 7, desc: 'Suburban / urban transition' };
+  if (sqm >= 17.5)      return { cls: 8, desc: 'City sky' };
+  return { cls: 9, desc: 'Inner-city sky' };
 }
 
 // Cache the canvas-resident image data across calls for the session.
@@ -1631,7 +1701,17 @@ function showError(msg) {
 function fmtShutter(s) {
   if (!isFinite(s) || s <= 0) return '—';
   if (s >= 1) return s.toFixed(s < 10 ? 1 : 0) + 's';
+  if (s >= 0.5) return s.toFixed(1) + 's';   // snapShutter emits 0.5–0.9s as decimals, not 1/x
   return '1/' + Math.round(1 / s) + 's';
+}
+
+// Recommended number of frames to stack to recover an `underStops` exposure shortfall.
+// Stacking N frames improves SNR ∝ √N, so each extra stop needs ~2× the frames. Anchored
+// at the warn threshold (≥1.5 stops → 10 frames, the practical minimum) and never below 10.
+function stackFrames(underStops) {
+  const n = Math.max(10, 10 * Math.pow(2, underStops - UNDEREXPOSED_WARN_STOPS));
+  const step = n < 20 ? 5 : n < 60 ? 10 : 25;     // round to a tidy count
+  return Math.round(n / step) * step;
 }
 
 function fmtLocalTime(date, iana) {
@@ -1668,14 +1748,15 @@ function showScreen(name) {
   if (name === 'setup') strip.style.display = 'none';
   else { strip.style.display = ''; renderLocationStrip(); }
 
-  // Action bar — only shown on Setup with a single CTA that's enabled once both lat AND fRatio are picked.
+  // Action bar — only shown on Setup with a single CTA that's enabled once a location is set
+  // (hardware is fixed, so location is the only required input).
   const bar = document.getElementById('actionBar');
   const btn = document.getElementById('actionBtn');
   if (name === 'setup') {
     const ready = state.lat != null;
     bar.style.display = ready ? '' : 'none';
     btn.textContent = "Show Tonight's Targets →";
-    btn.disabled = !(state.lat != null && state.fRatio != null);
+    btn.disabled = !ready;
   } else {
     bar.style.display = 'none';
   }
@@ -1755,46 +1836,6 @@ function renderLocationResult() {
   });
 }
 
-function renderFocalPills() {
-  // Scope pills
-  document.querySelectorAll('#focalCard .pill[data-scope]').forEach(p => {
-    p.classList.toggle('active', p.dataset.scope === state.scope);
-  });
-  // Sensor pills
-  document.querySelectorAll('#focalCard .pill[data-prim-sensor]').forEach(p => {
-    p.classList.toggle('active', p.dataset.primSensor === state.primarySensor);
-  });
-
-  // F-ratio row: 1 pill for 4SE (native only), 2 pills for the SCTs.
-  const scope = SCOPES[state.scope] || SCOPES['6SE'];
-  const opts = [{ fRatio: scope.fNative, label: `f/${scope.fNative} · native` }];
-  if (scope.hasReducer) {
-    const fr = +(scope.fNative * 0.63).toFixed(2);
-    opts.push({ fRatio: fr, label: `f/${fr} · reducer` });
-  }
-  // If current fRatio isn't valid for this scope, reset to native.
-  if (!opts.some(o => Math.abs(o.fRatio - state.fRatio) < 0.05)) state.fRatio = scope.fNative;
-
-  const row = document.getElementById('fRatioRow');
-  row.innerHTML = opts.map(opt => {
-    const fl = Math.round(focalLengthMm(opt.fRatio));
-    const fov = fovDeg(opt.fRatio);
-    const active = Math.abs(opt.fRatio - state.fRatio) < 0.05 ? ' active' : '';
-    return `<div class="pill${active}" data-fratio="${opt.fRatio}">
-      <div class="pill-title">${opt.label}</div>
-      <div class="pill-sub">${fl} mm · ${fov.w.toFixed(2)}° × ${fov.h.toFixed(2)}°</div>
-    </div>`;
-  }).join('');
-}
-
-function renderSecondaryPills() {
-  document.querySelectorAll('#secondaryCard .pill').forEach(p => {
-    p.classList.toggle('active', p.dataset.secSensor === state.secondarySensor);
-  });
-  document.getElementById('secondaryFStop').value = state.secondaryFStop;
-  document.getElementById('secondaryFocal').value = state.secondaryFocal;
-}
-
 function renderTonight() {
   const root = document.getElementById('screenTonight');
 
@@ -1831,6 +1872,23 @@ function renderTonight() {
 
   const tabsHtml = `
     <div class="section-title">Tonight's single-frame targets</div>
+    <div class="muted" style="font-size:11px;margin:0 4px 8px;line-height:1.5">
+      Recipes for <b>NexStar 6SE</b> + <b>Leica CL</b> — <span style="color:#1565c0">Scope f/6.3</span> (reducer, 945 mm) ·
+      <span style="color:#1565c0">Scope f/10</span> (native, 1500 mm) ·
+      <span style="color:#6a1b9a">Summicron</span> (TL 23 mm f/2, off-scope).
+    </div>
+    <details class="stack-help">
+      <summary>How to stack (when a recipe says “▲ stack ≥N frames”)</summary>
+      <div class="stack-help-body">
+        <p>One frame on this unguided alt-az 6SE can't always reach a full exposure, so the app caps the shutter and tells you to stack. At 10–20 frames the recipe stays minimal — no full calibration suite needed:</p>
+        <ol>
+          <li><b>Lights</b> — the <b>≥N frames</b> at the listed ISO &amp; shutter. Lock focus, don't re-frame between them.</li>
+          <li><b>Darks (“blacks”)</b> — just a <b>few (~5)</b> capped frames at the <i>same</i> ISO &amp; shutter to knock out hot pixels &amp; thermal noise. Or simply switch on the camera's in-camera long-exposure NR and skip them.</li>
+          <li><b>Stack</b> — drop the lights (+ darks) into free software — <b>Siril</b>, <b>DeepSkyStacker</b> (Win), or <b>Sequator</b> (wide-field/Summicron) — which aligns, de-rotates the field, and averages them. Then stretch the result.</li>
+        </ol>
+        <p class="muted" style="margin-bottom:0">Flats (vignetting/dust) and bias frames only pay off for much deeper sessions — skip them at this frame count. Alt-az tip: keep every sub at or below the recipe's shutter; the stacker corrects rotation <i>across</i> frames, not within one.</p>
+      </div>
+    </details>
     <div class="sub-tabs" id="subTabs">
       <div class="sub-tab ${state.subTab === 'all' ? 'active' : ''}" data-sub="all">All${counts ? ` <span class="count">${counts.all}</span>` : ''}</div>
       <div class="sub-tab ${state.subTab === 'planets' ? 'active' : ''}" data-sub="planets">Planets${counts ? ` <span class="count">${counts.planets}</span>` : ''}</div>
@@ -1900,18 +1958,33 @@ function renderTargetCard(t, rank) {
     t.twilightOnly ? '<span class="twilight-badge">Twilight only</span>' : '',
   ].filter(Boolean).join(' ');
 
-  function shotChip(shot, kind /* 'scope' | 'lens' */) {
-    if (!shot) return '';
-    const parts = [`ISO ${shot.iso}`];
-    if (shot.aperture != null) parts.push(`f/${shot.aperture}`);
-    parts.push(fmtShutter(shot.shutter));
-    const label = kind === 'scope' ? 'Scope' : 'Lens';
-    const extra = shot.focal ? ` <span style="color:#888">· ${shot.focal} mm</span>` : '';
-    return `<div class="recipe-row"><span class="recipe-label ${kind}">${label}</span> ${parts.join(' · ')}${extra}</div>`;
+  // Three fixed recipe rows per target: Scope f/6.3, Scope f/10, Summicron. A row that
+  // doesn't apply (e.g. the Summicron on a planet, or the scope on the Milky Way) renders
+  // as a muted "n/a" so the three slots always line up. A recipe the unguided mount/sensor
+  // can't fully reach is tagged "−N stops · stack ≥M frames" rather than presented as clean.
+  function shotChip(shot, kind /* 'scope' | 'lens' */, label, rowNote) {
+    let body;
+    if (shot) {
+      const parts = [`ISO ${shot.iso}`];
+      if (shot.aperture != null) parts.push(`f/${shot.aperture}`);
+      parts.push(fmtShutter(shot.shutter));
+      const extra = shot.focal ? ` <span style="color:#888">· ${shot.focal} mm</span>` : '';
+      const under = shot.underStops >= UNDEREXPOSED_WARN_STOPS
+        ? ` <span class="under-flag" title="The unguided mount / ISO ceiling can't reach a full exposure in one frame. Shoot at least this many identical frames and stack them — stacking SNR scales with √(frames).">▲ −${shot.underStops} stops · stack ≥${stackFrames(shot.underStops)} frames</span>`
+        : '';
+      const crop = rowNote ? ` <span class="row-note">${rowNote}</span>` : '';
+      body = parts.join(' · ') + extra + under + crop;
+    } else {
+      body = '<span class="recipe-na">n/a</span>';
+    }
+    return `<div class="recipe-row"><span class="recipe-label ${kind}">${label}</span> ${body}</div>`;
   }
-  const shotStr = (t.shot || t.lensShot)
-    ? `<div class="recipes">${shotChip(t.shot, 'scope')}${shotChip(t.lensShot, 'lens')}</div>`
-    : '';
+  const cropNote = t.cropsAtF10 ? 'crops — use f/6.3' : '';
+  const shotStr = `<div class="recipes">
+    ${shotChip(t.scopeF63, 'scope', 'Scope f/6.3')}
+    ${shotChip(t.scopeF10, 'scope', 'Scope f/10', cropNote)}
+    ${shotChip(t.lensShot, 'lens', 'Summicron')}
+  </div>`;
 
   const graph = altitudeGraphSvg(t.samples, state.night, t.peak);
   const noteStr = t.note ? `<div class="muted" style="font-size:11px;margin-top:4px">${t.note}</div>` : '';
@@ -2117,24 +2190,19 @@ function computeNightForTonight() {
 }
 
 async function computeVisibleTargets() {
-  if (!state.night || !state.fRatio) {
+  if (!state.night) {
     state.visibleTargets = { planets: [], moon: [], comets: [], dsos: [] };
     return;
   }
-  // Snapshot every input at function entry so a mid-await pill click doesn't poison the
-  // result. _computeEpoch is bumped by the caller (runComputeAndRender) and re-checked
-  // here before writing state, so a stale compute can't overwrite a fresher one.
+  // Snapshot the location inputs at function entry so a mid-await location change doesn't
+  // poison the result. _computeEpoch is bumped by the caller (runComputeAndRender) and
+  // re-checked here before writing state, so a stale compute can't overwrite a fresher one.
+  // (Hardware is fixed, so nothing else needs snapshotting.)
   const epoch = _computeEpoch;
   const snap = {
     lat: state.lat,
     lon: state.lon,
     night: state.night,
-    fRatio: state.fRatio,
-    primarySensor: state.primarySensor,
-    scope: state.scope,
-    secondarySensor: state.secondarySensor,
-    secondaryFStop: state.secondaryFStop,
-    secondaryFocal: state.secondaryFocal,
     lightPollution: state.lightPollution,
   };
   const [_, comets] = await Promise.all([loadDsoCatalog(), loadCometCache()]);
@@ -2152,9 +2220,9 @@ async function computeVisibleTargets() {
   // and trigger a re-run when the real LP arrives.
   state._lastComputeSqm = rawSqm != null ? rawSqm : null;
 
-  const dsos = visibleDsos(snap.lat, snap.lon, snap.night, state.dsoCatalog, snap.fRatio, effectiveSqm);
+  const dsos = visibleDsos(snap.lat, snap.lon, snap.night, state.dsoCatalog, effectiveSqm);
   const mw   = visibleMilkyWay(snap.lat, snap.lon, snap.night, effectiveSqm);
-  const wide = visibleWideField(snap.lat, snap.lon, snap.night, effectiveSqm, snap.fRatio);
+  const wide = visibleWideField(snap.lat, snap.lon, snap.night, effectiveSqm);
   // Final epoch check before commit — guards against pill clicks during the synchronous
   // compute too (cheap insurance).
   if (epoch !== _computeEpoch) return;
@@ -2254,10 +2322,11 @@ function renderSkyCard() {
   let lpHtml = '<div class="muted">Light pollution unavailable.</div>';
   if (state.lightPollution) {
     const p = state.lightPollution;
+    const bortle = sqmToBortle(p.sqm);
     lpHtml = `<div class="condition-grid">
       <span class="label">Light pollution</span>
-      <span class="value"><span class="lp-zone lp-${p.zone}">Zone ${p.zone}</span></span>
-      <span class="label" style="grid-column:1/-1">${p.label}</span>
+      <span class="value"><span class="lp-zone lp-${bortle.cls}">Bortle ${bortle.cls}</span> <span class="muted" style="font-size:11px">· SQM ${p.sqm.toFixed(2)}</span></span>
+      <span class="label" style="grid-column:1/-1">${bortle.desc} — ${p.label}</span>
     </div>`;
   }
 
@@ -2273,9 +2342,6 @@ async function onLocationResolved() {
   computeAlignmentStars();
   computeNightForTonight();
   renderLocationResult();
-  document.getElementById('focalCard').style.display = '';
-  document.getElementById('secondaryCard').style.display = '';
-  if (state.fRatio == null) state.fRatio = 10;
   // Clear ALL location-derived state — including the derived effectiveSqm / moonSkyPenalty
   // which would otherwise leak Ramon's penalty into Tel Aviv's targets on rapid switching.
   state.visibleTargets = null;
@@ -2284,8 +2350,6 @@ async function onLocationResolved() {
   state.effectiveSqm = null;
   state.moonSkyPenalty = null;
   state._lastComputeSqm = undefined;
-  renderFocalPills();
-  renderSecondaryPills();
   showScreen('setup');
   // Pre-load LP so it's ready by the time the user advances to Tonight. Location epoch
   // guards against rapid location changes — only the latest fetch's result is committed.
@@ -2362,74 +2426,8 @@ document.getElementById('manualInput').addEventListener('keydown', e => {
   if (e.key === 'Enter') document.getElementById('manualBtn').click();
 });
 
-// Telescope-card pill clicks — delegated so dynamically-generated f-ratio pills work.
-// Handles scope-model, sensor, and f-ratio pills in one place.
-document.getElementById('focalCard').addEventListener('click', e => {
-  const p = e.target.closest('.pill');
-  if (!p) return;
-  if (p.dataset.scope) {
-    if (p.dataset.scope !== state.scope) {
-      state.scope = p.dataset.scope;
-      const sc = SCOPES[state.scope];
-      // Snap fRatio back to native if the old pick is no longer in this scope's options
-      const valid = [sc.fNative];
-      if (sc.hasReducer) valid.push(+(sc.fNative * 0.63).toFixed(2));
-      if (!valid.some(v => Math.abs(v - state.fRatio) < 0.05)) state.fRatio = sc.fNative;
-      state.visibleTargets = null;
-    }
-  } else if (p.dataset.primSensor) {
-    if (p.dataset.primSensor !== state.primarySensor) {
-      state.primarySensor = p.dataset.primSensor;
-      state.visibleTargets = null;
-    }
-  } else if (p.dataset.fratio) {
-    const newFRatio = +p.dataset.fratio;
-    if (Math.abs(newFRatio - state.fRatio) > 0.05) {
-      state.fRatio = newFRatio;
-      state.visibleTargets = null;
-    }
-  }
-  renderFocalPills();
-  document.getElementById('actionBtn').disabled = !(state.lat != null && state.fRatio != null);
-});
-
-// Secondary-camera handlers — sensor pills + f-stop / focal numeric inputs.
-document.querySelectorAll('#secondaryCard .pill').forEach(p => {
-  p.addEventListener('click', () => {
-    state.secondarySensor = p.dataset.secSensor;
-    state.visibleTargets = null;       // recipes depend on sensor
-    renderSecondaryPills();
-  });
-});
-// Numeric input handlers: comma-decimal locale safe (`1,7` → 1.7) and clamped to the
-// HTML min/max so out-of-range values can't silently corrupt downstream math.
-const LENS_LIMITS = {
-  secondaryFStop: { min: 1, max: 32 },
-  secondaryFocal: { min: 8, max: 500 },
-};
-['secondaryFStop', 'secondaryFocal'].forEach(id => {
-  const limits = LENS_LIMITS[id];
-  document.getElementById(id).addEventListener('input', e => {
-    const raw = String(e.target.value).replace(',', '.');
-    const v = parseFloat(raw);
-    if (!isFinite(v) || v <= 0) return;
-    const clamped = Math.max(limits.min, Math.min(limits.max, v));
-    if (id === 'secondaryFStop') state.secondaryFStop = clamped;
-    else                          state.secondaryFocal = clamped;
-    state.visibleTargets = null;
-  });
-  // On blur, write the clamped value back to the input so the user sees what's used.
-  document.getElementById(id).addEventListener('blur', e => {
-    const raw = String(e.target.value).replace(',', '.');
-    const v = parseFloat(raw);
-    if (!isFinite(v) || v <= 0) {
-      // Revert to last good state value
-      e.target.value = (id === 'secondaryFStop') ? state.secondaryFStop : state.secondaryFocal;
-      return;
-    }
-    e.target.value = Math.max(limits.min, Math.min(limits.max, v));
-  });
-});
+// Hardware is fixed (NexStar 6SE + Leica CL + Summicron-TL 23/2) — no scope/sensor/lens
+// configuration handlers. Location is the only user input.
 
 // Action button (single CTA: Setup → Tonight). Wrapped in try/catch + double-click guard
 // + an epoch token so a stale computation can't overwrite a fresher one.
@@ -2448,7 +2446,7 @@ async function runComputeAndRender() {
 }
 document.getElementById('actionBtn').addEventListener('click', async () => {
   if (state.screen !== 'setup') return;
-  if (state.lat == null || state.fRatio == null) return;
+  if (state.lat == null) return;
   const btn = document.getElementById('actionBtn');
   if (btn.disabled) return;     // already in flight (double-click guard)
   btn.disabled = true;
@@ -2467,7 +2465,7 @@ document.querySelectorAll('.app-header .tab').forEach(tab => {
     const target = tab.dataset.step;
     if (target === 'setup') {
       showScreen('setup');
-    } else if (target === 'tonight' && state.lat != null && state.fRatio != null) {
+    } else if (target === 'tonight' && state.lat != null) {
       showScreen('tonight');
       renderTonight();
       if (!state.visibleTargets) runComputeAndRender();
