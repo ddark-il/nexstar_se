@@ -2,1632 +2,1488 @@
  {
   "designation": "123P",
   "name": "West-Hartley",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
    "q": 2.158748,
-   "e": 0.444732,
+   "e": 0.44472,
    "i": 15.2812,
-   "node": 45.8503,
-   "argp": 103.8771,
-   "tp": 2461305.3799
+   "node": 45.8495,
+   "argp": 103.8768,
+   "tp": 2461305.3771
   },
   "H": 4,
   "k": 10,
-  "mag_at_build": 13.02,
+  "mag_at_build": 13.09,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 8.4
+  "days_from_perihelion": 1.5
  },
  {
   "designation": "C/2024 E1",
   "name": "Wierzchos",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 0.565933,
-   "e": 1.000377,
-   "i": 75.2153,
-   "node": 108.0739,
-   "argp": 243.622,
-   "tp": 2461061.3037
+   "q": 0.565903,
+   "e": 1.000379,
+   "i": 75.2125,
+   "node": 108.073,
+   "argp": 243.6211,
+   "tp": 2461061.3062
   },
   "H": 7,
   "k": 4,
-  "mag_at_build": 13.6,
+  "mag_at_build": 13.84,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -235.6
+  "days_from_perihelion": -242.6
  },
  {
   "designation": "C/2024 J3",
   "name": "ATLAS",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
    "q": 3.865519,
-   "e": 0.999978,
+   "e": 0.999969,
    "i": 75.6391,
    "node": 285.9595,
-   "argp": 74.0903,
-   "tp": 2461369.9251
+   "argp": 74.0904,
+   "tp": 2461369.9258
   },
   "H": 5,
   "k": 4,
-  "mag_at_build": 14.11,
+  "mag_at_build": 14.08,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 73
+  "days_from_perihelion": 66
  },
  {
   "designation": "C/2023 R1",
   "name": "PANSTARRS",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 3.570079,
-   "e": 1.002231,
-   "i": 149.313,
-   "node": 62.5712,
-   "argp": 144.257,
-   "tp": 2461143.857
+   "q": 3.570076,
+   "e": 1.002225,
+   "i": 149.3129,
+   "node": 62.5713,
+   "argp": 144.2568,
+   "tp": 2461143.8559
   },
   "H": 6,
   "k": 4,
-  "mag_at_build": 14.69,
+  "mag_at_build": 14.65,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -153.1
- },
- {
-  "designation": "114P",
-  "name": "Wiseman-Skiff",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 1.570694,
-   "e": 0.556123,
-   "i": 18.3036,
-   "node": 271.0211,
-   "argp": 172.8521,
-   "tp": 2461298.5007
-  },
-  "H": 11.5,
-  "k": 6,
-  "mag_at_build": 15.75,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": 1.6
+  "days_from_perihelion": -160.1
  },
  {
   "designation": "63P",
   "name": "Wild",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 1.97495,
-   "e": 0.6506,
+   "q": 1.974949,
+   "e": 0.650594,
    "i": 19.6205,
    "node": 357.7378,
-   "argp": 168.7387,
-   "tp": 2461227.6364
+   "argp": 168.7386,
+   "tp": 2461227.636
   },
   "H": 10.5,
   "k": 6,
-  "mag_at_build": 15.8,
+  "mag_at_build": 15.84,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -69.3
- },
- {
-  "designation": "162P",
-  "name": "Siding Spring",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 1.289539,
-   "e": 0.582854,
-   "i": 27.5519,
-   "node": 30.8649,
-   "argp": 357.259,
-   "tp": 2461178.3529
-  },
-  "H": 12,
-  "k": 4,
-  "mag_at_build": 15.8,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": -118.6
+  "days_from_perihelion": -76.3
  },
  {
   "designation": "128P",
   "name": "Shoemaker-Holt",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 3.036801,
-   "e": 0.322369,
-   "i": 4.3715,
-   "node": 214.3046,
-   "argp": 210.5814,
-   "tp": 2461238.6136
+   "q": 3.036805,
+   "e": 0.322384,
+   "i": 4.3714,
+   "node": 214.3043,
+   "argp": 210.583,
+   "tp": 2461238.6201
   },
   "H": 8.5,
   "k": 4,
-  "mag_at_build": 15.92,
+  "mag_at_build": 15.99,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -58.3
+  "days_from_perihelion": -65.3
  },
  {
   "designation": "A",
   "name": "2026 E1",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 2.90215,
-   "e": 0.992456,
-   "i": 108.1836,
-   "node": 188.3171,
-   "argp": 344.8476,
-   "tp": 2461174.0748
+   "q": 2.902154,
+   "e": 0.992455,
+   "i": 108.1838,
+   "node": 188.3172,
+   "argp": 344.8478,
+   "tp": 2461174.0755
   },
   "H": 12,
   "k": 2,
-  "mag_at_build": 16.24,
+  "mag_at_build": 16.27,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -122.9
+  "days_from_perihelion": -129.8
  },
  {
   "designation": "C/2022 QE78",
   "name": "ATLAS",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 5.476577,
-   "e": 0.995002,
-   "i": 36.6572,
-   "node": 119.8905,
-   "argp": 0.6575,
-   "tp": 2460930.5375
+   "q": 5.476591,
+   "e": 0.994933,
+   "i": 36.657,
+   "node": 119.8902,
+   "argp": 0.6574,
+   "tp": 2460930.5281
   },
   "H": 5,
   "k": 4,
-  "mag_at_build": 16.44,
+  "mag_at_build": 16.48,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -366.4
+  "days_from_perihelion": -373.4
  },
  {
   "designation": "220P",
   "name": "McNaught",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
    "q": 1.559303,
-   "e": 0.50032,
+   "e": 0.500316,
    "i": 8.1208,
    "node": 150.0841,
-   "argp": 180.5612,
-   "tp": 2461205.6165
+   "argp": 180.561,
+   "tp": 2461205.6162
   },
-  "H": 11.8,
+  "H": 11.9,
   "k": 4,
-  "mag_at_build": 16.47,
+  "mag_at_build": 16.68,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -91.3
- },
- {
-  "designation": "C/2026 A2",
-  "name": "Bok",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 1.937796,
-   "e": 0.997672,
-   "i": 82.3058,
-   "node": 206.5879,
-   "argp": 155.9369,
-   "tp": 2461396.8514
-  },
-  "H": 10.7,
-  "k": 4,
-  "mag_at_build": 16.53,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": 99.9
+  "days_from_perihelion": -98.3
  },
  {
   "designation": "C/2022 N2",
   "name": "PANSTARRS",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 3.827396,
-   "e": 1.004542,
+   "q": 3.827498,
+   "e": 1.004572,
    "i": 5.5035,
    "node": 319.7261,
-   "argp": 75.4925,
-   "tp": 2460888.7631
+   "argp": 75.4956,
+   "tp": 2460888.7783
   },
   "H": 6,
   "k": 4,
-  "mag_at_build": 16.64,
+  "mag_at_build": 16.73,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -408.2
- },
- {
-  "designation": "295P",
-  "name": "LINEAR",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 2.02558,
-   "e": 0.6177,
-   "i": 21.0878,
-   "node": 7.3745,
-   "argp": 73.0771,
-   "tp": 2461244.2815
-  },
-  "H": 12,
-  "k": 4,
-  "mag_at_build": 16.66,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": -52.7
- },
- {
-  "designation": "C/2025 R3",
-  "name": "PANSTARRS",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 0.498621,
-   "e": 1.000346,
-   "i": 124.7305,
-   "node": 38.6989,
-   "argp": 162.2277,
-   "tp": 2461150.3927
-  },
-  "H": 12.2,
-  "k": 4,
-  "mag_at_build": 16.84,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": -146.6
+  "days_from_perihelion": -415.1
  },
  {
   "designation": "C/2024 A1",
   "name": "ATLAS",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 3.874391,
-   "e": 0.999369,
+   "q": 3.874407,
+   "e": 0.999358,
    "i": 94.5048,
-   "node": 112.1396,
-   "argp": 353.1951,
-   "tp": 2460839.4067
+   "node": 112.1395,
+   "argp": 353.1953,
+   "tp": 2460839.4052
   },
   "H": 7,
   "k": 4,
-  "mag_at_build": 17.06,
+  "mag_at_build": 17.14,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -457.5
+  "days_from_perihelion": -464.5
  },
  {
-  "designation": "240P",
-  "name": "NEAT",
-  "epoch": "2026-09-13",
+  "designation": "C/2026 A2",
+  "name": "Bok",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 2.121073,
-   "e": 0.450897,
-   "i": 23.5283,
-   "node": 74.8895,
-   "argp": 352.0599,
-   "tp": 2461029.3844
+   "q": 1.937801,
+   "e": 0.997668,
+   "i": 82.3059,
+   "node": 206.5879,
+   "argp": 155.9368,
+   "tp": 2461396.8519
   },
-  "H": 11,
+  "H": 11.4,
   "k": 4,
-  "mag_at_build": 17.23,
+  "mag_at_build": 17.14,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -267.6
+  "days_from_perihelion": 92.9
+ },
+ {
+  "designation": "C/2025 R3",
+  "name": "PANSTARRS",
+  "epoch": "2026-09-20",
+  "orbital": {
+   "q": 0.498619,
+   "e": 1.000344,
+   "i": 124.7303,
+   "node": 38.6994,
+   "argp": 162.2277,
+   "tp": 2461150.3926
+  },
+  "H": 12.2,
+  "k": 4,
+  "mag_at_build": 17.15,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": -153.5
  },
  {
   "designation": "78P",
   "name": "Gehrels",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 2.004536,
-   "e": 0.462862,
-   "i": 6.2576,
-   "node": 210.493,
-   "argp": 192.8041,
-   "tp": 2461216.6246
+   "q": 2.004542,
+   "e": 0.462873,
+   "i": 6.2575,
+   "node": 210.4927,
+   "argp": 192.8049,
+   "tp": 2461216.6259
   },
   "H": 12.1,
   "k": 4,
-  "mag_at_build": 17.26,
+  "mag_at_build": 17.36,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -80.3
+  "days_from_perihelion": -87.3
+ },
+ {
+  "designation": "240P",
+  "name": "NEAT",
+  "epoch": "2026-09-20",
+  "orbital": {
+   "q": 2.121031,
+   "e": 0.450898,
+   "i": 23.5282,
+   "node": 74.8882,
+   "argp": 352.0585,
+   "tp": 2461029.3795
+  },
+  "H": 11,
+  "k": 4,
+  "mag_at_build": 17.36,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": -274.5
  },
  {
   "designation": "493P",
   "name": "LONEOS",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 3.823013,
-   "e": 0.468985,
-   "i": 24.1178,
-   "node": 0.9871,
-   "argp": 83.357,
-   "tp": 2461054.9279
+   "q": 3.823015,
+   "e": 0.469045,
+   "i": 24.1188,
+   "node": 0.9829,
+   "argp": 83.3626,
+   "tp": 2461054.9445
   },
   "H": 8.5,
   "k": 4,
-  "mag_at_build": 17.35,
+  "mag_at_build": 17.43,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -242
+  "days_from_perihelion": -249
  },
  {
   "designation": "C/2022 R6",
   "name": "PANSTARRS",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 6.567571,
-   "e": 1.004589,
-   "i": 57.0503,
-   "node": 150.7711,
-   "argp": 320.0488,
-   "tp": 2460915.1331
+   "q": 6.567668,
+   "e": 1.004556,
+   "i": 57.0514,
+   "node": 150.7709,
+   "argp": 320.0517,
+   "tp": 2460915.1614
   },
   "H": 5,
   "k": 4,
-  "mag_at_build": 17.43,
+  "mag_at_build": 17.47,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -381.8
- },
- {
-  "designation": "C/2025 J1",
-  "name": "Borisov",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 3.580293,
-   "e": 0.998104,
-   "i": 95.4232,
-   "node": 273.9827,
-   "argp": 166.6156,
-   "tp": 2461203.2407
-  },
-  "H": 9.1,
-  "k": 4,
-  "mag_at_build": 17.54,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": -93.7
- },
- {
-  "designation": "C/2023 H5",
-  "name": "Lemmon",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 4.313195,
-   "e": 1.000773,
-   "i": 97.8557,
-   "node": 159.4701,
-   "argp": 60.1329,
-   "tp": 2460857.0076
-  },
-  "H": 7,
-  "k": 4,
-  "mag_at_build": 17.64,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": -439.9
+  "days_from_perihelion": -388.8
  },
  {
   "designation": "C/2024 G6",
   "name": "ATLAS",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 6.429986,
-   "e": 1.001248,
-   "i": 120.4452,
-   "node": 250.9465,
-   "argp": 23.4177,
-   "tp": 2461092.031
+   "q": 6.429985,
+   "e": 1.001236,
+   "i": 120.4451,
+   "node": 250.9464,
+   "argp": 23.4176,
+   "tp": 2461092.0295
   },
   "H": 5.5,
   "k": 4,
-  "mag_at_build": 17.64,
+  "mag_at_build": 17.62,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -204.9
+  "days_from_perihelion": -211.9
+ },
+ {
+  "designation": "C/2023 H5",
+  "name": "Lemmon",
+  "epoch": "2026-09-20",
+  "orbital": {
+   "q": 4.31321,
+   "e": 1.00078,
+   "i": 97.8557,
+   "node": 159.4699,
+   "argp": 60.1333,
+   "tp": 2460857.011
+  },
+  "H": 7,
+  "k": 4,
+  "mag_at_build": 17.67,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": -446.9
  },
  {
   "designation": "C/2023 X2",
   "name": "Lemmon",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 5.088796,
-   "e": 1.00011,
-   "i": 76.981,
-   "node": 66.3047,
-   "argp": 64.8139,
-   "tp": 2461038.0809
+   "q": 5.088807,
+   "e": 1.000113,
+   "i": 76.9809,
+   "node": 66.3048,
+   "argp": 64.8144,
+   "tp": 2461038.0849
   },
   "H": 8.5,
   "k": 3.2,
-  "mag_at_build": 17.84,
+  "mag_at_build": 17.86,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -258.9
+  "days_from_perihelion": -265.8
  },
  {
-  "designation": "C/2026 B2",
-  "name": "Sun-Gao",
-  "epoch": "2026-09-13",
+  "designation": "C/2025 A1",
+  "name": "Lemmon",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 1.284251,
-   "e": 0.997521,
-   "i": 59.5806,
-   "node": 234.6359,
-   "argp": 47.2984,
-   "tp": 2461050.612
+   "q": 5.335398,
+   "e": 0.998962,
+   "i": 33.3966,
+   "node": 101.2956,
+   "argp": 68.3898,
+   "tp": 2461479.8839
   },
-  "H": 9.7,
+  "H": 7.2,
   "k": 4,
-  "mag_at_build": 18.22,
+  "mag_at_build": 17.99,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -246.3
+  "days_from_perihelion": 176
+ },
+ {
+  "designation": "P/2004 FY140",
+  "name": "LINEAR",
+  "epoch": "2026-09-20",
+  "orbital": {
+   "q": 4.082073,
+   "e": 0.169367,
+   "i": 2.1335,
+   "node": 326.7744,
+   "argp": 241.9658,
+   "tp": 2461188.647
+  },
+  "H": 12.5,
+  "k": 2,
+  "mag_at_build": 18.27,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": -115.3
  },
  {
   "designation": "195P",
   "name": "Hill",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 4.441191,
-   "e": 0.310139,
-   "i": 36.4155,
-   "node": 243.0835,
-   "argp": 250.7092,
-   "tp": 2460893.8592
+   "q": 4.441207,
+   "e": 0.310133,
+   "i": 36.4156,
+   "node": 243.0834,
+   "argp": 250.7101,
+   "tp": 2460893.8632
   },
   "H": 8.5,
   "k": 4,
   "mag_at_build": 18.32,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -403.1
+  "days_from_perihelion": -410.1
  },
  {
-  "designation": "P/2004 FY140",
-  "name": "LINEAR",
-  "epoch": "2026-09-13",
+  "designation": "C/2026 B2",
+  "name": "Sun-Gao",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 4.08207,
-   "e": 0.169362,
-   "i": 2.1335,
-   "node": 326.7745,
-   "argp": 241.9646,
-   "tp": 2461188.6383
+   "q": 1.28425,
+   "e": 0.997517,
+   "i": 59.5807,
+   "node": 234.6359,
+   "argp": 47.2982,
+   "tp": 2461050.6114
   },
-  "H": 12.5,
-  "k": 2,
-  "mag_at_build": 18.33,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": -108.3
- },
- {
-  "designation": "P/1996 R2",
-  "name": "Lagerkvist",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 2.586998,
-   "e": 0.31388,
-   "i": 2.5998,
-   "node": 39.988,
-   "argp": 333.5646,
-   "tp": 2461207.6095
-  },
-  "H": 11.5,
+  "H": 9.7,
   "k": 4,
-  "mag_at_build": 18.38,
+  "mag_at_build": 18.37,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -89.3
- },
- {
-  "designation": "74P",
-  "name": "Smirnova-Chernykh",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 4.832102,
-   "e": 0.07847,
-   "i": 5.7422,
-   "node": 45.9716,
-   "argp": 58.6673,
-   "tp": 2461066.1582
-  },
-  "H": 5,
-  "k": 6,
-  "mag_at_build": 18.41,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": -230.8
- },
- {
-  "designation": "509P",
-  "name": "Catalina",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 3.692181,
-   "e": 0.47906,
-   "i": 8.5843,
-   "node": 275.1729,
-   "argp": 179.9949,
-   "tp": 2461118.5585
-  },
-  "H": 10,
-  "k": 4,
-  "mag_at_build": 18.41,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": -178.4
- },
- {
-  "designation": "266P",
-  "name": "Christensen",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 2.325773,
-   "e": 0.340782,
-   "i": 3.4285,
-   "node": 4.9814,
-   "argp": 97.8306,
-   "tp": 2461382.4115
-  },
-  "H": 12.5,
-  "k": 4,
-  "mag_at_build": 18.42,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": 85.5
- },
- {
-  "designation": "149P",
-  "name": "Mueller",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 2.793769,
-   "e": 0.324024,
-   "i": 34.2768,
-   "node": 143.6934,
-   "argp": 30.0001,
-   "tp": 2461389.8954
-  },
-  "H": 8,
-  "k": 8,
-  "mag_at_build": 18.52,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": 93
- },
- {
-  "designation": "43P",
-  "name": "Wolf-Harrington",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 2.442693,
-   "e": 0.435411,
-   "i": 9.3303,
-   "node": 243.9704,
-   "argp": 223.7658,
-   "tp": 2460891.933
-  },
-  "H": 8,
-  "k": 6,
-  "mag_at_build": 18.58,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": -405
- },
- {
-  "designation": "C/2024 G2",
-  "name": "ATLAS",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 5.349429,
-   "e": 0.992182,
-   "i": 122.1255,
-   "node": 171.4003,
-   "argp": 328.7805,
-   "tp": 2460840.3336
-  },
-  "H": 7,
-  "k": 4,
-  "mag_at_build": 18.63,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": -456.6
- },
- {
-  "designation": "198P",
-  "name": "ODAS",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 2.004,
-   "e": 0.448255,
-   "i": 1.3396,
-   "node": 358.308,
-   "argp": 69.2492,
-   "tp": 2461000.5545
-  },
-  "H": 12.5,
-  "k": 4,
-  "mag_at_build": 18.69,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": -296.4
+  "days_from_perihelion": -253.3
  },
  {
   "designation": "88P",
   "name": "Howell",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 1.357733,
-   "e": 0.563267,
+   "q": 1.357747,
+   "e": 0.563281,
    "i": 4.3819,
    "node": 56.6669,
-   "argp": 235.8546,
-   "tp": 2461118.2442
+   "argp": 235.8558,
+   "tp": 2461118.2452
   },
-  "H": 11,
+  "H": 12.3,
+  "k": 4,
+  "mag_at_build": 18.39,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": -185.7
+ },
+ {
+  "designation": "P/1996 R2",
+  "name": "Lagerkvist",
+  "epoch": "2026-09-20",
+  "orbital": {
+   "q": 2.587,
+   "e": 0.313876,
+   "i": 2.5998,
+   "node": 39.988,
+   "argp": 333.5649,
+   "tp": 2461207.6106
+  },
+  "H": 11.5,
+  "k": 4,
+  "mag_at_build": 18.43,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": -96.3
+ },
+ {
+  "designation": "266P",
+  "name": "Christensen",
+  "epoch": "2026-09-20",
+  "orbital": {
+   "q": 2.325774,
+   "e": 0.340795,
+   "i": 3.4284,
+   "node": 4.9812,
+   "argp": 97.8301,
+   "tp": 2461382.409
+  },
+  "H": 12.5,
+  "k": 4,
+  "mag_at_build": 18.45,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": 78.5
+ },
+ {
+  "designation": "74P",
+  "name": "Smirnova-Chernykh",
+  "epoch": "2026-09-20",
+  "orbital": {
+   "q": 4.831673,
+   "e": 0.079012,
+   "i": 5.739,
+   "node": 45.7658,
+   "argp": 58.7627,
+   "tp": 2461065.0948
+  },
+  "H": 5,
   "k": 6,
-  "mag_at_build": 18.7,
+  "mag_at_build": 18.46,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -178.7
+  "days_from_perihelion": -238.8
  },
  {
-  "designation": "76P",
-  "name": "West-Kohoutek-Ikemura",
-  "epoch": "2026-09-13",
+  "designation": "509P",
+  "name": "Catalina",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 1.596667,
-   "e": 0.53952,
-   "i": 30.4957,
-   "node": 84.1045,
-   "argp": 0.0126,
-   "tp": 2461144.1196
+   "q": 3.692088,
+   "e": 0.479163,
+   "i": 8.5831,
+   "node": 275.1681,
+   "argp": 179.9932,
+   "tp": 2461118.5294
+  },
+  "H": 10,
+  "k": 4,
+  "mag_at_build": 18.49,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": -185.4
+ },
+ {
+  "designation": "149P",
+  "name": "Mueller",
+  "epoch": "2026-09-20",
+  "orbital": {
+   "q": 2.793776,
+   "e": 0.323992,
+   "i": 34.2771,
+   "node": 143.6934,
+   "argp": 29.9993,
+   "tp": 2461389.8935
   },
   "H": 8,
-  "k": 12,
-  "mag_at_build": 18.73,
+  "k": 8,
+  "mag_at_build": 18.56,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -152.8
+  "days_from_perihelion": 86
  },
  {
-  "designation": "C/2025 E1",
-  "name": "PANSTARRS",
-  "epoch": "2026-09-13",
+  "designation": "43P",
+  "name": "Wolf-Harrington",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 3.998063,
-   "e": 0.997856,
-   "i": 69.0593,
-   "node": 344.5884,
-   "argp": 274.4257,
-   "tp": 2461307.2137
-  },
-  "H": 9.7,
-  "k": 4,
-  "mag_at_build": 18.8,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": 10.3
- },
- {
-  "designation": "C/2024 G4",
-  "name": "PANSTARRS",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 4.900616,
-   "e": 0.998794,
-   "i": 33.0301,
-   "node": 152.9701,
-   "argp": 131.4021,
-   "tp": 2461120.9019
+   "q": 2.442696,
+   "e": 0.435407,
+   "i": 9.3303,
+   "node": 243.9703,
+   "argp": 223.7656,
+   "tp": 2460891.931
   },
   "H": 8,
-  "k": 4,
-  "mag_at_build": 18.91,
+  "k": 6,
+  "mag_at_build": 18.6,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -176
+  "days_from_perihelion": -412
+ },
+ {
+  "designation": "C/2024 G2",
+  "name": "ATLAS",
+  "epoch": "2026-09-20",
+  "orbital": {
+   "q": 5.34948,
+   "e": 0.992172,
+   "i": 122.126,
+   "node": 171.4005,
+   "argp": 328.7818,
+   "tp": 2460840.3407
+  },
+  "H": 7,
+  "k": 4,
+  "mag_at_build": 18.67,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": -463.6
+ },
+ {
+  "designation": "198P",
+  "name": "ODAS",
+  "epoch": "2026-09-20",
+  "orbital": {
+   "q": 2.003943,
+   "e": 0.448256,
+   "i": 1.3397,
+   "node": 358.3079,
+   "argp": 69.2458,
+   "tp": 2461000.5489
+  },
+  "H": 12.5,
+  "k": 4,
+  "mag_at_build": 18.81,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": -303.4
  },
  {
   "designation": "82P",
   "name": "Gehrels",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 3.624171,
-   "e": 0.12411,
-   "i": 1.1286,
-   "node": 239.2722,
-   "argp": 226.266,
-   "tp": 2461359.2557
+   "q": 3.624173,
+   "e": 0.124152,
+   "i": 1.1285,
+   "node": 239.2704,
+   "argp": 226.2647,
+   "tp": 2461359.2343
   },
   "H": 5,
   "k": 8,
-  "mag_at_build": 18.92,
+  "mag_at_build": 18.97,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 62.3
- },
- {
-  "designation": "331P",
-  "name": "Gibbs",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 2.878702,
-   "e": 0.041763,
-   "i": 9.7386,
-   "node": 216.7288,
-   "argp": 186.25,
-   "tp": 2461037.2133
-  },
-  "H": 12,
-  "k": 4,
-  "mag_at_build": 18.93,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": -259.7
+  "days_from_perihelion": 55.3
  },
  {
   "designation": "235P",
   "name": "LINEAR",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 1.977992,
-   "e": 0.426136,
+   "q": 1.977994,
+   "e": 0.426138,
    "i": 9.8125,
-   "node": 200.1663,
-   "argp": 352.2208,
-   "tp": 2461032.2268
+   "node": 200.1661,
+   "argp": 352.2213,
+   "tp": 2461032.2279
   },
   "H": 12,
   "k": 4,
-  "mag_at_build": 18.97,
+  "mag_at_build": 18.98,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -264.7
+  "days_from_perihelion": -271.7
+ },
+ {
+  "designation": "331P",
+  "name": "Gibbs",
+  "epoch": "2026-09-20",
+  "orbital": {
+   "q": 2.878725,
+   "e": 0.04178,
+   "i": 9.7385,
+   "node": 216.7277,
+   "argp": 186.2767,
+   "tp": 2461037.3396
+  },
+  "H": 12,
+  "k": 4,
+  "mag_at_build": 19,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": -266.6
+ },
+ {
+  "designation": "76P",
+  "name": "West-Kohoutek-Ikemura",
+  "epoch": "2026-09-20",
+  "orbital": {
+   "q": 1.596655,
+   "e": 0.539517,
+   "i": 30.4957,
+   "node": 84.1041,
+   "argp": 0.0118,
+   "tp": 2461144.1181
+  },
+  "H": 8,
+  "k": 12,
+  "mag_at_build": 19.07,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": -159.8
  },
  {
   "designation": "P/2009 B1",
   "name": "Boattini",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 2.448019,
-   "e": 0.635956,
-   "i": 22.2613,
-   "node": 297.0728,
-   "argp": 129.0754,
-   "tp": 2461221.7185
+   "q": 2.448022,
+   "e": 0.635979,
+   "i": 22.2612,
+   "node": 297.0729,
+   "argp": 129.0759,
+   "tp": 2461221.7208
   },
   "H": 13,
   "k": 4,
-  "mag_at_build": 19.06,
+  "mag_at_build": 19.17,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -75.2
+  "days_from_perihelion": -82.2
  },
  {
   "designation": "C/2025 L1",
   "name": "ATLAS",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 1.679766,
-   "e": 1.001386,
+   "q": 1.679767,
+   "e": 1.00138,
    "i": 114.1368,
-   "node": 208.1123,
-   "argp": 341.2552,
-   "tp": 2461053.2316
+   "node": 208.1125,
+   "argp": 341.2551,
+   "tp": 2461053.2308
   },
   "H": 11.4,
   "k": 4,
-  "mag_at_build": 19.15,
+  "mag_at_build": 19.3,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -243.7
+  "days_from_perihelion": -250.7
  },
  {
   "designation": "164P",
   "name": "Christensen",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 1.673809,
+   "q": 1.673787,
    "e": 0.541342,
    "i": 16.2755,
-   "node": 88.2557,
-   "argp": 325.8736,
-   "tp": 2460822.7673
+   "node": 88.2553,
+   "argp": 325.8728,
+   "tp": 2460822.7652
   },
   "H": 11,
   "k": 4,
-  "mag_at_build": 19.31,
+  "mag_at_build": 19.35,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -474.2
- },
- {
-  "designation": "243P",
-  "name": "NEAT",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 2.448075,
-   "e": 0.359966,
-   "i": 7.6445,
-   "node": 87.5737,
-   "argp": 283.8024,
-   "tp": 2461097.1327
-  },
-  "H": 12.5,
-  "k": 4,
-  "mag_at_build": 19.41,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": -199.8
+  "days_from_perihelion": -481.2
  },
  {
   "designation": "P/2009 Y2",
   "name": "Kowalski",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 2.369876,
-   "e": 0.637596,
+   "q": 2.369873,
+   "e": 0.637599,
    "i": 29.9851,
    "node": 262.0511,
-   "argp": 172.317,
-   "tp": 2461387.5857
+   "argp": 172.3173,
+   "tp": 2461387.5865
   },
   "H": 13,
   "k": 4,
-  "mag_at_build": 19.47,
+  "mag_at_build": 19.46,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 90.6
+  "days_from_perihelion": 83.7
  },
  {
   "designation": "C/2023 V1",
   "name": "Lemmon",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 5.092834,
-   "e": 1.00018,
-   "i": 102.0047,
-   "node": 15.0557,
-   "argp": 103.3252,
-   "tp": 2460869.5745
+   "q": 5.092844,
+   "e": 1.000174,
+   "i": 102.0046,
+   "node": 15.0558,
+   "argp": 103.3254,
+   "tp": 2460869.5751
   },
   "H": 8.5,
   "k": 4,
   "mag_at_build": 19.47,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -427.4
+  "days_from_perihelion": -434.3
+ },
+ {
+  "designation": "243P",
+  "name": "NEAT",
+  "epoch": "2026-09-20",
+  "orbital": {
+   "q": 2.448088,
+   "e": 0.359968,
+   "i": 7.6445,
+   "node": 87.5738,
+   "argp": 283.8037,
+   "tp": 2461097.1368
+  },
+  "H": 12.5,
+  "k": 4,
+  "mag_at_build": 19.5,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": -206.8
+ },
+ {
+  "designation": "C/2025 J1",
+  "name": "Borisov",
+  "epoch": "2026-09-20",
+  "orbital": {
+   "q": 3.580293,
+   "e": 0.998095,
+   "i": 95.4225,
+   "node": 273.9826,
+   "argp": 166.6157,
+   "tp": 2461203.2406
+  },
+  "H": 11.1,
+  "k": 4,
+  "mag_at_build": 19.63,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": -100.7
  },
  {
   "designation": "C/2025 Q3",
   "name": "ATLAS",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 2.112585,
-   "e": 0.997245,
+   "q": 2.11259,
+   "e": 0.997244,
    "i": 90.1853,
-   "node": 233.1449,
-   "argp": 218.4608,
-   "tp": 2461097.1488
+   "node": 233.145,
+   "argp": 218.461,
+   "tp": 2461097.1489
   },
   "H": 12.2,
   "k": 4,
-  "mag_at_build": 19.59,
+  "mag_at_build": 19.67,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -199.8
+  "days_from_perihelion": -206.8
  },
  {
   "designation": "C/2024 L2",
   "name": "PANSTARRS",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 8.325868,
-   "e": 1.003599,
-   "i": 139.5807,
-   "node": 266.1784,
-   "argp": 345.8213,
-   "tp": 2460842.8573
+   "q": 8.325851,
+   "e": 1.003589,
+   "i": 139.5806,
+   "node": 266.1783,
+   "argp": 345.8207,
+   "tp": 2460842.8464
   },
   "H": 7.5,
   "k": 3.2,
-  "mag_at_build": 19.75,
+  "mag_at_build": 19.73,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -454.1
+  "days_from_perihelion": -461.1
+ },
+ {
+  "designation": "324P",
+  "name": "La Sagra",
+  "epoch": "2026-09-20",
+  "orbital": {
+   "q": 2.624817,
+   "e": 0.152716,
+   "i": 21.3973,
+   "node": 270.5671,
+   "argp": 57.3034,
+   "tp": 2461327.8494
+  },
+  "H": 13,
+  "k": 4,
+  "mag_at_build": 19.88,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": 23.9
  },
  {
   "designation": "495P",
   "name": "Christensen",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 3.458119,
-   "e": 0.276525,
-   "i": 26.3328,
-   "node": 291.6079,
-   "argp": 141.2982,
-   "tp": 2460970.895
+   "q": 3.457986,
+   "e": 0.276592,
+   "i": 26.3308,
+   "node": 291.6068,
+   "argp": 141.2932,
+   "tp": 2460970.8764
   },
   "H": 11.5,
   "k": 4,
-  "mag_at_build": 19.79,
+  "mag_at_build": 19.88,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -326
+  "days_from_perihelion": -333
  },
  {
   "designation": "C/2025 X1",
   "name": "PANSTARRS",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 4.66773,
-   "e": 0.861234,
-   "i": 36.9532,
-   "node": 95.6277,
-   "argp": 85.707,
-   "tp": 2461385.9329
+   "q": 4.667723,
+   "e": 0.861217,
+   "i": 36.9531,
+   "node": 95.6274,
+   "argp": 85.7082,
+   "tp": 2461385.9403
   },
   "H": 10.2,
   "k": 4,
   "mag_at_build": 19.91,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 89
- },
- {
-  "designation": "324P",
-  "name": "La Sagra",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 2.624816,
-   "e": 0.152719,
-   "i": 21.3974,
-   "node": 270.5672,
-   "argp": 57.3039,
-   "tp": 2461327.8517
-  },
-  "H": 13,
-  "k": 4,
-  "mag_at_build": 19.91,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": 30.9
+  "days_from_perihelion": 82
  },
  {
   "designation": "C/2025 B2",
   "name": "Borisov",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
    "q": 8.238747,
-   "e": 1.002613,
+   "e": 1.00263,
    "i": 91.7469,
-   "node": 84.8735,
-   "argp": 78.8772,
-   "tp": 2461295.5434
+   "node": 84.8736,
+   "argp": 78.8776,
+   "tp": 2461295.5503
   },
   "H": 6.2,
   "k": 4,
   "mag_at_build": 19.96,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -1.4
+  "days_from_perihelion": -8.4
  },
  {
   "designation": "C/2026 H2",
   "name": "Leonard",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 4.546525,
-   "e": 1.001991,
-   "i": 148.6497,
-   "node": 5.4588,
-   "argp": 111.5504,
-   "tp": 2461116.8162
+   "q": 4.546526,
+   "e": 1.001982,
+   "i": 148.6496,
+   "node": 5.4589,
+   "argp": 111.5505,
+   "tp": 2461116.8156
   },
   "H": 10.1,
   "k": 4,
-  "mag_at_build": 20.05,
+  "mag_at_build": 20.02,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -180.1
+  "days_from_perihelion": -187.1
  },
  {
   "designation": "C/2024 N3",
   "name": "Sarneczky",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 5.014885,
-   "e": 1.002361,
-   "i": 88.7234,
-   "node": 82.616,
-   "argp": 86.9054,
-   "tp": 2460777.164
+   "q": 5.01489,
+   "e": 1.002371,
+   "i": 88.7232,
+   "node": 82.6161,
+   "argp": 86.9056,
+   "tp": 2460777.1671
   },
   "H": 8,
   "k": 4,
   "mag_at_build": 20.08,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -519.8
- },
- {
-  "designation": "C/2024 X2",
-  "name": "ATLAS",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 3.665647,
-   "e": 0.927525,
-   "i": 109.2909,
-   "node": 122.5173,
-   "argp": 315.4242,
-   "tp": 2460862.8167
-  },
-  "H": 9.6,
-  "k": 4,
-  "mag_at_build": 20.08,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": -434.1
- },
- {
-  "designation": "141P-D",
-  "name": "Machholz",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 0.806922,
-   "e": 0.736903,
-   "i": 13.8445,
-   "node": 242.0411,
-   "argp": 153.3568,
-   "tp": 2461179.1389
-  },
-  "H": 12,
-  "k": 12,
-  "mag_at_build": 20.11,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": -117.8
+  "days_from_perihelion": -526.8
  },
  {
   "designation": "C/2024 J4",
   "name": "Lemmon",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 5.69522,
-   "e": 0.998604,
-   "i": 117.5145,
+   "q": 5.695229,
+   "e": 0.998595,
+   "i": 117.5143,
    "node": 19.3146,
-   "argp": 127.8572,
-   "tp": 2460791.4039
+   "argp": 127.8574,
+   "tp": 2460791.4032
   },
   "H": 8,
   "k": 4,
-  "mag_at_build": 20.13,
+  "mag_at_build": 20.14,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -505.5
+  "days_from_perihelion": -512.5
  },
  {
   "designation": "C/2026 M3",
   "name": "MASTER",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 12.049491,
-   "e": 1.00015,
+   "q": 12.049494,
+   "e": 1.000128,
    "i": 93.883,
-   "node": 282.3546,
-   "argp": 51.188,
-   "tp": 2461453.2923
+   "node": 282.3545,
+   "argp": 51.1876,
+   "tp": 2461453.2828
   },
   "H": 3.9,
   "k": 4,
-  "mag_at_build": 20.16,
+  "mag_at_build": 20.15,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 156.3
+  "days_from_perihelion": 149.4
  },
  {
-  "designation": "C/2025 A3",
-  "name": "Tsuchinshan",
-  "epoch": "2026-09-13",
+  "designation": "C/2024 X2",
+  "name": "ATLAS",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 5.792281,
-   "e": 0.432377,
-   "i": 9.9758,
-   "node": 322.4291,
-   "argp": 222.3799,
-   "tp": 2461115.3398
+   "q": 3.66553,
+   "e": 0.927436,
+   "i": 109.2902,
+   "node": 122.517,
+   "argp": 315.4193,
+   "tp": 2460862.7849
   },
-  "H": 9,
+  "H": 9.6,
   "k": 4,
-  "mag_at_build": 20.17,
+  "mag_at_build": 20.18,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -181.6
+  "days_from_perihelion": -441.1
  },
  {
-  "designation": "510P",
-  "name": "Boattini",
-  "epoch": "2026-09-13",
+  "designation": "C/2025 E1",
+  "name": "PANSTARRS",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 4.875289,
-   "e": 0.247562,
-   "i": 8.2268,
-   "node": 280.6496,
-   "argp": 86.6841,
-   "tp": 2461292.5562
+   "q": 3.998059,
+   "e": 0.997855,
+   "i": 69.0593,
+   "node": 344.5883,
+   "argp": 274.4259,
+   "tp": 2461307.2151
   },
-  "H": 9.5,
+  "H": 11.2,
   "k": 4,
-  "mag_at_build": 20.21,
+  "mag_at_build": 20.29,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -4.4
+  "days_from_perihelion": 3.3
  },
  {
   "designation": "C/2026 H1",
   "name": "PANSTARRS",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 6.084,
-   "e": 1.000741,
-   "i": 115.5942,
+   "q": 6.084007,
+   "e": 1.000744,
+   "i": 115.5943,
    "node": 178.7277,
-   "argp": 349.6601,
-   "tp": 2461205.0905
+   "argp": 349.661,
+   "tp": 2461205.1001
   },
   "H": 9,
   "k": 4,
-  "mag_at_build": 20.4,
+  "mag_at_build": 20.39,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -91.9
+  "days_from_perihelion": -98.8
  },
  {
   "designation": "C/2025 L2",
   "name": "MAPS",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 2.833775,
-   "e": 0.993962,
+   "q": 2.833789,
+   "e": 0.99396,
    "i": 86.5844,
    "node": 134.9867,
-   "argp": 232.6443,
-   "tp": 2461030.1562
+   "argp": 232.6448,
+   "tp": 2461030.157
   },
   "H": 11.7,
   "k": 4,
-  "mag_at_build": 20.41,
+  "mag_at_build": 20.5,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -266.8
+  "days_from_perihelion": -273.8
  },
  {
   "designation": "C/2024 N1",
   "name": "PANSTARRS",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 4.39904,
-   "e": 1.000976,
+   "q": 4.399081,
+   "e": 1.000989,
    "i": 88.7821,
-   "node": 323.025,
-   "argp": 91.2821,
-   "tp": 2460967.5431
+   "node": 323.0249,
+   "argp": 91.2836,
+   "tp": 2460967.5523
   },
   "H": 10.5,
   "k": 4,
-  "mag_at_build": 20.51,
+  "mag_at_build": 20.55,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -329.4
+  "days_from_perihelion": -336.4
  },
  {
   "designation": "C/2023 X7",
   "name": "PANSTARRS",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 4.820724,
-   "e": 0.998098,
-   "i": 69.1271,
-   "node": 119.2051,
+   "q": 4.82074,
+   "e": 0.998073,
+   "i": 69.127,
+   "node": 119.205,
    "argp": 354.385,
-   "tp": 2460810.3404
+   "tp": 2460810.336
   },
   "H": 9,
   "k": 4,
-  "mag_at_build": 20.56,
+  "mag_at_build": 20.61,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -486.6
- },
- {
-  "designation": "47P",
-  "name": "Ashbrook-Jackson",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 2.807589,
-   "e": 0.317764,
-   "i": 13.0398,
-   "node": 356.8811,
-   "argp": 357.919,
-   "tp": 2460976.4862
-  },
-  "H": 12.5,
-  "k": 4,
-  "mag_at_build": 20.57,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": -320.5
+  "days_from_perihelion": -493.6
  },
  {
   "designation": "P/2025 U1",
   "name": "Hogan",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 4.165989,
-   "e": 0.293028,
-   "i": 23.8306,
-   "node": 234.8948,
-   "argp": 264.0758,
-   "tp": 2461125.3851
+   "q": 4.16599,
+   "e": 0.293001,
+   "i": 23.8308,
+   "node": 234.8936,
+   "argp": 264.0763,
+   "tp": 2461125.3785
   },
   "H": 11.7,
   "k": 4,
-  "mag_at_build": 20.59,
+  "mag_at_build": 20.62,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -171.6
+  "days_from_perihelion": -178.5
+ },
+ {
+  "designation": "47P",
+  "name": "Ashbrook-Jackson",
+  "epoch": "2026-09-20",
+  "orbital": {
+   "q": 2.807607,
+   "e": 0.317761,
+   "i": 13.0398,
+   "node": 356.8811,
+   "argp": 357.9201,
+   "tp": 2460976.4894
+  },
+  "H": 12.5,
+  "k": 4,
+  "mag_at_build": 20.65,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": -327.4
  },
  {
   "designation": "65P",
   "name": "Gunn",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 2.925583,
-   "e": 0.248079,
+   "q": 2.925564,
+   "e": 0.24808,
    "i": 9.1752,
-   "node": 61.9616,
-   "argp": 213.6026,
-   "tp": 2460842.6134
+   "node": 61.9614,
+   "argp": 213.6012,
+   "tp": 2460842.6072
   },
   "H": 11.8,
   "k": 4,
-  "mag_at_build": 20.65,
+  "mag_at_build": 20.68,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -454.3
+  "days_from_perihelion": -461.3
  },
  {
   "designation": "C/2024 X1",
   "name": "Fazekas",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 3.816256,
-   "e": 0.593269,
-   "i": 6.4743,
+   "q": 3.816245,
+   "e": 0.593246,
+   "i": 6.4744,
    "node": 351.9203,
-   "argp": 124.3326,
-   "tp": 2460890.2191
+   "argp": 124.3314,
+   "tp": 2460890.2085
   },
   "H": 11.3,
   "k": 4,
-  "mag_at_build": 20.8,
+  "mag_at_build": 20.83,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -406.7
+  "days_from_perihelion": -413.7
+ },
+ {
+  "designation": "141P-D",
+  "name": "Machholz",
+  "epoch": "2026-09-20",
+  "orbital": {
+   "q": 0.806915,
+   "e": 0.736909,
+   "i": 13.8445,
+   "node": 242.0403,
+   "argp": 153.3574,
+   "tp": 2461179.1396
+  },
+  "H": 12,
+  "k": 12,
+  "mag_at_build": 20.83,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": -124.8
  },
  {
   "designation": "513P",
   "name": "Broughton",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 3.25448,
-   "e": 0.551407,
-   "i": 21.3836,
-   "node": 56.9959,
-   "argp": 304.9035,
-   "tp": 2460840.3881
+   "q": 3.254522,
+   "e": 0.551404,
+   "i": 21.3835,
+   "node": 56.9958,
+   "argp": 304.905,
+   "tp": 2460840.3918
   },
   "H": 11,
   "k": 4,
-  "mag_at_build": 20.82,
+  "mag_at_build": 20.91,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -456.6
+  "days_from_perihelion": -463.5
  },
  {
   "designation": "C/2025 M3",
   "name": "PANSTARRS",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
    "q": 6.471462,
-   "e": 0.998881,
-   "i": 137.2145,
-   "node": 65.3535,
+   "e": 0.998868,
+   "i": 137.2144,
+   "node": 65.3534,
    "argp": 197.0156,
-   "tp": 2461244.7047
+   "tp": 2461244.7045
   },
   "H": 9,
   "k": 4,
-  "mag_at_build": 21.02,
+  "mag_at_build": 20.98,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -52.2
- },
- {
-  "designation": "217P",
-  "name": "LINEAR",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 1.22184,
-   "e": 0.69016,
-   "i": 12.8734,
-   "node": 125.3723,
-   "argp": 246.9068,
-   "tp": 2460820.7475
-  },
-  "H": 12,
-  "k": 4,
-  "mag_at_build": 21.09,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": -476.2
- },
- {
-  "designation": "P/2005 T3",
-  "name": "Read",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 6.251383,
-   "e": 0.173475,
-   "i": 6.2315,
-   "node": 27.5762,
-   "argp": 7.3987,
-   "tp": 2461281.7457
-  },
-  "H": 9,
-  "k": 4,
-  "mag_at_build": 21.18,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": -15.2
+  "days_from_perihelion": -59.2
  },
  {
   "designation": "49P",
   "name": "Arend-Rigaux",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 1.432033,
-   "e": 0.598818,
+   "q": 1.432048,
+   "e": 0.598815,
    "i": 19.0597,
    "node": 118.7905,
-   "argp": 332.9462,
-   "tp": 2460776.0591
+   "argp": 332.9466,
+   "tp": 2460776.0579
   },
   "H": 11.3,
   "k": 4.4,
   "mag_at_build": 21.18,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -520.9
+  "days_from_perihelion": -527.9
+ },
+ {
+  "designation": "217P",
+  "name": "LINEAR",
+  "epoch": "2026-09-20",
+  "orbital": {
+   "q": 1.221636,
+   "e": 0.690195,
+   "i": 12.8733,
+   "node": 125.3722,
+   "argp": 246.9016,
+   "tp": 2460820.762
+  },
+  "H": 12,
+  "k": 4,
+  "mag_at_build": 21.18,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": -483.2
+ },
+ {
+  "designation": "P/2005 T3",
+  "name": "Read",
+  "epoch": "2026-09-20",
+  "orbital": {
+   "q": 6.251383,
+   "e": 0.173456,
+   "i": 6.2315,
+   "node": 27.5762,
+   "argp": 7.3995,
+   "tp": 2461281.7568
+  },
+  "H": 9,
+  "k": 4,
+  "mag_at_build": 21.2,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": -22.2
  },
  {
   "designation": "C",
   "name": "2023 R1-B",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 3.569951,
-   "e": 1.003545,
-   "i": 149.3144,
+   "q": 3.569949,
+   "e": 1.003539,
+   "i": 149.3143,
    "node": 62.5691,
-   "argp": 144.2014,
-   "tp": 2461143.6219
+   "argp": 144.2012,
+   "tp": 2461143.6208
   },
   "H": 12.6,
   "k": 4,
-  "mag_at_build": 21.29,
+  "mag_at_build": 21.25,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -153.3
+  "days_from_perihelion": -160.3
  },
  {
   "designation": "C/2025 B1",
   "name": "PANSTARRS",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 3.530185,
-   "e": 0.999678,
+   "q": 3.530201,
+   "e": 0.999675,
    "i": 39.6648,
    "node": 102.8463,
-   "argp": 23.5601,
-   "tp": 2460853.315
+   "argp": 23.5605,
+   "tp": 2460853.3153
   },
   "H": 12,
   "k": 4,
-  "mag_at_build": 21.43,
+  "mag_at_build": 21.47,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -443.6
- },
- {
-  "designation": "A",
-  "name": "2024 U2",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 8.179085,
-   "e": 1.003577,
-   "i": 120.6775,
-   "node": 56.0806,
-   "argp": 29.8566,
-   "tp": 2461056.2522
-  },
-  "H": 12.1,
-  "k": 2,
-  "mag_at_build": 21.46,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": -240.7
- },
- {
-  "designation": "C/2025 K1",
-  "name": "ATLAS",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 0.33428,
-   "e": 1.000223,
-   "i": 147.8665,
-   "node": 97.5654,
-   "argp": 271.0285,
-   "tp": 2460956.9213
-  },
-  "H": 12.2,
-  "k": 4,
-  "mag_at_build": 21.46,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": -340
+  "days_from_perihelion": -450.6
  },
  {
   "designation": "C/2024 L1",
   "name": "PANSTARRS",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 5.348046,
-   "e": 0.5333,
-   "i": 99.1477,
-   "node": 45.1332,
+   "q": 5.348049,
+   "e": 0.533295,
+   "i": 99.1475,
+   "node": 45.1331,
    "argp": 171.7777,
-   "tp": 2460788.4534
+   "tp": 2460788.4517
   },
   "H": 10,
   "k": 4,
-  "mag_at_build": 21.49,
+  "mag_at_build": 21.48,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -508.5
+  "days_from_perihelion": -515.5
+ },
+ {
+  "designation": "A",
+  "name": "2024 U2",
+  "epoch": "2026-09-20",
+  "orbital": {
+   "q": 8.179091,
+   "e": 1.003588,
+   "i": 120.6777,
+   "node": 56.0809,
+   "argp": 29.8571,
+   "tp": 2461056.2594
+  },
+  "H": 12.1,
+  "k": 2,
+  "mag_at_build": 21.48,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": -247.7
+ },
+ {
+  "designation": "C/2025 K1",
+  "name": "ATLAS",
+  "epoch": "2026-09-20",
+  "orbital": {
+   "q": 0.334288,
+   "e": 1.000222,
+   "i": 147.8666,
+   "node": 97.5658,
+   "argp": 271.0292,
+   "tp": 2460956.9201
+  },
+  "H": 12.2,
+  "k": 4,
+  "mag_at_build": 21.59,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": -347
  },
  {
   "designation": "341P",
   "name": "Gibbs",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 2.508088,
-   "e": 0.414838,
-   "i": 3.7956,
-   "node": 29.9386,
-   "argp": 312.4618,
-   "tp": 2460788.3888
+   "q": 2.508173,
+   "e": 0.414831,
+   "i": 3.7955,
+   "node": 29.9378,
+   "argp": 312.4661,
+   "tp": 2460788.3941
   },
   "H": 12.5,
   "k": 4,
-  "mag_at_build": 21.49,
+  "mag_at_build": 21.59,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -508.6
+  "days_from_perihelion": -515.5
  },
  {
   "designation": "172P",
   "name": "Yeung",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 3.358099,
-   "e": 0.205371,
+   "q": 3.358094,
+   "e": 0.205375,
    "i": 11.2207,
-   "node": 30.8709,
-   "argp": 208.8754,
-   "tp": 2460981.867
+   "node": 30.8707,
+   "argp": 208.8755,
+   "tp": 2460981.8668
   },
   "H": 13,
   "k": 4,
-  "mag_at_build": 21.68,
+  "mag_at_build": 21.66,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -315.1
+  "days_from_perihelion": -322.1
  },
  {
   "designation": "340P",
   "name": "Boattini",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 3.057842,
-   "e": 0.279442,
+   "q": 3.05784,
+   "e": 0.279436,
    "i": 2.0788,
-   "node": 291.5882,
-   "argp": 36.0682,
-   "tp": 2460916.4427
+   "node": 291.588,
+   "argp": 36.0675,
+   "tp": 2460916.4376
   },
   "H": 13,
   "k": 4,
-  "mag_at_build": 21.72,
+  "mag_at_build": 21.78,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -380.5
- },
- {
-  "designation": "21P",
-  "name": "Giacobini-Zinner",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 1.007694,
-   "e": 0.711199,
-   "i": 32.0777,
-   "node": 195.2644,
-   "argp": 172.9352,
-   "tp": 2460759.8511
-  },
-  "H": 9,
-  "k": 6,
-  "mag_at_build": 21.82,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": -537.1
- },
- {
-  "designation": "141P-A",
-  "name": "Machholz",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 0.807456,
-   "e": 0.73587,
-   "i": 13.9526,
-   "node": 241.7912,
-   "argp": 153.645,
-   "tp": 2461153.8859
-  },
-  "H": 12,
-  "k": 12,
-  "mag_at_build": 22.02,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": -143.1
- },
- {
-  "designation": "141P",
-  "name": "Machholz",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 0.807389,
-   "e": 0.735865,
-   "i": 13.9598,
-   "node": 241.7642,
-   "argp": 153.655,
-   "tp": 2461153.4968
-  },
-  "H": 12,
-  "k": 12,
-  "mag_at_build": 22.05,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": -143.4
- },
- {
-  "designation": "C/2025 F2",
-  "name": "SWAN",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 0.333977,
-   "e": 1.000155,
-   "i": 90.3785,
-   "node": 329.8168,
-   "argp": 153.8579,
-   "tp": 2460796.6388
-  },
-  "H": 11.2,
-  "k": 4,
-  "mag_at_build": 22.17,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": -500.3
- },
- {
-  "designation": "C/2024 X4",
-  "name": "PANSTARRS",
-  "epoch": "2026-09-13",
-  "orbital": {
-   "q": 3.605551,
-   "e": 0.643874,
-   "i": 34.6285,
-   "node": 258.9249,
-   "argp": 153.4089,
-   "tp": 2460921.0178
-  },
-  "H": 12.6,
-  "k": 4,
-  "mag_at_build": 22.19,
-  "mag_source": "mpc-formula",
-  "days_from_perihelion": -375.9
+  "days_from_perihelion": -387.5
  },
  {
   "designation": "C/2026 H3",
   "name": "Bok",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 7.728224,
-   "e": 1.003187,
+   "q": 7.728222,
+   "e": 1.003172,
    "i": 142.5668,
-   "node": 352.4993,
+   "node": 352.4996,
    "argp": 98.4931,
-   "tp": 2461183.4457
+   "tp": 2461183.4423
   },
   "H": 8.9,
   "k": 4,
-  "mag_at_build": 22.2,
+  "mag_at_build": 22.17,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -113.5
+  "days_from_perihelion": -120.5
  },
  {
-  "designation": "C/2026 M5",
-  "name": "PANSTARRS",
-  "epoch": "2026-09-13",
+  "designation": "C/2025 F2",
+  "name": "SWAN",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 4.983706,
-   "e": 0.935994,
-   "i": 147.455,
-   "node": 114.5001,
-   "argp": 144.2668,
-   "tp": 2461322.1655
+   "q": 0.333988,
+   "e": 1.000155,
+   "i": 90.3788,
+   "node": 329.8164,
+   "argp": 153.8584,
+   "tp": 2460796.6383
+  },
+  "H": 11.2,
+  "k": 4,
+  "mag_at_build": 22.22,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": -507.3
+ },
+ {
+  "designation": "C/2024 X4",
+  "name": "PANSTARRS",
+  "epoch": "2026-09-20",
+  "orbital": {
+   "q": 3.605599,
+   "e": 0.643891,
+   "i": 34.6272,
+   "node": 258.9234,
+   "argp": 153.4124,
+   "tp": 2460921.0304
+  },
+  "H": 12.6,
+  "k": 4,
+  "mag_at_build": 22.29,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": -382.9
+ },
+ {
+  "designation": "C/2024 G4",
+  "name": "PANSTARRS",
+  "epoch": "2026-09-20",
+  "orbital": {
+   "q": 4.900617,
+   "e": 0.998801,
+   "i": 33.0302,
+   "node": 152.97,
+   "argp": 131.4017,
+   "tp": 2461120.8987
   },
   "H": 11.4,
   "k": 4,
-  "mag_at_build": 22.23,
+  "mag_at_build": 22.3,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 25.2
+  "days_from_perihelion": -183
  },
  {
   "designation": "69P",
   "name": "Taylor",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 2.27035,
-   "e": 0.414691,
+   "q": 2.270349,
+   "e": 0.414701,
    "i": 22.0612,
-   "node": 104.8052,
+   "node": 104.8053,
    "argp": 343.559,
    "tp": 2461356.9893
   },
@@ -1635,66 +1491,120 @@
   "k": 12,
   "mag_at_build": 22.56,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": 60
+  "days_from_perihelion": 53.1
+ },
+ {
+  "designation": "141P-A",
+  "name": "Machholz",
+  "epoch": "2026-09-20",
+  "orbital": {
+   "q": 0.807444,
+   "e": 0.735874,
+   "i": 13.9526,
+   "node": 241.7901,
+   "argp": 153.6455,
+   "tp": 2461153.8865
+  },
+  "H": 12,
+  "k": 12,
+  "mag_at_build": 22.62,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": -150
+ },
+ {
+  "designation": "141P",
+  "name": "Machholz",
+  "epoch": "2026-09-20",
+  "orbital": {
+   "q": 0.807377,
+   "e": 0.73587,
+   "i": 13.9598,
+   "node": 241.7631,
+   "argp": 153.6555,
+   "tp": 2461153.4975
+  },
+  "H": 12,
+  "k": 12,
+  "mag_at_build": 22.64,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": -150.4
  },
  {
   "designation": "60P",
   "name": "Tsuchinshan",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 1.646201,
-   "e": 0.533657,
-   "i": 3.5796,
+   "q": 1.646212,
+   "e": 0.533656,
+   "i": 3.5795,
    "node": 267.398,
-   "argp": 216.9349,
-   "tp": 2460877.1204
+   "argp": 216.9354,
+   "tp": 2460877.1206
   },
   "H": 11.5,
   "k": 6,
-  "mag_at_build": 22.65,
+  "mag_at_build": 22.66,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -419.8
+  "days_from_perihelion": -426.8
  },
  {
   "designation": "42P",
   "name": "Neujmin",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 2.029507,
-   "e": 0.584016,
+   "q": 2.029501,
+   "e": 0.584013,
    "i": 3.9886,
-   "node": 150.1555,
-   "argp": 147.1076,
-   "tp": 2461055.3999
+   "node": 150.1556,
+   "argp": 147.107,
+   "tp": 2461055.3986
   },
   "H": 13,
   "k": 6,
-  "mag_at_build": 22.88,
+  "mag_at_build": 23,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -241.5
+  "days_from_perihelion": -248.5
  },
  {
   "designation": "C/2025 R2",
   "name": "SWAN",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 0.504274,
-   "e": 0.994167,
+   "q": 0.504277,
+   "e": 0.994165,
    "i": 4.4729,
-   "node": 335.3133,
-   "argp": 308.3767,
-   "tp": 2460931.3127
+   "node": 335.3134,
+   "argp": 308.3765,
+   "tp": 2460931.311
   },
   "H": 12.4,
   "k": 4,
-  "mag_at_build": 23.18,
+  "mag_at_build": 23.31,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -365.6
+  "days_from_perihelion": -372.6
+ },
+ {
+  "designation": "3D-B",
+  "name": "Biela",
+  "epoch": "2026-09-20",
+  "orbital": {
+   "q": 0.822327,
+   "e": 0.767807,
+   "i": 7.8788,
+   "node": 276.2044,
+   "argp": 192.2744,
+   "tp": 2460854.5637
+  },
+  "H": 11,
+  "k": 6,
+  "mag_at_build": 23.84,
+  "mag_source": "mpc-formula",
+  "days_from_perihelion": -449.4
  },
  {
   "designation": "3I",
   "name": "ATLAS",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
    "q": 1.356507,
    "e": 6.139884,
@@ -1705,62 +1615,62 @@
   },
   "H": 8,
   "k": 4,
-  "mag_at_build": 23.69,
+  "mag_at_build": 23.85,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -319
+  "days_from_perihelion": -325.9
  },
  {
-  "designation": "3D-B",
-  "name": "Biela",
-  "epoch": "2026-09-13",
+  "designation": "C/2025 A3",
+  "name": "Tsuchinshan",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 0.822317,
-   "e": 0.767809,
-   "i": 7.8788,
-   "node": 276.2043,
-   "argp": 192.2741,
-   "tp": 2460854.5638
+   "q": 5.792323,
+   "e": 0.432381,
+   "i": 9.9758,
+   "node": 322.429,
+   "argp": 222.3779,
+   "tp": 2461115.3149
   },
-  "H": 11,
-  "k": 6,
-  "mag_at_build": 23.82,
+  "H": 12.8,
+  "k": 4,
+  "mag_at_build": 23.96,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -442.4
+  "days_from_perihelion": -188.6
  },
  {
   "designation": "40P",
   "name": "Vaisala",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 1.823949,
-   "e": 0.631228,
-   "i": 11.6404,
+   "q": 1.823951,
+   "e": 0.63123,
+   "i": 11.6405,
    "node": 128.8993,
-   "argp": 52.0763,
-   "tp": 2460991.5563
+   "argp": 52.0766,
+   "tp": 2460991.5573
   },
   "H": 5.5,
   "k": 12,
-  "mag_at_build": 23.9,
+  "mag_at_build": 24.05,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -305.4
+  "days_from_perihelion": -312.4
  },
  {
   "designation": "24P",
   "name": "Schaumasse",
-  "epoch": "2026-09-13",
+  "epoch": "2026-09-20",
   "orbital": {
-   "q": 1.184085,
-   "e": 0.708194,
+   "q": 1.18409,
+   "e": 0.708195,
    "i": 11.5016,
    "node": 78.2699,
-   "argp": 58.491,
-   "tp": 2461048.8422
+   "argp": 58.4913,
+   "tp": 2461048.8423
   },
   "H": 6.5,
   "k": 14,
-  "mag_at_build": 25.33,
+  "mag_at_build": 25.57,
   "mag_source": "mpc-formula",
-  "days_from_perihelion": -248.1
+  "days_from_perihelion": -255.1
  }
 ]
